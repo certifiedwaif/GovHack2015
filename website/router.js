@@ -2,11 +2,41 @@ var path = require("path");
 var fs = require("fs");
 var requestHandlers = require("./requestHandlers");
 var mime = require('mime');
-var pages = {"/":"index.html"};
+var db = require("./database").db;
+
+var pages = {
+	"/":"index.html"
+};
 
 function route(handle, pathname, response, request) {
-//	console.log(pathname);
+	console.log(pathname);
 //	console.log(pathname.split("/"));
+
+	//here is the function that is called when you hit "requestjson"
+	handle["/requestjson"] = function(response, request){
+
+		get_row();
+		function get_row() {
+			var number = Math.floor(Math.random() * 4000);
+			if (typeof d != 'undefined' && d.number != 'undefined'){
+				number = d.number;
+			}
+
+			db.get_row(number, function(d){
+				if(typeof d == 'undefined'){
+					get_row();
+				} else {
+					response.writeHead(200, {"Content-Type": "application/json"});
+					response.end(JSON.stringify(d[0]));
+				}
+			});
+		}
+
+
+
+		return;
+	}
+
 	if (typeof handle[pathname] === 'function') {
 		handle[pathname](response, request);
 	} else if(typeof pages[pathname] != "undefined") {

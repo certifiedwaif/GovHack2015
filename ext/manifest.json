@@ -1,9 +1,9 @@
 {
-  "name": "random ABC rural photos",
-  "version": "0.0.1",
+  "name": "ABC Local Stories",
+  "version": "0.0.3",
   "manifest_version": 2,
-  "description": "This app was made for govhack 2015",
-  "homepage_url": "http://david-ma.net",
+  "description": "For GovHack 2015 @frostickle, @certifiedwaif, @stringstory, @aeromental and @zazuazad made this app for randomly changing your new tab background to an ABC local story!",
+  "homepage_url": "https://hackerspace.govhack.org/content/true-stories",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
@@ -18,6 +18,8 @@
     "newtab": "src/override/override.html"
   },
   "permissions": [
-    "tabs"
+    "tabs",
+    "http://localstories.info/requestjson",
+    "http://www.abc.net.au/*"
   ]
 }

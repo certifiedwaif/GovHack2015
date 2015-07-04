@@ -10,18 +10,66 @@ var imgs = [
 
 
 
-d3.select("body").attr("background", imgs[Math.floor(Math.random()*6)]);
+var xmlhttp = new XMLHttpRequest();
+var url = "http://localstories.info/requestjson";
 
-// 	console.log("hellooo");
-// 
-// d3.select("#message").text("change text!");
-// 
-// d3.select("#message").attr("asdf", function(d){
-// 	console.log("hi");
-// })
-// console.log("woo");
+xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        var myArr = JSON.parse(xmlhttp.responseText);
+        myFunction(myArr);
+    }
+}
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+function myFunction(arr) {
+	console.log(arr);
 
 
-d3.json("dummy.json", function(d){
-	console.log(d);
-})
+
+
+d3.select("#background").style("background-image", "url("+arr["Primary.image"]+")");
+d3.select("#title").text(arr.Title);
+d3.select("#url").attr("href", arr.URL);
+d3.select("#description").text(arr["Primary.image.caption"]);
+
+
+
+
+
+
+
+
+
+var xmlhttp = new XMLHttpRequest();
+var url = arr["MediaRSS.URL"];
+
+xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        var myArr = xmlhttp.responseText;
+        digest(myArr);
+    }
+}
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+
+function digest(xml){
+	console.log(xml);
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

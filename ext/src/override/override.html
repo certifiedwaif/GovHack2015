@@ -3,12 +3,32 @@
 <head>
 	<script type="text/javascript" src="/js/d3.js"></script>
 	<title></title>
+<style>
+	#background {
+		min-height: 100%;
+		min-width: 100%;
+/* 		background-image: url('/js/images/fisherman.jpg'); */
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: right bottom;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		z-index: -2;
+	}
+</style>
 </head>
 <body>
 
+<div id="background"></div>
+
 <h1 id="title">Title</h1>
-<a href="http://test.com"><p id="description">asdfdsa</p></a>
+<a id="url" href="http://test.com" target="_blank"><p id="description">asdfdsa</p></a>
 </body>
   <script type="text/javascript" src="override.js"></script>
 </html>
+
+
+
+
 
