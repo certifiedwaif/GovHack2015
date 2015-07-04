@@ -3,15 +3,15 @@ library(RCurl)
 library(stringr)
 
 localphotostories <- read.csv("localphotostories20092014.csv", header=TRUE)
-# con <- dbConnect(MySQL(),
-#     user = 'root',
-#     password = 'secret',
-#     host = 'localhost',
-#     dbname='govhack2015')
+con <- dbConnect(MySQL(),
+    user = 'root',
+    password = 'colesfueloffer',
+    host = 'localhost',
+    dbname='govhack2015')
 # dbWriteTable(conn = con, name = 'localphotostories', value = localphotostories)
 # Iterate through the non-blank images
 all_metadata_df <- NULL
-for (i in 1:dim(localphotostories)[1]) {
+for (i in 4495:dim(localphotostories)[1]) {
 	# Get the XML
 	xml_url <- as.character(localphotostories$"MediaRSS.URL"[i])
 	cat("Processing", xml_url, "...")
@@ -57,6 +57,6 @@ for (i in 1:dim(localphotostories)[1]) {
 	}
 }
 
-write.csv(all_metadata_df[, 2:4], file="localphotostories_metadata.csv")
+write.csv(all_metadata_df, file="localphotostories_metadata.csv")
 # Insert into the database
 # dbWriteTable(conn = con, name = 'metadata', value = all_metadata_df)
