@@ -2,8 +2,15 @@
 <html>
 <head>
 	<script type="text/javascript" src="/js/d3.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:300,700,400' rel='stylesheet' type='text/css'>
+	
+<!-- <link rel="stylesheet" type="text/css" href="style.css" media="all"> -->
 	<title></title>
 <style>
+	body {
+		margin: 0px;
+	}
 	#background {
 		min-height: 100%;
 		min-width: 100%;
@@ -15,18 +22,195 @@
 		top: 0px;
 		left: 0px;
 		z-index: -2;
+/* 		display: none; */
+	}
+	#mask {
+		z-index: -1;
+		width: 100%;
+		height: 260px;
+		position: absolute;
+		background-image: linear-gradient(-180deg, rgba(0,0,0,0.81) 0%, rgba(0,0,0,0.00) 100%);
+	}
+	#topleft-corner {
+		position: absolute;
+		left: 41px;
+		top: 27px;
+		max-width: 35%;
+	}
+	.text {
+/* 		position: absolute; */
+		font-family: 'Roboto', sans-serif;
+		font-size: 23px;
+		color: #FFFFFF;
+		line-height: 30px;
+		font-weight: 300;
+	}
+	#title {
+		font-family: 'Abel', sans-serif;
+		text-transform: uppercase;
+		left: 41px;
+		top: 27px;
+	}
+	#description {
+		font-size: 15px;
+		left: 41px;
+		top: 70px;
+	}
+	#infopng {
+		z-index: 50;
+		position: relative;
+		width: 16px;
+		float: left;
+	}
+	#moreinfo {
+		float: left;
+		color: #F8E71C;
+		font-family: 'Roboto', sans-serif;
+		font-size: 13px;
+		font-weight: 300;
+		underline: none;
+		margin-left: 5px;
+		margin-top: -6px;
+	}
+
+
+	#abc_logo {
+		position: absolute;
+		top: 42px;
+		right: 41px;
+	}
+
+	#bottomleft-corner {
+		position: absolute;
+		bottom: 42px;
+		left: 41px;
+		background-color: rgba(0,0,0,.58);
+	}
+	#camera {
+		padding: 8px;
+		width: 14px;
+		position: absolute;
+		top: 5px;
+		left: 5px;
+	}
+	.floatme {
+		float: right;
+	}
+	
+	.yellowtext {
+		color: #F8E71C;
+	}
+	#credits {
+		margin-left: 40px;
+		margin-right: 15px;
+		float: left;
+		font-family: 'Roboto', sans-serif;
+		font-size: 13px;
+		font-weight: 300;
+		underline: none;
+		color: #FFF;
+	}
+
+	#bottomright-corner {
+		padding-bottom: 13px;
+		position: absolute;
+		bottom: 42px;
+		right: 41px;
+/* 		background-color: rgba(0,0,0,.58); */
+	}
+	.icon {
+		width: 21px;
+		margin-left: 21px;
 	}
 </style>
 </head>
 <body>
 
 <div id="background"></div>
+<div id="mask"></div>
 
-<h1 id="title">Title</h1>
-<a id="url" href="http://test.com" target="_blank"><p id="description">asdfdsa</p></a>
+<div id="topleft-corner">
+	<h1 id="title" class="text">Title</h1>
+	<p id="description" class="text">Description</p>
+
+	<a id="url" class="text" href="http://test.com" target="_blank">
+		<img id="infopng" src="/img/info.png"></img>
+		<p id="moreinfo">Read more</p>
+	</a>
+</div>
+
+<div id="topright-corner">
+	<a href="https://www.youtube.com/watch?v=3iysSJ51sRc" target="_blank">
+		<img id="abc_logo" src="/img/abc_logo.png"></img>
+	</a>
+</div>
+
+<div id="bottomleft-corner">
+	<img class="floatme" id="camera" src="/img/camera_bottom_left.png"></img>
+	<p class="floatme" id="credits">
+		<span class="yellowtext">
+Copright: 
+		</span>
+		<span id="copyright">
+copyright
+		</span> 
+		<span class="yellowtext" style="margin-left:20px">
+Author: 
+		</span>
+		<span id="author">
+author
+		</span> 
+		
+	</p>
+</div>
+
+<div id="bottomright-corner">
+	<a id="twitter" target="_blank" href="https://twitter.com/intent/tweet?text=via localstories.info #GovHack #RealAusArt - ">
+	<img class="icon" src="/img/twitter.png"></img></a>
+	<a id="facebook" target="_blank">
+	<img class="icon" src="/img/facebook.png"></img></a>
+	<a id="pinterest" target="_blank">
+	<img class="icon" src="/img/pinterest.png"></img></a>
+	
+</div>
+
 </body>
   <script type="text/javascript" src="override.js"></script>
 </html>
+
+
+
+<!-- 
+
+
+https://twitter.com/intent/tweet?text=%22roflmao%22
+
+https://www.facebook.com/sharer/sharer.php?u=$http://www.reddit.com/
+
+pinterest.com/pin/create/link/?url=www.google.com
+
+
+
+
+
+
+
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

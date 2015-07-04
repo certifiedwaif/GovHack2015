@@ -1,8 +1,8 @@
 {
   "name": "ABC Local Stories",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "manifest_version": 2,
-  "description": "For GovHack 2015 @frostickle, @certifiedwaif, @stringstory, @aeromental and @zazuazad made this app for randomly changing your new tab background to an ABC local story!",
+  "description": "This app was made for GovHack 2015 this app. It will change your new tab background to a random ABC local story!",
   "homepage_url": "https://hackerspace.govhack.org/content/true-stories",
   "icons": {
     "16": "icons/icon16.png",
@@ -10,10 +10,6 @@
     "128": "icons/icon128.png"
   },
   "default_locale": "en",
-  "background": {
-    "page": "src/bg/background.html",
-    "persistent": false
-  },
   "chrome_url_overrides": {
     "newtab": "src/override/override.html"
   },
