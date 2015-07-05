@@ -24,7 +24,7 @@ function init(io){
 
 
 		function get_row(d){
-			var number = Math.floor(Math.random() * 4000);
+			var number = Math.floor(Math.random() * 2900);
 			if (typeof d != 'undefined' && d.number != 'undefined'){
 				number = d.number;
 			}
@@ -42,11 +42,22 @@ function init(io){
 
 		socket.on("get_row", get_row)
 
+		socket.on("random8", function(d){
+//			get
+		})
 
+		socket.on("getdescription", function(d){
+			if(typeof d != "undefined" && d.key != "undefined") {
+				var key = d.key;
+				db.get_desc(key, function(d){
+console.log("here is the callback");
+console.log(d);
 
-
-
-
+				});
+				
+				
+			}
+		})
 
 	});
 }

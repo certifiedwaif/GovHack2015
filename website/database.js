@@ -32,7 +32,7 @@ var db = {
 	test: function(d, callback){
 		//just a little test to make sure you're connected to the database.
 		console.log("running test");
-		var query = "select * from localphotostories";
+		var query = "select * from localphotostories_clean";
 
 		db.dbConnection.query(query, function(err, results) {
 			if(err == null) {
@@ -44,7 +44,7 @@ var db = {
 	},
 	get_row: function(id, callback){
 		console.log("getting row "+id);
-		var query = "select * from localphotostories where row_names = "+id;
+		var query = "select * from localphotostories_clean where row_names = "+id;
 
 		db.dbConnection.query(query, function(err, results) {
 			if(err == null) {
@@ -53,7 +53,58 @@ var db = {
 				callback();
 			}
 		});
+	},
+	get_desc: function(d, callback){
+		var query = 'select * from metadata where `Primary.image` = "'+d+'" && name = "og:description"';
+
+		db.dbConnection.query(query, function(err, results) {
+			if(err == null) {
+// 				console.log(results);
+				callback(results);
+			} else {
+//				callback();
+			}
+		});
+
+
 	}
 }
 
 exports.db = db;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

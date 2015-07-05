@@ -26,11 +26,31 @@ function myFunction(arr) {
 	console.log(arr);
 
 
+var music = false;
 
+d3.select("#abc_logo").on("click", function(d){
+	togglemusic();
+})
+
+//document.getElementById("music").pause()
+
+function togglemusic(){
+	if(music) {
+		music = false;
+		document.getElementById("music").pause();
+	} else {
+		music = true;
+		document.getElementById("music").play();
+	}
+}
 
 d3.select("#background").style("background-image", "url("+arr["Primary.image"]+")");
 d3.select("#title").text(arr.Title);
-d3.select("#url").attr("href", arr.URL);
+
+// d3.select("#url").attr("href", arr.URL);
+d3.select("#url").attr("href", "http://localstories.info/story/"+arr.row_names)
+
+
 d3.select("#description").text(arr["Primary.image.caption"]);
 
 

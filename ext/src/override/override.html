@@ -2,6 +2,7 @@
 <html>
 <head>
 	<script type="text/javascript" src="/js/d3.js"></script>
+<!-- 	<script type="text/javascript" src="/js/jquery.js"></script> -->
 	<link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Roboto:300,700,400' rel='stylesheet' type='text/css'>
 	
@@ -72,25 +73,32 @@
 		margin-left: 5px;
 		margin-top: -6px;
 	}
-
-
-	#abc_logo {
+	
+	#topright-corner {
 		position: absolute;
 		top: 42px;
 		right: 41px;
 	}
 
-	#bottomleft-corner {
-		position: absolute;
-		bottom: 42px;
-		left: 41px;
-		background-color: rgba(0,0,0,.58);
+	.logo {
+		margin-left: 29px;
+		position: relative;
+		float: right;
 	}
+	
+	#govhack_logo {
+		width: 45px;
+	}
+
+	#abc_logo {
+/* 		right: 41px; */
+	}
+
 	#camera {
 		padding: 8px;
 		width: 14px;
 		position: absolute;
-		top: 5px;
+		bottom: 8px;
 		left: 5px;
 	}
 	.floatme {
@@ -122,6 +130,22 @@
 		width: 21px;
 		margin-left: 21px;
 	}
+
+	#bottomleft-corner {
+		position: absolute;
+		bottom: 42px;
+		left: 41px;
+		background-color: rgba(0,0,0,.58);
+	}
+
+	#curatedABC {
+		position: absolute;
+		bottom: 82px;
+		left: 52px;
+		font-family: Roboto, sans-serif;
+		font-size: 11px;
+		color: #F8E71C
+	}
 </style>
 </head>
 <body>
@@ -140,29 +164,40 @@
 </div>
 
 <div id="topright-corner">
-	<a href="https://www.youtube.com/watch?v=3iysSJ51sRc" target="_blank">
-		<img id="abc_logo" src="/img/abc_logo.png"></img>
+	<a href="http://www.abc.net.au/" target="_blank">
+		<img id="abc_logo" class="logo" src="/img/abc_logo.png"></img>
 	</a>
+	<a href="https://www.govhack.org/" target="_blank">
+		<img id="govhack_logo" class="logo" src="/img/govhack_logo.png"></img>
+	</a>
+
+
+
 </div>
 
+
+
 <div id="bottomleft-corner">
-	<img class="floatme" id="camera" src="/img/camera_bottom_left.png"></img>
-	<p class="floatme" id="credits">
-		<span class="yellowtext">
-Copright: 
-		</span>
-		<span id="copyright">
-copyright
-		</span> 
-		<span class="yellowtext" style="margin-left:20px">
-Author: 
-		</span>
-		<span id="author">
-author
-		</span> 
-		
-	</p>
+		<img class="floatme" id="camera" src="/img/camera_bottom_left.png"></img>
+		<p class="floatme" id="credits">
+			<span class="yellowtext">
+	Copright:
+			</span>
+			<span id="copyright">
+	copyright
+			</span> 
+			<span class="yellowtext" style="margin-left:20px">
+	Author: 
+			</span>
+			<span id="author">
+	author
+			</span>
+		</p>
 </div>
+
+<p id="curatedABC">
+	Curated from ABC 'Local Stories' 2009-2014 archive.
+</p>
 
 <div id="bottomright-corner">
 	<a id="twitter" target="_blank" href="https://twitter.com/intent/tweet?text=via localstories.info #GovHack #RealAusArt - ">
@@ -173,6 +208,11 @@ author
 	<img class="icon" src="/img/pinterest.png"></img></a>
 	
 </div>
+
+<audio id="music" style="display:none">
+  <source src="/music/theme.mp3" type="audio/mpeg">
+</audio>
+
 
 </body>
   <script type="text/javascript" src="override.js"></script>
