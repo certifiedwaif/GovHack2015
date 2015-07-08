@@ -1,9 +1,9 @@
 {
-  "name": "ABC Local Stories",
-  "version": "0.0.4",
+  "name": "True Stories",
+  "version": "0.0.6",
   "manifest_version": 2,
-  "description": "This app was made for GovHack 2015 this app. It will change your new tab background to a random ABC local story!",
-  "homepage_url": "https://hackerspace.govhack.org/content/true-stories",
+  "description": "‘True Stories’ will change your new tab background to a compelling Australian artwork.",
+  "homepage_url": "http://localstories.com.au",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
@@ -15,7 +15,9 @@
   },
   "permissions": [
     "tabs",
-    "http://localstories.info/requestjson",
+    "http://localstories.com.au/*",
+    "http://localstories.info/*",
+    "http://gettruestories.com/*",
     "http://www.abc.net.au/*"
   ]
 }

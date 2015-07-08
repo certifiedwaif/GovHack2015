@@ -26,24 +26,6 @@ function myFunction(arr) {
 	console.log(arr);
 
 
-var music = false;
-
-d3.select("#abc_logo").on("click", function(d){
-	togglemusic();
-})
-
-//document.getElementById("music").pause()
-
-function togglemusic(){
-	if(music) {
-		music = false;
-		document.getElementById("music").pause();
-	} else {
-		music = true;
-		document.getElementById("music").play();
-	}
-}
-
 d3.select("#background").style("background-image", "url("+arr["Primary.image"]+")");
 d3.select("#title").text(arr.Title);
 
