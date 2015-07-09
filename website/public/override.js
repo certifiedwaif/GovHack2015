@@ -11,7 +11,7 @@ var imgs = [
 
 
 var xmlhttp = new XMLHttpRequest();
-var url = "http://localstories.info/requestjson/382";
+var url = "/requestjson/382";
 
 xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -47,7 +47,7 @@ function togglemusic(){
 d3.select("#background").style("background-image", "url("+arr["Primary.image"]+")");
 d3.select("#title").text(arr.Title);
 // d3.select("#url").attr("href", arr.URL);
-d3.select("#url").attr("href", "http://localstories.info/");
+d3.select("#url").attr("href", "http://localstories.com.au/");
 d3.select("#description").text(arr["Primary.image.caption"]);
 
 
