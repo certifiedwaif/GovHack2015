@@ -5,7 +5,8 @@ var mime = require('mime');
 var db = require("./database").db;
 
 var pages = {
-	"/":"index.html"
+	"/": "homepage.html",
+	"/random": "demo.html"
 };
 
 function route(handle, pathname, response, request) {

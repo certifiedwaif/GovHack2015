@@ -77,6 +77,11 @@ h6 {
     background-color: #fed136;
 }
 
+.big-button {
+	width: 80%;
+	font-size: 28px;
+}
+
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
@@ -541,9 +546,15 @@ section h3.section-subheading {
 }
 
 @media(min-width:768px) {
+
+.big-button {
+	font-size: 50px;
+}
+
     .timeline:before {
         left: 50%;
     }
+    
 
     .timeline>li {
         margin-bottom: 100px;
