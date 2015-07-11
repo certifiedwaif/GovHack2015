@@ -1,3 +1,5 @@
+Hello GovHack judges!! This is a branch that we created just for you to judge, since we at team Potato Heads would very much like to continue working on this project and turn it into something fun and useful for people! (Which is the entire point of GovHack, right?) This branch is pretty much just as it was at 5pm on Sunday, except some misc files have been deleted and the readme has been updated. The core functionality of the app has not been changed/improved since 5pm Sunday, please judge accordingly :)
+
 # True Stories
 
 Created for Australia's [GovHack] 2015 by team [Potato Heads]. A hackathon based on [OKFA] (Open Knowledge Foundation Australia)'s publicly available datasets, released by the Australian Government.
