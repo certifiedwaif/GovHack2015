@@ -23,6 +23,9 @@ create table metadata_common (
 	geo_position text not null
 );
 
+CREATE INDEX metadata_common_names ON metadata_common (Primary_image(57));
+CREATE INDEX metadata_names ON metadata (`Primary.image`(57));
+
 insert into metadata_common(Primary_image)
 select distinct `Primary.image`
 from metadata;
@@ -31,10 +34,6 @@ update metadata_common c, metadata m
 set c.keywords=m.content
 where c.Primary_image=m.`Primary.image`
 and m.name='keywords';
-/* This was incredibly slow. Use indices to speed it up. */
-
-CREATE INDEX metadata_common_names ON metadata_common (Primary_image(57));
-CREATE INDEX metadata_names ON metadata (`Primary.image`(57));
 
 update metadata_common c, metadata m
 set c.description=m.content
