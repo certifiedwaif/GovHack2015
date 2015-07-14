@@ -1,68 +1,52 @@
 var socket = require("./socket");
+var handle = {};
+var db = require("./database").db;
+var pages = {
+	"/": "homepage.html",
+	"/random": "demo.html",
+	"/story": "story.html"
+};
 
-function minardopage(extra){
-return '<!doctype html>'+
-'<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">'+
-'<head>'+
-'<title>Minardo</title>'+
-'<script type="text/javascript" src="/socket.io/socket.io.js"></script>'+
-'<script type="text/javascript" src="/javascript/d3.v3.5.3.js"></script>'+
-'<script type="text/javascript" src="/javascript/jquery-1.11.1.min.js"></script>'+
-'<script type="text/javascript" src="/javascript/'+socket.getMinardoVersion()+'"></script>'+
-'<script type="text/javascript" src="/javascript/ZeroClipboard.js"></script>'+
-'<link rel="stylesheet" href="/javascript/minardo.css"/>'+
-'<link rel="shortcut icon" href="/images/minardo.ico" type="image/x-icon"/>'+
-'<meta charset="utf-8">'+
-'</head>'+
-'<body>'+
-'<script>'+
-'m0.splash.init();'+extra+
-'</script>'+
-'</body>'+
-'</html>'
-}
 
-function minardo(response, key){
-	console.log("Request handler 'home' was called.");
-	var body = minardopage("");
-	if (key) {
-		body = minardopage('m0.data.init("'+key+'")');
+handle["/requestjson"] = function(response, request){
+	get_row();
+	function get_row() {
+		var number = Math.floor(Math.random() * 2900);
+		if (typeof d != 'undefined' && d.number != 'undefined'){
+			number = d.number;
+		}
+
+		db.get_row(number, function(d){
+			if(typeof d == 'undefined'){
+				get_row();
+			} else {
+				response.writeHead(200, {"Content-Type": "application/json"});
+				response.end(JSON.stringify(d[0]));
+			}
+		});
 	}
-	response.writeHead(200, {"Content-Type": "text/html"});
-	response.write(body);
-	response.end();
+	return;
 }
 
-function snapshot(response){
+handle["/requestjson/382"] = function(response, request){
+	get_row();
+	function get_row() {
+		var number = 382;
 
-var body = '<!doctype html>'+
-'<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">'+
-'<head>'+
-'<title>Minardo</title>'+
-'<script type="text/javascript" src="/socket.io/socket.io.js"></script>'+
-'<script type="text/javascript" src="/javascript/d3.v3.5.3.js"></script>'+
-'<script type="text/javascript" src="/javascript/jquery-1.11.1.min.js"></script>'+
-'<script type="text/javascript" src="/javascript/'+socket.getMinardoVersion()+'"></script>'+
-'<script type="text/javascript" src="/javascript/'+socket.getSnapshotVersion()+'"></script>'+
-'<script type="text/javascript" src="/javascript/ZeroClipboard.js"></script>'+
-'<link rel="stylesheet" href="/javascript/minardo.css"/>'+
-'<link rel="shortcut icon" href="/images/minardo.ico" type="image/x-icon"/>'+
-'<meta charset="utf-8">'+
-'</head>'+
-'<body>'+
-'<script>'+
-'snap.init()'+
-'</script>'+
-'</body>'+
-'</html>'
-
-response.writeHead(200, {"Content-Type": "text/html"});
-response.write(body);
-response.end();
+		db.get_row(number, function(d){
+			if(typeof d == 'undefined'){
+				get_row();
+			} else {
+				response.writeHead(200, {"Content-Type": "application/json"});
+				response.end(JSON.stringify(d[0]));
+			}
+		});
+	}
+	return;
 }
 
-exports.minardo = minardo;
-exports.snapshot = snapshot;
+exports.handle = handle;
+exports.pages = pages;
 
 
 

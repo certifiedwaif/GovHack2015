@@ -1,14 +1,7 @@
 var server = require("./server");
 var router = require("./router");
 var socket = require("./socket");
-var requestHandlers = require("./requestHandlers");
-
-var listOfAlbums = null;
-
-var handle = {}
-handle["/"] = requestHandlers.home;
-handle["/snapshot"] = requestHandlers.snapshot;
-handle["/snapshot/"] = requestHandlers.snapshot;
+var handle = require("./requestHandlers").handle;
 
 var s = server.start(router.route, handle);
 

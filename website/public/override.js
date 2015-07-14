@@ -50,7 +50,7 @@ d3.select("#author").text(author);
 
 
 d3.select("#facebook").attr("href", "https://www.facebook.com/sharer/sharer.php?u=$"+arr.URL);
-d3.select("#twitter").attr("href", "https://twitter.com/intent/tweet?text=via%20localstories.info%20%23GovHack%20%23RealAusArt%20-%20"+arr.URL+" "+arr.Title);
+d3.select("#twitter").attr("href", "https://twitter.com/intent/tweet?text=via%20localstories.com.au%20%23GovHack%20%23RealAusArt%20-%20"+arr.URL+" "+arr.Title);
 d3.select("#pinterest").attr("href", "https://pinterest.com/pin/create/link/?url="+arr.URL);
 
 
