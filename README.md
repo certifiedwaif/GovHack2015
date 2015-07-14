@@ -47,6 +47,13 @@ The Potato Heads used a number of tools to help organise their team (this is an 
 
 Just download it from the [Chrome Web Store]!
 
+# Folder Structure:
+
+* data: Data and scripts used by the system
+* ext: The Google Chrome Extension folder. This is 99% boilerplate. The only files of interest are in: ext/src/override, these files describe the webpage that override the new tabs.
+* gh2015: Initial prototype. Now defunct
+* website: This folder contains the node.js server and public folder for the app, since the app needs to request data from our database and serve a few webpages.
+
 
 License
 ----
