@@ -1,13 +1,9 @@
 var mysql = require("mysql");
+var cred = require("./credentials").cred;
 
 var db = {
 	init: function(){
-		db.dbConnection = mysql.createConnection({
-			host     : 'localhost',
-			user     : 'root',
-			password : 'colesfueloffer',
-			database : 'govhack2015'
-		});
+		db.dbConnection = mysql.createConnection(cred.db);
 
 		db.dbConnection.connect(function(err) {
 			if (err) {
