@@ -395,18 +395,26 @@ ABS
 </h4>
 
 <p class="metadata-text">
-<strong>Population Density:</strong>
-<span id="meta-location">ABC Kimberly WA</span>
-</p>
-<p class="metadata-text">
-<strong>Male vs Female ratio:</strong>
-<span id="meta-location">2:3</span>
-</p>
-<p class="metadata-text">
-<strong>Median age:</strong>
-<span id="meta-location">24 - 36</span>
+<strong>Primary Industry:</strong>
+<span id="meta-industry">Mining</span>
 </p>
 
+<!-- 
+<p class="metadata-text">
+<strong>Population Density:</strong>
+<span id="meta-pop">2000</span>
+</p>
+ -->
+
+<p class="metadata-text">
+<strong>Male vs Female ratio:</strong>
+<span id="meta-ratio">2:3</span>
+</p>
+
+<p class="metadata-text">
+<strong>Median age:</strong>
+<span id="meta-age">24</span>
+</p>
 
 
 
@@ -561,6 +569,24 @@ d3.select("#authortext").html(author);
 d3.select("#lat-text").html(d.Latitude);
 d3.select("#lng-text").html(d.Longitude);
 d3.select("#populationtext").html(d["Total.Population"]);
+
+
+d3.select("#meta-industry").html(d["Main.Employing.Industry"]);
+
+// d3.select("#meta-pop").html(d["Main.Employing.Industry"]);
+
+var ratio = (parseFloat(d["Male.Population"]) / parseFloat(d["Female.Population"])).toPrecision(3);
+
+
+d3.select("#meta-ratio").html(ratio);
+d3.select("#meta-age").html(d["Median.Age"]);
+
+
+
+
+console.log('hey');
+
+
 
 //to do: add 4 rndom photos
 

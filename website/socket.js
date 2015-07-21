@@ -6,6 +6,9 @@ var fs = require("fs");
 var wait_time = 900000; //15 minutes in milliseconds
 var db = require("./database").db;
 
+var twit = require("./twitter").twit;
+
+
 function init(io){
 	db.init();
 
@@ -20,6 +23,15 @@ function init(io){
 		// pass data from memory. Then update memory from google doc.
 		// data is loaded from local when server is started,
 		// and saved to local every time it is loaded from google.
+
+
+
+		socket.on("twit", function(d){
+			twit.init();
+		});
+
+
+
 
 
 

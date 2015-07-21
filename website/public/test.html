@@ -3,6 +3,7 @@
 <head>
 	<script type="text/javascript" src="/js/d3.js"></script>
 	<title></title>
+	<script src="/socket.io/socket.io.js"></script>
 <style>
 	#background {
 		min-height: 100%;
@@ -23,9 +24,16 @@
 <div id="background"></div>
 
 <h1 id="title">Title</h1>
-<a id="url" href="http://test.com" target="_blank"><p id="description">asdfdsa</p></a>
+
+<!-- <a id="url" href="http://test.com" target="_blank"><p id="description">asdfdsa</p></a> -->
+
 </body>
-  <script type="text/javascript" src="override.js"></script>
+<script>
+	socket = io.connect();
+
+
+
+</script>
 </html>
 
 
