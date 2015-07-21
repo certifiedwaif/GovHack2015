@@ -88,9 +88,11 @@ h2{
 
 .hashtag-text {
 	width: 200px;
-	top: 33px;
+	bottom: 0\px;
+	left: 20px;
 	position: absolute;
-	text-align: center; 
+	text-anchor: start;
+	text-align: left; 
 	font-family: Roboto, sans-serif;
 	font-weight: bold;
 	font-size: 23px;
@@ -107,11 +109,13 @@ h2{
  max-height: 100%;
  min-width: 100%;
  min-height: 100%;
+ vertical-align: middle;
+ overflow: hidden;
 }
 .mask {
 	position: absolute;
 	width: 200px;
-	height: 100px;
+	height: 113px;
 	background-color: rgba(0,0,0,.3);
 }
 
@@ -121,7 +125,7 @@ h2{
 	margin-right: 6px;
 	margin-bottom: 6px;
 	width: 200px;
-	height: 100px;
+	height: 113px;
 }
 
 #map-canvas {
@@ -164,6 +168,8 @@ h4 {
 </head>
 
 <body id="page-top" class="index">
+
+
     <!-- Header -->
     <header id="header_image"">
         <div class="container">
@@ -176,11 +182,15 @@ h4 {
             </div>
         </div>
     </header>
+    
+    
+    
+    
 
     <!-- Content -->
 <section id="content" style="padding-top:35px;">
 	<div class="container">
-            <div class="row text-center" class="bg-light-gray">
+            <div id="main-content" class="row text-center">
                 <div class="col-md-9">
 <div>
 
@@ -196,6 +206,7 @@ Despite his incredible success as an actor and comedian, Hugh Laurie now calls h
 		Source
 		</p>
 	</div>
+
 
 	<p id="source" class="label-text">
 	<a id="sourcelink" class="label-text-link" target="_blank" href="http://www.abc.net.au/local/photos/2014/05/01/3995899.htm">
@@ -255,94 +266,24 @@ See another True Story:
 		</p>
 		<img class="previewpic img-responsive" src="http://www.abc.net.au/news/image/5196902-16x9-700x394.jpg" alt=""/>
 	</div>
-	<div class="hashtagbox">
-		<div class="mask"></div>
-		<p class="hashtag-text">
-		#art
-		</p>
-		<img class="previewpic img-responsive" src="http://www.abc.net.au/reslib/201206/r961540_10347285.JPG" alt=""/>
-	</div>
-
-	<div class="hashtagbox">
-		<div class="mask"></div>
-		<p class="hashtag-text">
-		#cycling
-		</p>
-		<img class="previewpic img-responsive" src="http://www.abc.net.au/reslib/201311/r1206980_15681019.jpg" alt=""/>
-	</div>
-
-	<div class="hashtagbox">
-		<div class="mask"></div>
-		<p class="hashtag-text">
-		#indigenous
-		</p>
-		<img class="previewpic img-responsive" src="http://www.abc.net.au/reslib/201207/r968445_10477011.jpg" alt=""/>
-	</div>
-
-	<div class="hashtagbox">
-		<div class="mask"></div>
-		<p class="hashtag-text">
-		#rural
-		</p>
-		<img class="previewpic img-responsive" src="http://www.abc.net.au/reslib/201303/r1083222_12898574.JPG" alt=""/>
-	</div>
-
-
-
 
 </div>
-<!-- 
-<div class="clear" style="padding:20px;"></div>
-<div>
-<h2>
-Same Author
-</h2>
-	<div class="hashtagbox">
-		<div class="mask"></div>
-		<p class="hashtag-text">
-		#city
-		</p>
-		<img class="previewpic img-responsive" src="http://photos.smugmug.com/photos/i-qLB8Kjq/0/O/i-qLB8Kjq-O.jpg" alt=""/>
-	</div>
 
-	<div class="hashtagbox">
-		<div class="mask"></div>
-		<p class="hashtag-text">
-		#beach
-		</p>
-		<img class="previewpic img-responsive" src="http://photos.smugmug.com/photos/i-x2vGQjr/0/X3/i-x2vGQjr-X3.jpg" alt=""/>
-	</div>
-
-	<div class="hashtagbox">
-		<div class="mask"></div>
-		<p class="hashtag-text">
-		#carnival
-		</p>
-		<img class="previewpic img-responsive" src="http://photos.smugmug.com/photos/i-Z9pXZBt/0/X3/i-Z9pXZBt-X3.jpg" alt=""/>
-	</div>
-	
-	<div class="hashtagbox">
-		<div class="mask"></div>
-		<p class="hashtag-text">
-		#nature
-		</p>
-		<img class="previewpic img-responsive" src="http://photos.smugmug.com/photos/i-Z9pXZBt/0/X3/i-Z9pXZBt-X3.jpg" alt=""/>
-	</div>
-
-</div>
- -->
 <div class="clear" style="padding:20px;"></div>
 </div>
 
-<div class="col-md-3">
+<div class="col-md-3" style="padding:20px; background: rgba(216,216,216,.25); max-width: 240px;">
 
-<div class="clear" style="padding:11px;"></div>
+<!-- <div class="clear" style="padding:11px;"></div> -->
 
 <div id="map-canvas"></div>
 
 <h3 id="locationtext">
 Broome, WA
 </h3>
+
+
+<!-- 
 <img class="sideicon img-responsive" src="/img/calandar.png"/>
 <p id="datetext" class="sidetext">
 11/1/1988
@@ -350,8 +291,9 @@ Broome, WA
 <div class="clear"></div>
 <img class="sideicon img-responsive" src="/img/photo.png"/>
 <p class="sidetext">
-ABC Local: <span id="authortext">Ben Collins</span>
+Reporter: <span id="authortext">Ben Collins</span>
 </p>
+ -->
 
 <div class="clear"></div>
 
@@ -377,21 +319,11 @@ ABC Local: <span id="authortext">Ben Collins</span>
 <span id="populationtext">12,766</span>
 </p>
 
-<div class="clear" style="padding:10px;"></div>
-
-<h4>
-ABC
-</h4>
-
-<p class="metadata-text">
-<strong>Station:</strong>
-<span id="meta-location">ABC Kimberly WA</span>
-</p>
 
 <div class="clear" style="padding:10px;"></div>
 
 <h4>
-ABS
+Interesting Facts
 </h4>
 
 <p class="metadata-text">
@@ -414,6 +346,23 @@ ABS
 <p class="metadata-text">
 <strong>Median age:</strong>
 <span id="meta-age">24</span>
+</p>
+
+<div class="clear" style="padding:10px;"></div>
+
+<h4>
+Story Source
+</h4>
+
+<p class="metadata-text">
+<strong>Copyright:</strong>
+<span id="meta-copyright">placeholder text</span>
+<br>
+<strong>Station:</strong>
+<span id="meta-station">placeholder text</span>
+<br>
+<strong>Reporter:</strong>
+<span id="meta-reporter">placeholder text</span>
 </p>
 
 
@@ -545,6 +494,10 @@ console.log(d);
 d3.select("#header_image").style({
 	"background-image": "url("+d["Primary.image"]+")"
 })
+
+
+
+
 d3.select("#titletext").html(d.Title);
 d3.select("#descriptiontext").html(d["Primary.image.caption"]);
 
@@ -564,7 +517,6 @@ var rights = d["Primary.image.rights.information"].split("|"),
 		station = rights[1].split(":")[1].trim(),
 		author = rights[2].split(":")[1].trim();
 
-d3.select("#authortext").html(author);
 
 d3.select("#lat-text").html(d.Latitude);
 d3.select("#lng-text").html(d.Longitude);
@@ -582,13 +534,11 @@ d3.select("#meta-ratio").html(ratio);
 d3.select("#meta-age").html(d["Median.Age"]);
 
 
+d3.select("#meta-copyright").html(copyright);
+d3.select("#meta-station").html(d["Station"]);
+d3.select("#meta-reporter").html(author);
 
 
-console.log('hey');
-
-
-
-//to do: add 4 rndom photos
 
 
 })
@@ -596,8 +546,15 @@ console.log('hey');
 socket.emit("get_row", {"number":id});
 
 
+socket.on("stories", function(d){
+	
+})
+
+socket.emit("get_stories", {"amount": 6});
 
 
+
+//to do: add 4 random photos
 
 
 
@@ -646,3 +603,29 @@ socket.emit("get_row", {"number":id});
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

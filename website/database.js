@@ -8,6 +8,8 @@ var db = {
 		db.dbConnection.connect(function(err) {
 			if (err) {
 				console.error('error connecting: ' + err.stack);
+				db.dbConnection = mysql.createConnection(cred.db2);
+				db.dbConnection.connect();
 				return;
 			}
 
