@@ -5,6 +5,7 @@ var scrapbook = {};
 var fs = require("fs");
 var wait_time = 900000; //15 minutes in milliseconds
 var db = require("./database").db;
+var STORIES = 2900;
 
 var twit = require("./twitter").twit;
 
@@ -30,13 +31,30 @@ function init(io){
 			twit.init();
 		});
 
+		socket.on("get_stories", function(d){
+			var n = d.amount;
+			var result = {
+				stories: []
+			};
+
+			for(var i = 0; i < n; i++){
+			
+				var j = Math.floor(Math.random() * STORIES);
+				db.get_row( j, function(d){
+					result.stories.push(d[0]);
+					socket.emit("stories", result);
+				});
+				console.log(result.stories);
+			}
+
+		})
 
 
 
 
 
 		function get_row(d){
-			var number = Math.floor(Math.random() * 2900);
+			var number = Math.floor(Math.random() * STORIES);
 			if (typeof d != 'undefined' && d.number != 'undefined'){
 				number = d.number;
 			}

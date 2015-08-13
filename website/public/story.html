@@ -97,7 +97,7 @@ h2{
 	font-weight: bold;
 	font-size: 23px;
 	color: white;
-	text-transform: lowercase;
+/* 	text-transform: lowercase; */
 }
 
 .previewpic {
@@ -183,8 +183,20 @@ h4 {
         </div>
     </header>
     
+
+    <!-- 
+
+    <header>
+    	<div id="main-header">
+        <div class="container">
+            <div class="intro-text">
+            </div>
+        </div>
+    		
+    	</div>
+    </header>
     
-    
+ -->
     
 
     <!-- Content -->
@@ -234,7 +246,7 @@ Despite his incredible success as an actor and comedian, Hugh Laurie now calls h
 <h2>
 See another True Story:
 </h2>
-	<div class="hashtagbox">
+	<div class="hashtagbox" id="box-1">
 		<div class="mask"></div>
 		<p class="hashtag-text">
 		#garden
@@ -242,7 +254,7 @@ See another True Story:
 		<img class="previewpic img-responsive" src="http://www.abc.net.au/reslib/201209/r1005632_11275296.jpg" alt=""/>
 	</div>
 
-	<div class="hashtagbox">
+	<div class="hashtagbox" id="box-2">
 		<div class="mask"></div>
 		<p class="hashtag-text">
 		#festival
@@ -251,7 +263,7 @@ See another True Story:
 " alt=""/>
 	</div>
 
-	<div class="hashtagbox">
+	<div class="hashtagbox" id="box-3">
 		<div class="mask"></div>
 		<p class="hashtag-text">
 		#nature
@@ -259,7 +271,7 @@ See another True Story:
 		<img class="previewpic img-responsive" src="http://www.abc.net.au/reslib/201209/r998918_11095385.jpg" alt=""/>
 	</div>
 
-	<div class="hashtagbox">
+	<div class="hashtagbox" id="box-4">
 		<div class="mask"></div>
 		<p class="hashtag-text">
 		#coffee
@@ -547,7 +559,23 @@ socket.emit("get_row", {"number":id});
 
 
 socket.on("stories", function(d){
-	
+	if(d.stories.length == 6){
+		for(var i = 1; i < 5; i++){
+			var box = d3.select("#box-"+i),
+					data = d.stories[i],
+					text = camelize(data.Keywords.split(",")[0]);
+
+			box.select("img").attr("src", data["Primary.image"]);
+			box.select(".hashtag-text").html("#"+text);
+		}
+
+
+
+
+
+		console.log("woo, stories!");
+		console.log(d);
+	}
 })
 
 socket.emit("get_stories", {"amount": 6});
@@ -557,9 +585,12 @@ socket.emit("get_stories", {"amount": 6});
 //to do: add 4 random photos
 
 
-
-
-
+function camelize(str) {
+  return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function(match, index) {
+    if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
+    return index == 0 ? match.toLowerCase() : match.toUpperCase();
+  });
+}
 
 
 
