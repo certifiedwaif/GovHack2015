@@ -65,6 +65,28 @@ var db = {
 		});
 
 
+	},
+	insert_twitter_name: function(d, callback){
+// 		console.log("inserting twitter stuff to the database");
+
+		if(d && d.username && d.sourcename && d.description){
+// 			console.log("lol we made it this far...");
+			var query = "INSERT INTO `david_twitter` (`username`, `sourcename`, `description`, `quality`) VALUES (?, ?, ?, 'crappy first-pick');";
+
+			db.dbConnection.query(query, [d.username, d.sourcename, d.description], function(err, results) {
+				if(err == null) {
+	// 				console.log(results);
+					callback(results);
+				} else {
+					console.log("error...");
+					console.log(err);
+	//				callback();
+				}
+			});
+		} else {
+			console.log("we don't have complete query data...?");
+			console.log(d);
+		}
 	}
 }
 

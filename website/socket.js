@@ -28,8 +28,16 @@ function init(io){
 
 
 		socket.on("twit", function(d){
-			twit.init();
+			twit.arbitrary_to_database(d, function(result){
+				socket.emit("twitback", result);
+			});
 		});
+
+		socket.on("twitter_oneoff", function(d){
+			twit.oneoff();
+		});
+
+
 
 		socket.on("get_stories", function(d){
 			var n = d.amount;
