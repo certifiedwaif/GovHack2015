@@ -8,25 +8,55 @@ var imgs = [
 "/img/6.jpg"
 ]
 
+if(localStorage.cache){
+	myFunction(JSON.parse(localStorage.cache));
+	refreshCache();
+} else {
+	var xmlhttp = new XMLHttpRequest();
+	var url = "http://localstories.info/requestjson";
 
-
-var xmlhttp = new XMLHttpRequest();
-var url = "http://localstories.info/requestjson";
-
-xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        var myArr = JSON.parse(xmlhttp.responseText);
-        myFunction(myArr);
-    }
+	xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					var myArr = JSON.parse(xmlhttp.responseText);
+					myFunction(myArr);
+			}
+	}
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+	
+	console.log("wooo");
+	refreshCache();
 }
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
+
+
+function refreshCache(){
+	console.log("refreshing cache...");
+	var xmlhttp = new XMLHttpRequest();
+	var url = "http://localstories.info/requestjson";
+
+	xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					var myArr = JSON.parse(xmlhttp.responseText);
+					localStorage.cache = JSON.stringify(myArr);
+					d3.select("body").append("img").attr({
+						src: myArr.bestImage
+					}).style({
+						display: "none"
+					})
+			}
+	}
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+
+}
+
+
+
 
 function myFunction(arr) {
-	console.log(arr);
 
 
-d3.select("#background").style("background-image", "url("+arr["Primary.image"]+")");
+d3.select("#background").style("background-image", "url("+arr["bestImage"]+")");
 d3.select("#title").text(arr.Title);
 
 // d3.select("#url").attr("href", arr.URL);
@@ -35,7 +65,13 @@ d3.select("#url").attr("href", "http://localstories.info/story/"+arr.row_names)
 
 d3.select("#description").text(arr["Primary.image.caption"]);
 
+var twittername = "abcnews";
 
+if( arr.username != null) {
+	twittername = arr.username;
+}
+
+d3.select("#twitterlink").attr("href", "http://twitter.com/"+twittername)
 
 var rights = arr["Primary.image.rights.information"].split("|"),
 		copyright = rights[0].split(":")[1].trim(),
@@ -46,58 +82,10 @@ d3.select("#author").text(author);
 
 
 d3.select("#facebook").attr("href", "https://www.facebook.com/sharer/sharer.php?u=$"+arr.URL);
-d3.select("#twitter").attr("href", "https://twitter.com/intent/tweet?text=via%20localstories.info%20%23GovHack%20%23RealAusArt%20-%20"+arr.URL+" "+arr.Title);
+d3.select("#twitter").attr("href", "https://twitter.com/intent/tweet?text=via%20localstories.info%20%40"+twittername+"%20%23GovHack%20%23RealAusArt%20-%20"+arr.URL+" "+arr.Title);
 d3.select("#pinterest").attr("href", "https://pinterest.com/pin/create/link/?url="+arr.URL);
 
 
-var xmlhttp = new XMLHttpRequest();
-var url = arr["MediaRSS.URL"];
-console.log(url);
-
-d3.xml(url, function(e,d){
-	var doc = xmlToJson(d).rss.channel.item;
-
-	var largestWidth = 0,
-			largestImage = arr["Primary.image"];
-
-console.log(largestImage);
-
-
-	if(typeof doc[0] != 'undefined'){
-		console.log("slideshow!");
-		doc.forEach(function(img){
-			search(img);
-		})
-	} else {
-		console.log("single image!")
-		search(doc);
-	}
-
-	function search(doc){
-		console.log("searching!!");
-		if(typeof doc["media:group"] != "undefined") {
-			var imgs = doc["media:group"]["media:content"];
-
-			imgs.forEach(function(d){
-				if(d["@attributes"].width > largestWidth){
-					largestWidth = d["@attributes"].width;
-					largestImage = d["@attributes"].url;
-				}
-			})
-		}
-	}
-
-
-
-
-
-
-
-console.log(largestImage);
-d3.select("#background").style("background-image", "url("+largestImage+")");
-
-
-});
 
 
 }

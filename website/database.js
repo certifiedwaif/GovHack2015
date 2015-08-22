@@ -87,6 +87,18 @@ var db = {
 			console.log("we don't have complete query data...?");
 			console.log(d);
 		}
+	},
+	get_good_row: function(id, callback){
+		console.log("getting row "+id+" from tempview");
+		var query = "select * from tempview where row_names = "+id;
+
+		db.dbConnection.query(query, function(err, results) {
+			if(err == null) {
+				callback(results);
+			} else {
+				callback();
+			}
+		});
 	}
 }
 
