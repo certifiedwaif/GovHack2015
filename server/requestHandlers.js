@@ -20,7 +20,10 @@ handle["/requestjson"] = function(response, request){
 			if(typeof d == 'undefined'){
 				get_row();
 			} else {
-				response.writeHead(200, {"Content-Type": "application/json"});
+				response.writeHead(200, {
+					"Content-Type": "application/json",
+					"Access-Control-Allow-Origin": "*"
+				});
 				response.end(JSON.stringify(d[0]));
 			}
 		});
@@ -37,7 +40,10 @@ handle["/requestjson/382"] = function(response, request){
 			if(typeof d == 'undefined'){
 				get_row();
 			} else {
-				response.writeHead(200, {"Content-Type": "application/json"});
+				response.writeHead(200, {
+					"Content-Type": "application/json",
+					"Access-Control-Allow-Origin": "*"
+				});
 				response.end(JSON.stringify(d[0]));
 			}
 		});
