@@ -1,4 +1,4 @@
 #!/bin/sh
-cd website/public
-sudo node ../index.js
+cd public
+sudo node ../server/index.js
 
