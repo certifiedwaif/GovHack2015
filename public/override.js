@@ -11,7 +11,7 @@ var imgs = [
 
 
 var xmlhttp = new XMLHttpRequest();
-var url = "http://localstories.info/requestjson";
+var url = "https://localstories.info/requestjson";
 
 xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
