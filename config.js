@@ -1,5 +1,5 @@
 exports.config = {
-	domains: ["localstories.com.au", "www.localstories.com.au", "localstories.info", "www.localstories.info", "gettruestories.com", "www.gettruestories.com"],
+	domains: ["localstories.info","www.localstories.info"],
 	pages: {
 		"": "/homepage.html",
 		"story": "/story.html",
