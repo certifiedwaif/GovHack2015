@@ -44,8 +44,10 @@ if (false) {
         });
     });
 }
+maxFieldSizes(`${__dirname}/../data/query_result.csv`);
 function maxFieldSizes(csvPath) {
     const sizer = {};
+    let count = 0;
     fs_1.default.createReadStream(csvPath)
         .pipe(csv_parser_1.default())
         .on('headers', (headers) => {
@@ -57,8 +59,10 @@ function maxFieldSizes(csvPath) {
             if (data[col].length > sizer[col])
                 sizer[col] = data[col].length;
         });
+        count++;
     }).on("end", () => {
         console.log(sizer);
+        console.log("count", count);
     });
 }
 exports.seq = seq;

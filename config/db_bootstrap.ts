@@ -69,6 +69,7 @@ if(false) {
 // Quickly count the max size of each field in the CSV.
 function maxFieldSizes( csvPath ) {
     const sizer = {};
+    let count = 0;
     fs.createReadStream( csvPath )
     .pipe(csv())
     .on('headers', (headers) => {
@@ -79,8 +80,10 @@ function maxFieldSizes( csvPath ) {
         Object.keys(data).forEach(col => {
             if(data[col].length > sizer[col]) sizer[col] = data[col].length;
         })
+        count++;
     }).on("end", () => {
         console.log(sizer);
+        console.log("count", count)
     });
 }
 
