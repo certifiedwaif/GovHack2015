@@ -3,7 +3,10 @@ import { TwitterDataStatic } from './models';
 
 export function TwitterDataFactory(sequelize: Sequelize): TwitterDataStatic {
     return <TwitterDataStatic>sequelize.define("TwitterData", {
-        sourcename: DataTypes.STRING(44),
+        sourcename: {
+            type: DataTypes.STRING(44),
+            unique: true
+        },
         username: {
             type: DataTypes.STRING(15),
             unique: true

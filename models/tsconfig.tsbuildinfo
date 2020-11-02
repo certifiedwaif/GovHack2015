@@ -352,7 +352,7 @@
         "affectsGlobalScope": false
       },
       "./twitterdata.ts": {
-        "version": "2d527ac99e5554ace5c382b393a0685a91006884698a3679dba45c0431296129",
+        "version": "fa32a127fd8835f4e3657c82c43d58b3f5f2f9ec8b46a386f0b703ae42db131f",
         "signature": "c5482fd865b7e1eb677069d5345704a211000b517a978ba31f6c5cd8ae76f86c",
         "affectsGlobalScope": false
       },

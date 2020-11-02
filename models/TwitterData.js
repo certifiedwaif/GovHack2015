@@ -4,7 +4,10 @@ exports.TwitterDataFactory = void 0;
 const sequelize_1 = require("sequelize");
 function TwitterDataFactory(sequelize) {
     return sequelize.define("TwitterData", {
-        sourcename: sequelize_1.DataTypes.STRING(44),
+        sourcename: {
+            type: sequelize_1.DataTypes.STRING(44),
+            unique: true
+        },
         username: {
             type: sequelize_1.DataTypes.STRING(15),
             unique: true

@@ -11,7 +11,7 @@ const seq = {
     TwitterData: models_1.TwitterData,
     sequelize: models_1.dbConfig
 };
-if (false) {
+if (true) {
     seq.sequelize.sync({}).then(() => {
         models_1.Story.count().then(count => {
             if (count < 100) {
@@ -50,6 +50,7 @@ if (false) {
             models_1.TwitterData.findOrCreate({
                 where: { username: data.username },
                 defaults: data
+            }).then(([twitterData, created]) => {
             }).catch((error) => {
                 console.log(error.message);
                 console.log(data);
@@ -57,9 +58,11 @@ if (false) {
         });
     });
 }
-function maxFieldSizes(csvPath) {
+inspectCSV(`${__dirname}/../data/small_town_data.csv`);
+function inspectCSV(csvPath) {
     const sizer = {};
     let count = 0;
+    let example = [];
     fs_1.default.createReadStream(csvPath)
         .pipe(csv_parser_1.default())
         .on('headers', (headers) => {
@@ -72,9 +75,14 @@ function maxFieldSizes(csvPath) {
                 sizer[col] = data[col].length;
         });
         count++;
+        if (example.length == 0)
+            example = data;
     }).on("end", () => {
-        console.log(sizer);
-        console.log("count", count);
+        console.log("Row count:", count);
+        console.log("Column Names, Max Length, Example Entry");
+        Object.keys(sizer).forEach(key => {
+            console.log(`${key}: \x1b[33m${sizer[key]}\x1b[0m, \x1b[32m'${example[key]}'\x1b[0m`);
+        });
     });
 }
 exports.seq = seq;

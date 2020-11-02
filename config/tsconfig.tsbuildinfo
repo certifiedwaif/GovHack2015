@@ -357,7 +357,7 @@
         "affectsGlobalScope": false
       },
       "../models/twitterdata.ts": {
-        "version": "2d527ac99e5554ace5c382b393a0685a91006884698a3679dba45c0431296129",
+        "version": "fa32a127fd8835f4e3657c82c43d58b3f5f2f9ec8b46a386f0b703ae42db131f",
         "signature": "c5482fd865b7e1eb677069d5345704a211000b517a978ba31f6c5cd8ae76f86c",
         "affectsGlobalScope": false
       },
@@ -612,7 +612,7 @@
         "affectsGlobalScope": false
       },
       "./db_bootstrap.ts": {
-        "version": "21b45788d517c0654ffc76743e216a3dcf0b04f842e31b3415fe3d1c45668255",
+        "version": "5fa4d39eac350b0e732012271ce373bbceef1e2ee5011f31baba8b7268fe4fc4",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
         "affectsGlobalScope": false
       },

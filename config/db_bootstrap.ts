@@ -1,4 +1,4 @@
-import { Model, Sequelize } from "sequelize";
+import { Model, Op, Sequelize } from "sequelize";
 import { dbConfig, Story, TwitterData } from '../models'
 import csv from 'csv-parser';
 import fs from 'fs';
@@ -14,12 +14,26 @@ const seq :seqObject = {
     sequelize: dbConfig
 }
 
+/** Data sources:
+ * ABC Local online photo stories
+ * https://data.gov.au/data/dataset/abc-local-online-photo-stories-2009-2014/resource/d73f2a2a-c271-4edd-ac45-25fd7ad2241f
+ * 
+ * Twitter search for their usernames
+ * 
+ * ABS Small towns:
+ * https://www.abs.gov.au/ausstats/abs@.nsf/Lookup/2071.0main+features1132016
+ * 
+ * URBAN CENTRE AND LOCALITY (UCL)
+ * https://www.abs.gov.au/ausstats/abs@.nsf/Latestproducts/05773C1D8C9F2022CA257A98001399F7?opendocument
+ */ 
+
+
 // Fields for Story:
 // Title,URL,Date,Primary_image,Primary_image_caption,Primary_image_rights_information,Subjects,Station,State,Place,Keywords,Latitude,Longitude,MediaRSS_URL
 
 
 // Set to true if you want to create a database on startup
-if(false) {
+if(true) {
 
     seq.sequelize.sync({
         // force: true
@@ -61,6 +75,13 @@ if(false) {
             }
         })
 
+
+
+        /**
+         * Twitter Name Search is data scraped from a simple twitter search.
+         * Very little effort has been put into curating these usernames
+         * and making sure they belong to the correct journalists.
+         */
         fs.createReadStream(`${__dirname}/../data/twitter_name_search.csv`)
             .pipe(csv())
             .on('headers', headers => {
@@ -69,23 +90,40 @@ if(false) {
                 TwitterData.findOrCreate({
                     where: { username: data.username },
                     defaults: data
+                }).then(([twitterData, created]) => {
+
+/* Run this if you want to check Story & TwitterData are working
+                    Story.findAll({
+                        where: {
+                            Primary_image_rights_information: {
+                                [Op.like]: `%${twitterData.sourcename}%`
+                            }
+                        }
+                    }).then(results => {
+                        console.log(twitterData.sourcename +": "+results.map(d => d.id).join(", "));
+                    });
+*/
+
                 }).catch((error: Error) => {
                     console.log(error.message);
                     console.log(data);
-                });
+                })
             })
     })
 
 }
 
 
-// maxFieldSizes(`${__dirname}/../data/twitter_name_search.csv`);
+inspectCSV(`${__dirname}/../data/small_town_data.csv`);
 
 
+
+// Font colors: https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
 // Quickly count the max size of each field in the CSV.
-function maxFieldSizes( csvPath ) {
+function inspectCSV( csvPath ) {
     const sizer = {};
     let count = 0;
+    let example = [];
     fs.createReadStream( csvPath )
     .pipe(csv())
     .on('headers', (headers) => {
@@ -97,9 +135,14 @@ function maxFieldSizes( csvPath ) {
             if(data[col].length > sizer[col]) sizer[col] = data[col].length;
         })
         count++;
+
+        if(example.length == 0) example = data;
     }).on("end", () => {
-        console.log(sizer);
-        console.log("count", count)
+        console.log("Row count:", count);
+        console.log("Column Names, Max Length, Example Entry")
+        Object.keys(sizer).forEach(key => {
+            console.log(`${key}: \x1b[33m${sizer[key]}\x1b[0m, \x1b[32m'${example[key]}'\x1b[0m`)
+        });
     });
 }
 
