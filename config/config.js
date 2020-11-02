@@ -18,22 +18,17 @@ var config = {
     },
     services: {
         "requestjson": function (response, request, db, d) {
-            let result = {};
+            let storyOptions = {
+                Latitude: { [sequelize_1.Op.ne]: null },
+                Longitude: { [sequelize_1.Op.ne]: null },
+                Primary_image: { [sequelize_1.Op.ne]: "" }
+            };
+            if (d && !isNaN(d))
+                storyOptions.id = d;
             models_1.Story.findOne({
-                where: {
-                    Latitude: {
-                        [sequelize_1.Op.ne]: null
-                    },
-                    Longitude: {
-                        [sequelize_1.Op.ne]: null
-                    },
-                    Primary_image: {
-                        [sequelize_1.Op.ne]: ""
-                    }
-                },
+                where: storyOptions,
                 order: models_1.Story.sequelize.random()
             }).then(story => {
-                lodash_1.default.merge(result, story.toJSON());
                 const byline = story.Primary_image_rights_information.match(/Byline: (.*)/);
                 const source = byline ? byline[1] || "ABC" : "ABC";
                 const promises = [
@@ -46,10 +41,12 @@ var config = {
                     findBestImage(story.MediaRSS_URL, story.Primary_image)
                 ];
                 Promise.all(promises).then(([town, twitterData, bestImage]) => {
-                    result.bestImage = bestImage;
-                    lodash_1.default.merge(result, town.toJSON());
+                    let result = {};
                     if (twitterData)
                         lodash_1.default.merge(result, twitterData.toJSON());
+                    lodash_1.default.merge(result, town.toJSON());
+                    lodash_1.default.merge(result, story.toJSON());
+                    result.bestImage = bestImage;
                     response.end(JSON.stringify(result));
                 });
             }).catch(err => {
@@ -145,15 +142,18 @@ function findBestImage(MediaRSS_URL, Primary_image) {
                     if (err)
                         resolve(Primary_image);
                     try {
-                        var images = result.rss.channel[0].item[0]['media:group'][0]['media:content'];
+                        var items = result.rss.channel[0].item[0]['media:group'];
                         let score = 0;
                         let bestImage = "";
-                        images.forEach(image => {
-                            var thisScore = parseInt(image.$.height) + (parseInt(image.$.width) * 10);
-                            if (thisScore > score) {
-                                bestImage = image.$.url;
-                                score = thisScore;
-                            }
+                        items.forEach(item => {
+                            var images = item['media:content'];
+                            images.forEach(image => {
+                                var thisScore = parseInt(image.$.height) + (parseInt(image.$.width) * 10);
+                                if (thisScore > score) {
+                                    bestImage = image.$.url;
+                                    score = thisScore;
+                                }
+                            });
                         });
                         resolve(bestImage);
                     }

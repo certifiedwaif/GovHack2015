@@ -1,8 +1,8 @@
 import { Thalia } from '../../../server/thalia';
 import { Story, TwitterData, Town } from '../models'
 import _ from 'lodash';
-import { Op } from 'sequelize';
-import { StoryModel, TownModel, TwitterDataModel } from "../models/models"
+import { Op, WhereOptions } from 'sequelize';
+import { StoryAttributes, StoryModel, TownModel, TwitterDataModel } from "../models/models"
 import http, { IncomingMessage } from 'http';
 import { parseString as parseXml } from 'xml2js';
 
@@ -20,26 +20,21 @@ var config :Thalia.WebsiteConfig = {
             // Find matching twitter data
             // Serve.
 
-            let result :any = {};
+            let storyOptions :WhereOptions<StoryAttributes> = {
+                Latitude: { [Op.ne] : null },
+                Longitude: { [Op.ne] : null },
+                Primary_image: { [Op.ne] : "" }
+            }
+            if(d && !isNaN(d)) storyOptions.id = d;
 
             Story.findOne({
-                where: {
-                    Latitude: {
-                        [Op.ne] : null
-                    },
-                    Longitude: {
-                        [Op.ne] : null
-                    },
-                    Primary_image: {
-                        [Op.ne] : ""
-                    }
-                },
+                where: storyOptions,
                 order: Story.sequelize.random()
             }).then(story => {
-                _.merge(result, story.toJSON())
 
                 const byline = story.Primary_image_rights_information.match(/Byline: (.*)/);
-                const source = byline ? byline[1] || "ABC" : "ABC";
+                const source = byline ? byline[1] || "ABC" : "ABC"; // Default to ABC if we can't find a byline
+                // Todo: Get better searching on the Twitter handles, find more journalists. Default to local ABC
 
                 const promises = [
                     findNearestTown(story),
@@ -52,14 +47,13 @@ var config :Thalia.WebsiteConfig = {
                 ];
 
                 Promise.all(promises).then(([town, twitterData, bestImage] :[TownModel, TwitterDataModel, string]) => {
-                    result.bestImage = bestImage;
+                    let result :any = {};
+                    if(twitterData) _.merge(result, twitterData.toJSON()); // No twitter? That's fine.
                     _.merge(result, town.toJSON());
-                    if(twitterData) _.merge(result, twitterData.toJSON());
-
+                    _.merge(result, story.toJSON())
+                    result.bestImage = bestImage;
                     response.end(JSON.stringify(result));
                 });
-
-
             }).catch(err => {
                 console.log("Error in story requestjson", err);
 
@@ -166,22 +160,28 @@ function findBestImage(MediaRSS_URL :string, Primary_image) {
                 parseXml(data, (err, result) => {
                     if(err) resolve(Primary_image);
                     try {
-                        var images :Array<{'$':{
-                            url :string;
-                            type: string;
-                            width: string;
-                            height: string;
-                        }}> = result.rss.channel[0].item[0]['media:group'][0]['media:content'];
+                        var items :Array<{
+                            'media:content': Array<{'$':{
+                                url :string;
+                                type: string;
+                                width: string;
+                                height: string;
+                            }}>
+                        }> = result.rss.channel[0].item[0]['media:group']; //[0]['media:content'];
 
                         let score = 0;
                         let bestImage = "";
-                        images.forEach(image => {
-                            // var thisScore = parseInt(image.$.height) + (parseInt(image.$.width) * 2.5);
-                            var thisScore = parseInt(image.$.height) + (parseInt(image.$.width) * 10);
-                            if( thisScore > score ){
-                                bestImage = image.$.url;
-                                score = thisScore;
-                            }
+
+                        items.forEach(item => {
+                            var images = item['media:content'];
+                            images.forEach(image => {
+                                // var thisScore = parseInt(image.$.height) + (parseInt(image.$.width) * 2.5);
+                                var thisScore = parseInt(image.$.height) + (parseInt(image.$.width) * 10);
+                                if( thisScore > score ){
+                                    bestImage = image.$.url;
+                                    score = thisScore;
+                                }
+                            });
                         });
                         resolve(bestImage);
                     } catch (e) {
