@@ -32,28 +32,21 @@ var config = {
                 order: models_1.Story.sequelize.random()
             }).then(story => {
                 lodash_1.default.merge(result, story.toJSON());
-                console.log(`Found story: ${story.id} ${story.Place}`);
-                models_1.Town.findOne({
-                    where: {
-                        Place: story.Place
-                    }
-                }).then(town => {
-                    if (town) {
-                        console.log("Found matching town,", town.Place);
-                        lodash_1.default.merge(result, town.toJSON());
-                        response.end(JSON.stringify(result));
-                    }
-                    else {
-                        findNearestTown(story).then((town) => {
-                            console.log("Found a result!");
-                            console.log(town.Place + " " + town.State);
-                            lodash_1.default.merge(result, town.toJSON());
-                            response.end(JSON.stringify(result));
-                        });
-                    }
-                }).catch(err => {
-                    console.log("Error in town requestjson", err);
-                    response.end(err);
+                const byline = story.Primary_image_rights_information.match(/Byline: (.*)/);
+                const source = byline ? byline[1] || "ABC" : "ABC";
+                const promises = [
+                    findNearestTown(story),
+                    models_1.TwitterData.findOne({
+                        where: {
+                            sourcename: source
+                        }
+                    })
+                ];
+                Promise.all(promises).then(([town, twitterData]) => {
+                    lodash_1.default.merge(result, town.toJSON());
+                    if (twitterData)
+                        lodash_1.default.merge(result, twitterData.toJSON());
+                    response.end(JSON.stringify(result));
                 });
             }).catch(err => {
                 console.log("Error in story requestjson", err);
@@ -65,41 +58,48 @@ var config = {
 exports.config = config;
 function findNearestTown(story, size = 1) {
     return new Promise(function (resolve) {
-        var target = {
-            lat: [(story.Latitude - size), (story.Latitude + size)],
-            long: [(story.Longitude - size), (story.Longitude + size)]
-        };
-        console.log(target);
-        models_1.Town.findAll({
+        models_1.Town.findOne({
             where: {
-                Latitude: {
-                    [sequelize_1.Op.between]: target.lat
-                },
-                Longitude: {
-                    [sequelize_1.Op.between]: target.long
-                }
+                Place: story.Place
             }
-        }).then(towns => {
-            if (towns.length === 0) {
-                console.log("No town found, increasing distance to", size + 1);
-                findNearestTown(story, size + 1).then(resolve);
-            }
-            else if (towns.length === 1) {
-                resolve(towns[0]);
+        }).then(town => {
+            if (town) {
+                resolve(town);
             }
             else {
-                console.log(`Wow, found ${towns.length} towns! Let's find out the closest`);
-                let closestTown = null;
-                let closest = 9999999999;
-                towns.map(town => {
-                    const calcDist = distance(story.Latitude, story.Longitude, town.Latitude, town.Longitude, "K");
-                    console.log(`${town.Place}, ${town.State}: ${("" + calcDist).slice(0, 5)} km`);
-                    if (calcDist < closest) {
-                        closestTown = town;
-                        closest = calcDist;
+                var target = {
+                    lat: [(story.Latitude - size), (story.Latitude + size)],
+                    long: [(story.Longitude - size), (story.Longitude + size)]
+                };
+                models_1.Town.findAll({
+                    where: {
+                        Latitude: {
+                            [sequelize_1.Op.between]: target.lat
+                        },
+                        Longitude: {
+                            [sequelize_1.Op.between]: target.long
+                        }
+                    }
+                }).then(towns => {
+                    if (towns.length === 0) {
+                        findNearestTown(story, size + 1).then(resolve);
+                    }
+                    else if (towns.length === 1) {
+                        resolve(towns[0]);
+                    }
+                    else {
+                        let closestTown = null;
+                        let closest = 9999999999;
+                        towns.map(town => {
+                            const calcDist = distance(story.Latitude, story.Longitude, town.Latitude, town.Longitude, "K");
+                            if (calcDist < closest) {
+                                closestTown = town;
+                                closest = calcDist;
+                            }
+                        });
+                        resolve(closestTown);
                     }
                 });
-                resolve(closestTown);
             }
         });
     });

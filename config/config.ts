@@ -2,7 +2,7 @@ import { Thalia } from '../../../server/thalia';
 import { Story, TwitterData, Town } from '../models'
 import _ from 'lodash';
 import { Op } from 'sequelize';
-import { StoryModel, TownModel } from "../models/models"
+import { StoryModel, TownModel, TwitterDataModel } from "../models/models"
 
 
 var config :Thalia.WebsiteConfig = {
@@ -35,37 +35,28 @@ var config :Thalia.WebsiteConfig = {
                 },
                 order: Story.sequelize.random()
             }).then(story => {
-
-                // result.story = story;
                 _.merge(result, story.toJSON())
-                console.log(`Found story: ${story.id} ${story.Place}`);
 
-                Town.findOne({
-                    where: {
-                        Place: story.Place
-                    }
-                }).then(town => {
-                    if(town) {
-                        console.log("Found matching town,", town.Place);
-                        _.merge(result, town.toJSON());
+                const byline = story.Primary_image_rights_information.match(/Byline: (.*)/);
+                const source = byline ? byline[1] || "ABC" : "ABC";
 
-                        response.end(JSON.stringify(result));
-                    } else {
-                        // No matching town, find the nearest one.
-                        findNearestTown(story).then((town :TownModel) => {
-                            console.log("Found a result!")
-                            console.log(town.Place + " "+ town.State);
+                const promises = [
+                    findNearestTown(story),
+                    TwitterData.findOne({
+                        where: {
+                            sourcename: source
+                        }
+                    })
+                ];
 
-                            _.merge(result, town.toJSON());
-                            response.end(JSON.stringify(result));
-                        })
-                    }
+                Promise.all(promises).then(([town, twitterData] :[TownModel, TwitterDataModel]) => {
 
-                }).catch(err => {
-                    console.log("Error in town requestjson", err);
+                    _.merge(result, town.toJSON());
+                    if(twitterData) _.merge(result, twitterData.toJSON());
 
-                    response.end(err);
+                    response.end(JSON.stringify(result));
                 });
+
 
             }).catch(err => {
                 console.log("Error in story requestjson", err);
@@ -80,40 +71,53 @@ var config :Thalia.WebsiteConfig = {
 // Recursive promise, to return the nearest town
 function findNearestTown(story :StoryModel, size :number = 1) {
     return new Promise(function(resolve){
-        var target = {
-            lat: [(story.Latitude - size), (story.Latitude + size)],
-            long: [(story.Longitude - size), (story.Longitude + size)]
-        }
-        console.log(target);
-        Town.findAll({
+
+        Town.findOne({
             where: {
-                Latitude: {
-                    [Op.between] : target.lat
-                },
-                Longitude: {
-                    [Op.between] : target.long
-                }
+                Place: story.Place
             }
-        }).then(towns => {
-            if(towns.length === 0) {
-                console.log("No town found, increasing distance to", size + 1);
-                findNearestTown(story, size + 1 ).then(resolve);
-            } else if (towns.length === 1){
-                resolve(towns[0]);
+        }).then(town => {
+            if(town) {
+                // Found a town that matches the place name
+                resolve(town);
             } else {
-                console.log(`Wow, found ${towns.length} towns! Let's find out the closest`);
-                // Oh boy, we have to calculate the distance...
-                let closestTown = null;
-                let closest = 9999999999;
-                towns.map(town => {
-                    const calcDist = distance(story.Latitude, story.Longitude, town.Latitude, town.Longitude, "K");
-                    console.log(`${town.Place}, ${town.State}: ${(""+calcDist).slice(0,5)} km`);
-                    if ( calcDist < closest ) {
-                        closestTown = town;
-                        closest = calcDist
+                // No matching town, find the nearest one.
+
+                var target = {
+                    lat: [(story.Latitude - size), (story.Latitude + size)],
+                    long: [(story.Longitude - size), (story.Longitude + size)]
+                }
+                Town.findAll({
+                    where: {
+                        Latitude: {
+                            [Op.between] : target.lat
+                        },
+                        Longitude: {
+                            [Op.between] : target.long
+                        }
+                    }
+                }).then(towns => {
+                    if(towns.length === 0) {
+                        // console.log("No town found, increasing distance to", size + 1);
+                        findNearestTown(story, size + 1 ).then(resolve);
+                    } else if (towns.length === 1){
+                        resolve(towns[0]);
+                    } else {
+                        // console.log(`Wow, found ${towns.length} towns! Let's find out the closest`);
+                        // Oh boy, we have to calculate the distance...
+                        let closestTown = null;
+                        let closest = 9999999999;
+                        towns.map(town => {
+                            const calcDist = distance(story.Latitude, story.Longitude, town.Latitude, town.Longitude, "K");
+                            // console.log(`${town.Place}, ${town.State}: ${(""+calcDist).slice(0,5)} km`);
+                            if ( calcDist < closest ) {
+                                closestTown = town;
+                                closest = calcDist
+                            }
+                        });
+                        resolve(closestTown);
                     }
                 });
-                resolve(closestTown);
             }
         });
     })
