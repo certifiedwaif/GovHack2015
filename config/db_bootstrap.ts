@@ -20,9 +20,10 @@ const seq :seqObject = {
  * 
  * Twitter search for their usernames
  * 
+ * Small Town Data processed by Mark Greenaway during 2015 hackathon.
+ * Probably from these sources:
  * ABS Small towns:
  * https://www.abs.gov.au/ausstats/abs@.nsf/Lookup/2071.0main+features1132016
- * 
  * URBAN CENTRE AND LOCALITY (UCL)
  * https://www.abs.gov.au/ausstats/abs@.nsf/Latestproducts/05773C1D8C9F2022CA257A98001399F7?opendocument
  */ 

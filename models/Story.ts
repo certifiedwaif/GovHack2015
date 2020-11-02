@@ -22,22 +22,3 @@ export function StoryFactory(sequelize: Sequelize): StoryStatic {
         MediaRSS_URL: DataTypes.STRING(127)
     });
 }
-/*
-max sizes of each field, using maxFieldSizes():
-{
-  Title: 112,
-  URL: 118,
-  Date: 10,
-  'Primary image': 57,
-  'Primary image caption': 1061,
-  'Primary image rights information': 150,
-  Subjects: 364,
-  Station: 36,
-  State: 3,
-  Place: 35,
-  Keywords: 842,
-  Latitude: 11,
-  Longitude: 11,
-  'MediaRSS URL': 127
-}
-*/

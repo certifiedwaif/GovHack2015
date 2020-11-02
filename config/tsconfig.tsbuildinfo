@@ -352,7 +352,7 @@
         "affectsGlobalScope": false
       },
       "../models/story.ts": {
-        "version": "1872966ebd7ebce9fe8ca10852989bdb03ecd353d2273c8936dce14409b99621",
+        "version": "360a01b4e323bbe8af9d84bb02c27c64912c0196f47b99bfec9f38179ca8486a",
         "signature": "c85f6fffa9c79df114f4569c49b1d6324203d760fb05098fbc16ae635d2c5a28",
         "affectsGlobalScope": false
       },
@@ -612,7 +612,7 @@
         "affectsGlobalScope": false
       },
       "./db_bootstrap.ts": {
-        "version": "5fa4d39eac350b0e732012271ce373bbceef1e2ee5011f31baba8b7268fe4fc4",
+        "version": "a963a098847b1f279865e5067695329838e238a552656fcc1e44b2189ea82a82",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
         "affectsGlobalScope": false
       },
