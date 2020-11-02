@@ -15,6 +15,8 @@ type someType = {
     Primary_image: string;
     Primary_image_caption: string;
     Primary_image_rights_information: string;
+    MediaRSS_URL: string;
+    bestImage: string;
 }
 
 
@@ -34,7 +36,8 @@ xmlhttp.send();
 function myFunction(arr :someType) {
 console.log(arr);
 
-d3.select("#background").style("background-image", `url(${arr.Primary_image})`);
+d3.select("#background").style("background-image", `url(${arr.bestImage})`);
+// d3.select("#background").style("background-image", `url(${arr.Primary_image})`);
 d3.select("#title").text(arr.Title);
 
 d3.select("#url").attr("href", arr.URL);

@@ -446,11 +446,6 @@
         "signature": "add53f90ea1de964d83af7f3d727f4babb563d528d832092ba143fe299eabe69",
         "affectsGlobalScope": false
       },
-      "./config.ts": {
-        "version": "7018a061f03e7736532c243d4669ba490911c32e405d667b015a129cf31bc7aa",
-        "signature": "0dd40d1524613ff7ba3b82c977b2facf2d2a4304d61d7cb3cf958e35c1b59407",
-        "affectsGlobalScope": false
-      },
       "../../../node_modules/@types/node/globals.d.ts": {
         "version": "56050f582fd08c001b713b168ade15cc8c1649801e13c94b4370f8f203e03087",
         "signature": "56050f582fd08c001b713b168ade15cc8c1649801e13c94b4370f8f203e03087",
@@ -691,13 +686,28 @@
         "signature": "5825520e2099309182c6e2a2b3061b060d42a098c58f67d1754880a7e2cce99a",
         "affectsGlobalScope": false
       },
+      "../../../node_modules/@types/xml2js/lib/processors.d.ts": {
+        "version": "c0288f54de6f544706a3150c8b579b1a975870695c4be866f727ece6a16f3976",
+        "signature": "c0288f54de6f544706a3150c8b579b1a975870695c4be866f727ece6a16f3976",
+        "affectsGlobalScope": false
+      },
+      "../../../node_modules/@types/xml2js/index.d.ts": {
+        "version": "232a20dbd107baa091280c321f417c715f328a5b2d896bec7399630ff85270f7",
+        "signature": "232a20dbd107baa091280c321f417c715f328a5b2d896bec7399630ff85270f7",
+        "affectsGlobalScope": false
+      },
+      "./config.ts": {
+        "version": "f5170485c317556e6a2dc39fc763cab0a56598e58d83f8c84674ca3f3aa85dfc",
+        "signature": "0dd40d1524613ff7ba3b82c977b2facf2d2a4304d61d7cb3cf958e35c1b59407",
+        "affectsGlobalScope": false
+      },
       "../../../node_modules/csv-parser/index.d.ts": {
         "version": "031de76368243814843bb6aa88856b39649325c7a5c1b198546adbe606ea282e",
         "signature": "031de76368243814843bb6aa88856b39649325c7a5c1b198546adbe606ea282e",
         "affectsGlobalScope": false
       },
       "./db_bootstrap.ts": {
-        "version": "4a43e2b03d4b048240f2e7b71d4d1e098407538b2547d02d1f5959e59b8b2592",
+        "version": "060b53ecf3aa4a1932e00333f509e9d3a5192ab32c8224bbb1a4f7de05ec4df3",
         "signature": "3d909ff16ab15a758b78ab7a3f348411fa413a90c2624824b6e238e4b76c9037",
         "affectsGlobalScope": false
       },
@@ -1520,6 +1530,11 @@
         "../../../node_modules/@types/node/https.d.ts",
         "../../../node_modules/@types/node/index.d.ts"
       ],
+      "../../../node_modules/@types/xml2js/index.d.ts": [
+        "../../../node_modules/@types/node/events.d.ts",
+        "../../../node_modules/@types/node/index.d.ts",
+        "../../../node_modules/@types/xml2js/lib/processors.d.ts"
+      ],
       "../../../node_modules/csv-parser/index.d.ts": [
         "../../../node_modules/@types/node/index.d.ts",
         "../../../node_modules/@types/node/stream.d.ts"
@@ -1638,6 +1653,8 @@
       ],
       "./config.ts": [
         "../../../node_modules/@types/lodash/index.d.ts",
+        "../../../node_modules/@types/node/http.d.ts",
+        "../../../node_modules/@types/xml2js/index.d.ts",
         "../../../node_modules/sequelize/types/index.d.ts",
         "../../../server/thalia.d.ts",
         "../models/index.ts",
@@ -2159,6 +2176,11 @@
         "../../../node_modules/@types/node/https.d.ts",
         "../../../node_modules/@types/node/index.d.ts"
       ],
+      "../../../node_modules/@types/xml2js/index.d.ts": [
+        "../../../node_modules/@types/node/events.d.ts",
+        "../../../node_modules/@types/node/index.d.ts",
+        "../../../node_modules/@types/xml2js/lib/processors.d.ts"
+      ],
       "../../../node_modules/csv-parser/index.d.ts": [
         "../../../node_modules/@types/node/index.d.ts",
         "../../../node_modules/@types/node/stream.d.ts"
@@ -2468,6 +2490,8 @@
       "../../../node_modules/@types/socket.io-client/index.d.ts",
       "../../../node_modules/@types/socket.io/index.d.ts",
       "../../../node_modules/@types/validator/index.d.ts",
+      "../../../node_modules/@types/xml2js/index.d.ts",
+      "../../../node_modules/@types/xml2js/lib/processors.d.ts",
       "../../../node_modules/csv-parser/index.d.ts",
       "../../../node_modules/sequelize/types/index.d.ts",
       "../../../node_modules/sequelize/types/lib/associations/base.d.ts",

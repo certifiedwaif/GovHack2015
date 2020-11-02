@@ -18,7 +18,7 @@ xmlhttp.open("GET", url, true);
 xmlhttp.send();
 function myFunction(arr) {
     console.log(arr);
-    d3.select("#background").style("background-image", `url(${arr.Primary_image})`);
+    d3.select("#background").style("background-image", `url(${arr.bestImage})`);
     d3.select("#title").text(arr.Title);
     d3.select("#url").attr("href", arr.URL);
     d3.select("#description").text(arr.Primary_image_caption);

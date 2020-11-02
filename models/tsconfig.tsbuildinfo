@@ -990,6 +990,16 @@
         "version": "61b47b5916240af10c044424efe51a551ec47d9e799b18225e0e3a7c19903b03",
         "signature": "61b47b5916240af10c044424efe51a551ec47d9e799b18225e0e3a7c19903b03",
         "affectsGlobalScope": true
+      },
+      "../../../node_modules/@types/xml2js/lib/processors.d.ts": {
+        "version": "c0288f54de6f544706a3150c8b579b1a975870695c4be866f727ece6a16f3976",
+        "signature": "c0288f54de6f544706a3150c8b579b1a975870695c4be866f727ece6a16f3976",
+        "affectsGlobalScope": false
+      },
+      "../../../node_modules/@types/xml2js/index.d.ts": {
+        "version": "232a20dbd107baa091280c321f417c715f328a5b2d896bec7399630ff85270f7",
+        "signature": "232a20dbd107baa091280c321f417c715f328a5b2d896bec7399630ff85270f7",
+        "affectsGlobalScope": false
       }
     },
     "options": {
@@ -1494,6 +1504,11 @@
         "../../../node_modules/@types/node/http.d.ts",
         "../../../node_modules/@types/node/https.d.ts",
         "../../../node_modules/@types/node/index.d.ts"
+      ],
+      "../../../node_modules/@types/xml2js/index.d.ts": [
+        "../../../node_modules/@types/node/events.d.ts",
+        "../../../node_modules/@types/node/index.d.ts",
+        "../../../node_modules/@types/xml2js/lib/processors.d.ts"
       ],
       "../../../node_modules/sequelize/types/index.d.ts": [
         "../../../node_modules/sequelize/types/lib/associations/index.d.ts",
@@ -2108,6 +2123,11 @@
         "../../../node_modules/@types/node/https.d.ts",
         "../../../node_modules/@types/node/index.d.ts"
       ],
+      "../../../node_modules/@types/xml2js/index.d.ts": [
+        "../../../node_modules/@types/node/events.d.ts",
+        "../../../node_modules/@types/node/index.d.ts",
+        "../../../node_modules/@types/xml2js/lib/processors.d.ts"
+      ],
       "../../../node_modules/sequelize/types/index.d.ts": [
         "../../../node_modules/sequelize/types/lib/associations/index.d.ts",
         "../../../node_modules/sequelize/types/lib/data-types.d.ts",
@@ -2400,6 +2420,8 @@
       "../../../node_modules/@types/socket.io-client/index.d.ts",
       "../../../node_modules/@types/socket.io/index.d.ts",
       "../../../node_modules/@types/validator/index.d.ts",
+      "../../../node_modules/@types/xml2js/index.d.ts",
+      "../../../node_modules/@types/xml2js/lib/processors.d.ts",
       "../../../node_modules/sequelize/types/index.d.ts",
       "../../../node_modules/sequelize/types/lib/associations/base.d.ts",
       "../../../node_modules/sequelize/types/lib/associations/belongs-to-many.d.ts",

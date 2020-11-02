@@ -7,6 +7,8 @@ exports.config = void 0;
 const models_1 = require("../models");
 const lodash_1 = __importDefault(require("lodash"));
 const sequelize_1 = require("sequelize");
+const http_1 = __importDefault(require("http"));
+const xml2js_1 = require("xml2js");
 var config = {
     domains: ["localstories.info", "www.localstories.info", "truestories.david-ma.net", "govhack2015.david-ma.net"],
     pages: {
@@ -40,9 +42,11 @@ var config = {
                         where: {
                             sourcename: source
                         }
-                    })
+                    }),
+                    findBestImage(story.MediaRSS_URL, story.Primary_image)
                 ];
-                Promise.all(promises).then(([town, twitterData]) => {
+                Promise.all(promises).then(([town, twitterData, bestImage]) => {
+                    result.bestImage = bestImage;
                     lodash_1.default.merge(result, town.toJSON());
                     if (twitterData)
                         lodash_1.default.merge(result, twitterData.toJSON());
@@ -128,4 +132,36 @@ function distance(lat1, lon1, lat2, lon2, unit) {
         }
         return dist;
     }
+}
+function findBestImage(MediaRSS_URL, Primary_image) {
+    return new Promise((resolve) => {
+        http_1.default.get(MediaRSS_URL, (res) => {
+            let data = '';
+            res.on('data', (chunk) => {
+                data += chunk;
+            });
+            res.on('end', () => {
+                xml2js_1.parseString(data, (err, result) => {
+                    if (err)
+                        resolve(Primary_image);
+                    try {
+                        var images = result.rss.channel[0].item[0]['media:group'][0]['media:content'];
+                        let score = 0;
+                        let bestImage = "";
+                        images.forEach(image => {
+                            var thisScore = parseInt(image.$.height) + (parseInt(image.$.width) * 10);
+                            if (thisScore > score) {
+                                bestImage = image.$.url;
+                                score = thisScore;
+                            }
+                        });
+                        resolve(bestImage);
+                    }
+                    catch (e) {
+                        resolve(Primary_image);
+                    }
+                });
+            });
+        });
+    });
 }

@@ -170,6 +170,6 @@ function inspectCSV( csvPath :string ) {
 
 
 // Turns out we're just exporting the names of the models as strings..? And not the Static model objects?
-console.log("Exporting seq", seq);
+// console.log("Exporting seq", seq);
 
 export { seq }

@@ -3,7 +3,8 @@ import { Story, TwitterData, Town } from '../models'
 import _ from 'lodash';
 import { Op } from 'sequelize';
 import { StoryModel, TownModel, TwitterDataModel } from "../models/models"
-
+import http, { IncomingMessage } from 'http';
+import { parseString as parseXml } from 'xml2js';
 
 var config :Thalia.WebsiteConfig = {
 	domains: ["localstories.info","www.localstories.info", "truestories.david-ma.net", "govhack2015.david-ma.net"],
@@ -46,11 +47,12 @@ var config :Thalia.WebsiteConfig = {
                         where: {
                             sourcename: source
                         }
-                    })
+                    }),
+                    findBestImage(story.MediaRSS_URL, story.Primary_image)
                 ];
 
-                Promise.all(promises).then(([town, twitterData] :[TownModel, TwitterDataModel]) => {
-
+                Promise.all(promises).then(([town, twitterData, bestImage] :[TownModel, TwitterDataModel, string]) => {
+                    result.bestImage = bestImage;
                     _.merge(result, town.toJSON());
                     if(twitterData) _.merge(result, twitterData.toJSON());
 
@@ -146,6 +148,49 @@ function distance(lat1 :number, lon1 :number, lat2 :number, lon2 :number, unit ?
 		if (unit=="N") { dist = dist * 0.8684 }
 		return dist;
 	}
+}
+
+
+// Weird xml stuff.
+function findBestImage(MediaRSS_URL :string, Primary_image) {
+    return new Promise((resolve) => {
+        http.get(MediaRSS_URL, (res :IncomingMessage) => {
+            let data = '';
+            // A chunk of data has been recieved.
+            res.on('data', (chunk) => {
+                data += chunk;
+            });
+
+            // The whole response has been received. Print out the result.
+            res.on('end', () => {
+                parseXml(data, (err, result) => {
+                    if(err) resolve(Primary_image);
+                    try {
+                        var images :Array<{'$':{
+                            url :string;
+                            type: string;
+                            width: string;
+                            height: string;
+                        }}> = result.rss.channel[0].item[0]['media:group'][0]['media:content'];
+
+                        let score = 0;
+                        let bestImage = "";
+                        images.forEach(image => {
+                            // var thisScore = parseInt(image.$.height) + (parseInt(image.$.width) * 2.5);
+                            var thisScore = parseInt(image.$.height) + (parseInt(image.$.width) * 10);
+                            if( thisScore > score ){
+                                bestImage = image.$.url;
+                                score = thisScore;
+                            }
+                        });
+                        resolve(bestImage);
+                    } catch (e) {
+                        resolve(Primary_image);
+                    }
+                })
+            });
+        })
+    });
 }
 
 

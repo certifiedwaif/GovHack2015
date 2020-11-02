@@ -162,8 +162,8 @@
         "affectsGlobalScope": true
       },
       "../src/override.ts": {
-        "version": "165830551179d45ed3ce92ce93861eeccceedf6b0d7c0594815022ad497676d1",
-        "signature": "df7080d849a810a97e6457b371d9fcf12684d727b8b44b8854affdf513aef3f0",
+        "version": "7ec22e73566b0e4d377aefa1272186096db043e41ecab1b37a81443001b4e9ed",
+        "signature": "9cec115b1ae0db2da3f90ae9f6a50df8f57f4667a5ac7801b7812ae4f4137c57",
         "affectsGlobalScope": true
       },
       "../../../node_modules/@types/bluebird/index.d.ts": {
@@ -795,6 +795,16 @@
         "version": "d51dd1eeec95fbe192e6dfeee8f982b3d6115a0ff6059cafc879330d94367fb0",
         "signature": "d51dd1eeec95fbe192e6dfeee8f982b3d6115a0ff6059cafc879330d94367fb0",
         "affectsGlobalScope": false
+      },
+      "../../../node_modules/@types/xml2js/lib/processors.d.ts": {
+        "version": "c0288f54de6f544706a3150c8b579b1a975870695c4be866f727ece6a16f3976",
+        "signature": "c0288f54de6f544706a3150c8b579b1a975870695c4be866f727ece6a16f3976",
+        "affectsGlobalScope": false
+      },
+      "../../../node_modules/@types/xml2js/index.d.ts": {
+        "version": "232a20dbd107baa091280c321f417c715f328a5b2d896bec7399630ff85270f7",
+        "signature": "232a20dbd107baa091280c321f417c715f328a5b2d896bec7399630ff85270f7",
+        "affectsGlobalScope": false
       }
     },
     "options": {
@@ -1301,6 +1311,11 @@
         "../../../node_modules/@types/node/http.d.ts",
         "../../../node_modules/@types/node/https.d.ts",
         "../../../node_modules/@types/node/index.d.ts"
+      ],
+      "../../../node_modules/@types/xml2js/index.d.ts": [
+        "../../../node_modules/@types/node/events.d.ts",
+        "../../../node_modules/@types/node/index.d.ts",
+        "../../../node_modules/@types/xml2js/lib/processors.d.ts"
       ]
     },
     "exportedModulesMap": {
@@ -1789,6 +1804,11 @@
         "../../../node_modules/@types/node/http.d.ts",
         "../../../node_modules/@types/node/https.d.ts",
         "../../../node_modules/@types/node/index.d.ts"
+      ],
+      "../../../node_modules/@types/xml2js/index.d.ts": [
+        "../../../node_modules/@types/node/events.d.ts",
+        "../../../node_modules/@types/node/index.d.ts",
+        "../../../node_modules/@types/xml2js/lib/processors.d.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -1950,6 +1970,8 @@
       "../../../node_modules/@types/socket.io-client/index.d.ts",
       "../../../node_modules/@types/socket.io/index.d.ts",
       "../../../node_modules/@types/validator/index.d.ts",
+      "../../../node_modules/@types/xml2js/index.d.ts",
+      "../../../node_modules/@types/xml2js/lib/processors.d.ts",
       "../src/override.ts"
     ]
   },

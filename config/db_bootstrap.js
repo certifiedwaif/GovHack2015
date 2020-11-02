@@ -101,4 +101,3 @@ function inspectCSV(csvPath) {
         });
     });
 }
-console.log("Exporting seq", seq);
