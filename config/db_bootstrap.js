@@ -8,6 +8,7 @@ const csv_parser_1 = __importDefault(require("csv-parser"));
 const fs_1 = __importDefault(require("fs"));
 const seq = {
     Story: models_1.Story,
+    TwitterData: models_1.TwitterData,
     sequelize: models_1.dbConfig
 };
 if (false) {
@@ -17,8 +18,7 @@ if (false) {
                 fs_1.default.createReadStream(`${__dirname}/../data/localphotostories20092014csv.csv`)
                     .pipe(csv_parser_1.default())
                     .on('headers', (headers) => {
-                    console.log(`First header: ${headers[0]}`);
-                    console.log(`All header: ${headers}`);
+                    console.log(`Local Photo Stories csv headers: ${headers.join(", ")}`);
                 }).on('data', (data) => {
                     const dates = data.Date.split("/");
                     data.Date = `${dates[2] - dates[1] - dates[0]}`;
@@ -42,9 +42,21 @@ if (false) {
                 });
             }
         });
+        fs_1.default.createReadStream(`${__dirname}/../data/twitter_name_search.csv`)
+            .pipe(csv_parser_1.default())
+            .on('headers', headers => {
+            console.log(`Twitter Data csv headers: ${headers.join(", ")}`);
+        }).on('data', data => {
+            models_1.TwitterData.findOrCreate({
+                where: { username: data.username },
+                defaults: data
+            }).catch((error) => {
+                console.log(error.message);
+                console.log(data);
+            });
+        });
     });
 }
-maxFieldSizes(`${__dirname}/../data/query_result.csv`);
 function maxFieldSizes(csvPath) {
     const sizer = {};
     let count = 0;

@@ -1,6 +1,7 @@
 import * as sequelize from 'sequelize';
 import _ from "lodash";
 import { StoryFactory } from './Story';
+import { TwitterDataFactory } from './TwitterData';
 
 // Default options
 let seqOptions :sequelize.Options = {
@@ -30,6 +31,7 @@ export const dbConfig :sequelize.Sequelize = new sequelize.Sequelize(seqOptions)
 
 // Initialise models
 export const Story = StoryFactory(dbConfig)
+export const TwitterData = TwitterDataFactory(dbConfig)
 
 // Camera.belongsTo(Family);
 // Family.hasMany(Camera);

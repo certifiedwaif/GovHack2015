@@ -1,5 +1,5 @@
 import { Model, Sequelize } from "sequelize";
-import { dbConfig, Story } from '../models'
+import { dbConfig, Story, TwitterData } from '../models'
 import csv from 'csv-parser';
 import fs from 'fs';
 
@@ -10,6 +10,7 @@ interface seqObject {
 
 const seq :seqObject = {
     Story: Story,
+    TwitterData: TwitterData,
     sequelize: dbConfig
 }
 
@@ -31,8 +32,7 @@ if(false) {
                 fs.createReadStream(`${__dirname}/../data/localphotostories20092014csv.csv`)
                 .pipe(csv())
                 .on('headers', (headers) => {
-                    console.log(`First header: ${headers[0]}`)
-                    console.log(`All header: ${headers}`)
+                    console.log(`Local Photo Stories csv headers: ${headers.join(", ")}`)
 
                 }).on('data', (data) => {
                     const dates = data.Date.split("/");
@@ -60,10 +60,26 @@ if(false) {
                 });
             }
         })
+
+        fs.createReadStream(`${__dirname}/../data/twitter_name_search.csv`)
+            .pipe(csv())
+            .on('headers', headers => {
+                console.log(`Twitter Data csv headers: ${headers.join(", ")}`)
+            }).on('data', data => {
+                TwitterData.findOrCreate({
+                    where: { username: data.username },
+                    defaults: data
+                }).catch((error: Error) => {
+                    console.log(error.message);
+                    console.log(data);
+                });
+            })
     })
 
 }
 
+
+// maxFieldSizes(`${__dirname}/../data/twitter_name_search.csv`);
 
 
 // Quickly count the max size of each field in the CSV.

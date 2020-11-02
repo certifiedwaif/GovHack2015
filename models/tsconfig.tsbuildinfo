@@ -342,8 +342,8 @@
         "affectsGlobalScope": false
       },
       "./models.d.ts": {
-        "version": "c8727593c7abf96fe4569034bc49313357198dd16598bda7d457c4e88179e5ac",
-        "signature": "c8727593c7abf96fe4569034bc49313357198dd16598bda7d457c4e88179e5ac",
+        "version": "04e2da8ef6be46134ca664669ad7541cc59e7155fa1bdaf3050b039d636137e0",
+        "signature": "04e2da8ef6be46134ca664669ad7541cc59e7155fa1bdaf3050b039d636137e0",
         "affectsGlobalScope": false
       },
       "./story.ts": {
@@ -351,9 +351,14 @@
         "signature": "c85f6fffa9c79df114f4569c49b1d6324203d760fb05098fbc16ae635d2c5a28",
         "affectsGlobalScope": false
       },
+      "./twitterdata.ts": {
+        "version": "2d527ac99e5554ace5c382b393a0685a91006884698a3679dba45c0431296129",
+        "signature": "c5482fd865b7e1eb677069d5345704a211000b517a978ba31f6c5cd8ae76f86c",
+        "affectsGlobalScope": false
+      },
       "./index.ts": {
-        "version": "90fcac5f9e3f3ef095eca6607c8d904e5555667b3f424c0082ce639911638a8a",
-        "signature": "fbe2fc7c672c9b3336532df89ea54d4128ac18999fcf0aaa0a51610412f948cc",
+        "version": "75105e99ef5e1a1b061223662042d0bdf39a36f6bef642d52de4975741b5baba",
+        "signature": "05c7b405032c6d107a7bbf2c75b7b9630664771f0e9b51c1bb51333cda98ac14",
         "affectsGlobalScope": false
       },
       "../../../node_modules/@types/bluebird/index.d.ts": {
@@ -1343,12 +1348,17 @@
       ],
       "./index.ts": [
         "../../../node_modules/sequelize/types/index.d.ts",
-        "./story.ts"
+        "./story.ts",
+        "./twitterdata.ts"
       ],
       "./models.d.ts": [
         "../../../node_modules/sequelize/types/index.d.ts"
       ],
       "./story.ts": [
+        "../../../node_modules/sequelize/types/index.d.ts",
+        "./models.d.ts"
+      ],
+      "./twitterdata.ts": [
         "../../../node_modules/sequelize/types/index.d.ts",
         "./models.d.ts"
       ]
@@ -1771,6 +1781,10 @@
       "./story.ts": [
         "../../../node_modules/sequelize/types/index.d.ts",
         "./models.d.ts"
+      ],
+      "./twitterdata.ts": [
+        "../../../node_modules/sequelize/types/index.d.ts",
+        "./models.d.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -1956,7 +1970,8 @@
       "../../../node_modules/sequelize/types/type-helpers/set-required.d.ts",
       "./index.ts",
       "./models.d.ts",
-      "./story.ts"
+      "./story.ts",
+      "./twitterdata.ts"
     ]
   },
   "version": "4.0.3"

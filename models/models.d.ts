@@ -31,3 +31,16 @@ export type StoryStatic = typeof Model & {
 
 
 
+export interface TwitterDataAttributes extends mysqlAttributes {
+    sourcename: string;
+    username: string;
+    description: string;
+}
+export interface TwitterDataModel extends Model<TwitterDataAttributes>, TwitterDataAttributes { }
+export class TwitterData extends Model<TwitterDataModel, TwitterDataAttributes> { }
+export type TwitterDataStatic = typeof Model & {
+    new(values?: object, options?: BuildOptions): TwitterDataModel;
+};
+
+
+
