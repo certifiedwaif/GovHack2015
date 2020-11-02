@@ -38,15 +38,16 @@ var config = {
                             sourcename: source
                         }
                     }),
-                    findBestImage(story.MediaRSS_URL, story.Primary_image)
+                    findBestImages(story.MediaRSS_URL, story.Primary_image)
                 ];
-                Promise.all(promises).then(([town, twitterData, bestImage]) => {
+                Promise.all(promises).then(([town, twitterData, bestImages]) => {
                     let result = {};
                     if (twitterData)
                         lodash_1.default.merge(result, twitterData.toJSON());
                     lodash_1.default.merge(result, town.toJSON());
                     lodash_1.default.merge(result, story.toJSON());
-                    result.bestImage = bestImage;
+                    result.bestImage = bestImages[0];
+                    result.bestImages = bestImages;
                     response.end(JSON.stringify(result));
                 });
             }).catch(err => {
@@ -130,7 +131,7 @@ function distance(lat1, lon1, lat2, lon2, unit) {
         return dist;
     }
 }
-function findBestImage(MediaRSS_URL, Primary_image) {
+function findBestImages(MediaRSS_URL, Primary_image) {
     return new Promise((resolve) => {
         http_1.default.get(MediaRSS_URL, (res) => {
             let data = '';
@@ -140,13 +141,14 @@ function findBestImage(MediaRSS_URL, Primary_image) {
             res.on('end', () => {
                 xml2js_1.parseString(data, (err, result) => {
                     if (err)
-                        resolve(Primary_image);
+                        resolve([Primary_image]);
                     try {
-                        var items = result.rss.channel[0].item[0]['media:group'];
-                        let score = 0;
-                        let bestImage = "";
+                        var items = result.rss.channel[0].item;
+                        var bestImages = [];
                         items.forEach(item => {
-                            var images = item['media:content'];
+                            var images = item['media:group'][0]['media:content'];
+                            let score = 0;
+                            let bestImage = "";
                             images.forEach(image => {
                                 var thisScore = parseInt(image.$.height) + (parseInt(image.$.width) * 10);
                                 if (thisScore > score) {
@@ -154,11 +156,12 @@ function findBestImage(MediaRSS_URL, Primary_image) {
                                     score = thisScore;
                                 }
                             });
+                            bestImages.push(bestImage);
                         });
-                        resolve(bestImage);
+                        resolve(bestImages);
                     }
                     catch (e) {
-                        resolve(Primary_image);
+                        resolve([Primary_image]);
                     }
                 });
             });

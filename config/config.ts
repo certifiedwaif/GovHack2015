@@ -43,15 +43,16 @@ var config :Thalia.WebsiteConfig = {
                             sourcename: source
                         }
                     }),
-                    findBestImage(story.MediaRSS_URL, story.Primary_image)
+                    findBestImages(story.MediaRSS_URL, story.Primary_image)
                 ];
 
-                Promise.all(promises).then(([town, twitterData, bestImage] :[TownModel, TwitterDataModel, string]) => {
+                Promise.all(promises).then(([town, twitterData, bestImages] :[TownModel, TwitterDataModel, Array<string>]) => {
                     let result :any = {};
                     if(twitterData) _.merge(result, twitterData.toJSON()); // No twitter? That's fine.
                     _.merge(result, town.toJSON());
                     _.merge(result, story.toJSON())
-                    result.bestImage = bestImage;
+                    result.bestImage = bestImages[0];
+                    result.bestImages = bestImages;
                     response.end(JSON.stringify(result));
                 });
             }).catch(err => {
@@ -146,7 +147,7 @@ function distance(lat1 :number, lon1 :number, lat2 :number, lon2 :number, unit ?
 
 
 // Weird xml stuff.
-function findBestImage(MediaRSS_URL :string, Primary_image) {
+function findBestImages(MediaRSS_URL :string, Primary_image) {
     return new Promise((resolve) => {
         http.get(MediaRSS_URL, (res :IncomingMessage) => {
             let data = '';
@@ -158,22 +159,26 @@ function findBestImage(MediaRSS_URL :string, Primary_image) {
             // The whole response has been received. Print out the result.
             res.on('end', () => {
                 parseXml(data, (err, result) => {
-                    if(err) resolve(Primary_image);
+                    if(err) resolve([Primary_image]);
                     try {
                         var items :Array<{
-                            'media:content': Array<{'$':{
-                                url :string;
-                                type: string;
-                                width: string;
-                                height: string;
-                            }}>
-                        }> = result.rss.channel[0].item[0]['media:group']; //[0]['media:content'];
+                            'media:group': Array<{
+                                'media:content': Array<{'$':{
+                                    url :string;
+                                    type: string;
+                                    width: string;
+                                    height: string;
+                                }}>
+                            }>
+                        }> = result.rss.channel[0].item; //[0]['media:group']; //[0]['media:content'];
 
-                        let score = 0;
-                        let bestImage = "";
 
+                        var bestImages = []
                         items.forEach(item => {
-                            var images = item['media:content'];
+                            var images = item['media:group'][0]['media:content'];
+                            let score = 0;
+                            let bestImage = "";
+    
                             images.forEach(image => {
                                 // var thisScore = parseInt(image.$.height) + (parseInt(image.$.width) * 2.5);
                                 var thisScore = parseInt(image.$.height) + (parseInt(image.$.width) * 10);
@@ -182,10 +187,11 @@ function findBestImage(MediaRSS_URL :string, Primary_image) {
                                     score = thisScore;
                                 }
                             });
+                            bestImages.push(bestImage);
                         });
-                        resolve(bestImage);
+                        resolve(bestImages);
                     } catch (e) {
-                        resolve(Primary_image);
+                        resolve([Primary_image]);
                     }
                 })
             });

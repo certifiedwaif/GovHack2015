@@ -17,6 +17,7 @@ type someType = {
     Primary_image_rights_information: string;
     MediaRSS_URL: string;
     bestImage: string;
+    bestImages: Array<string>;
 }
 
 
