@@ -34,6 +34,7 @@ let seqOptions = {
     "password": process.env.DB_PASSWORD || "",
     "port": 3306,
     "dialect": "mysql",
+    "dialectOptions": { decimalNumbers: true },
     "logging": false,
     "define": {
         "underscored": true
