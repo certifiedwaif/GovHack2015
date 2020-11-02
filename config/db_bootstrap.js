@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.seq = void 0;
 const models_1 = require("../models");
 const csv_parser_1 = __importDefault(require("csv-parser"));
 const fs_1 = __importDefault(require("fs"));
@@ -12,8 +13,23 @@ const seq = {
     Town: models_1.Town,
     sequelize: models_1.dbConfig
 };
+exports.seq = seq;
 if (true) {
     seq.sequelize.sync({}).then(() => {
+        fs_1.default.createReadStream(`${__dirname}/../data/small_town_data.csv`)
+            .pipe(csv_parser_1.default())
+            .on('headers', headers => {
+            console.log(`Small Town Data csv headers: ${headers.join(", ")}`);
+        }).on('data', data => {
+            models_1.Town.findOrCreate({
+                where: { Place: data.Place },
+                defaults: data
+            }).then(([town, created]) => {
+            }).catch((error) => {
+                console.log(error.message);
+                console.log(data);
+            });
+        });
         models_1.Story.count().then(count => {
             if (count < 100) {
                 fs_1.default.createReadStream(`${__dirname}/../data/localphotostories20092014csv.csv`)
@@ -57,24 +73,8 @@ if (true) {
                 console.log(data);
             });
         });
-        fs_1.default.createReadStream(`${__dirname}/../data/small_town_data.csv`)
-            .pipe(csv_parser_1.default())
-            .on('headers', headers => {
-            console.log(`Small Town Data csv headers: ${headers.join(", ")}`);
-        }).on('data', data => {
-            models_1.Town.findOrCreate({
-                where: { Place: data.Place },
-                defaults: data
-            }).then(([town, created]) => {
-                town;
-            }).catch((error) => {
-                console.log(error.message);
-                console.log(data);
-            });
-        });
     });
 }
-inspectCSV(`${__dirname}/../data/small_town_data.csv`);
 function inspectCSV(csvPath) {
     const sizer = {};
     let count = 0;
@@ -101,4 +101,4 @@ function inspectCSV(csvPath) {
         });
     });
 }
-exports.seq = seq;
+console.log("Exporting seq", seq);

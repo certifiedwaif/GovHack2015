@@ -41,6 +41,22 @@ if(true) {
         // force: true
     }).then( () => {
 
+        fs.createReadStream(`${__dirname}/../data/small_town_data.csv`)
+        .pipe(csv())
+        .on('headers', headers => {
+            console.log(`Small Town Data csv headers: ${headers.join(", ")}`)
+        }).on('data', data => {
+            Town.findOrCreate({
+                where: { Place: data.Place },
+                defaults: data
+            }).then(([town, created]) => {
+
+            }).catch((error: Error) => {
+                console.log(error.message);
+                console.log(data);
+            })
+        });
+
         // Only reload the stories .csv if we have less than 100 stories.
         Story.count().then( count => {
             if( count < 100 ) {
@@ -116,47 +132,12 @@ if(true) {
                 })
             });
 
-        fs.createReadStream(`${__dirname}/../data/small_town_data.csv`)
-        .pipe(csv())
-        .on('headers', headers => {
-            console.log(`Small Town Data csv headers: ${headers.join(", ")}`)
-        }).on('data', data => {
-            Town.findOrCreate({
-                where: { Place: data.Place },
-                defaults: data
-            }).then(([town, created]) => {
-
-                town
-
-
-
-
-
-
-/* Run this if you want to check Story & TwitterData are working
-                Story.findAll({
-                    where: {
-                        Primary_image_rights_information: {
-                            [Op.like]: `%${twitterData.sourcename}%`
-                        }
-                    }
-                }).then(results => {
-                    console.log(twitterData.sourcename +": "+results.map(d => d.id).join(", "));
-                });
-*/
-
-            }).catch((error: Error) => {
-                console.log(error.message);
-                console.log(data);
-            })
-        });
     })
 
 }
 
 
-inspectCSV(`${__dirname}/../data/small_town_data.csv`);
-
+// inspectCSV(`${__dirname}/../data/small_town_data.csv`);
 
 
 // Font colors: https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
@@ -188,4 +169,7 @@ function inspectCSV( csvPath :string ) {
 }
 
 
-exports.seq = seq;
+// Turns out we're just exporting the names of the models as strings..? And not the Static model objects?
+console.log("Exporting seq", seq);
+
+export { seq }

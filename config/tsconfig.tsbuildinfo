@@ -211,10 +211,20 @@
         "signature": "f58c6d0669d1ee04b2fcb0e87fb949b6828602f3f29c7bf6c76a214f16fd50d5",
         "affectsGlobalScope": false
       },
-      "./config.ts": {
-        "version": "463b5ceac4643a5826c111885640a2b9bddcd959bc2fe67af192b32113785d2f",
-        "signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "affectsGlobalScope": true
+      "../../../node_modules/@types/mustache/index.d.ts": {
+        "version": "976fdab81483f691ad4a132b56e5a699f7ee2316139e9021a4f13df0a7675a15",
+        "signature": "976fdab81483f691ad4a132b56e5a699f7ee2316139e9021a4f13df0a7675a15",
+        "affectsGlobalScope": false
+      },
+      "../../../server/requesthandlers.ts": {
+        "version": "fceedf859fec212c99671b18cde9ddef5a863a6a0cb588b96c6d0d36c8ab5d2f",
+        "signature": "94fb86ecbba9c588cbb871205dc4c5e436b3071856345bbce4cc56db786a0d88",
+        "affectsGlobalScope": false
+      },
+      "../../../server/thalia.d.ts": {
+        "version": "5a8db15c957b3432c227729d0ec03d28013bc922ea28ba0eeae71fbfe2677918",
+        "signature": "5a8db15c957b3432c227729d0ec03d28013bc922ea28ba0eeae71fbfe2677918",
+        "affectsGlobalScope": false
       },
       "../../../node_modules/sequelize/types/lib/data-types.d.ts": {
         "version": "90f0eb36d6cca7e856726c478d061c40c869d184012e2912098269ffc904417f",
@@ -617,8 +627,13 @@
         "affectsGlobalScope": false
       },
       "./db_bootstrap.ts": {
-        "version": "69a08d8c361db3d4fdda5bdb44f965bde8c398d02d9c205406dd2f98e36a3c8b",
-        "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "version": "4a43e2b03d4b048240f2e7b71d4d1e098407538b2547d02d1f5959e59b8b2592",
+        "signature": "3d909ff16ab15a758b78ab7a3f348411fa413a90c2624824b6e238e4b76c9037",
+        "affectsGlobalScope": false
+      },
+      "./config.ts": {
+        "version": "59c81f04e8c1021fb9c19d855720afd736225eee6daf7b3d6327991386ced2c2",
+        "signature": "0dd40d1524613ff7ba3b82c977b2facf2d2a4304d61d7cb3cf958e35c1b59407",
         "affectsGlobalScope": false
       },
       "../../../node_modules/@types/bluebird/index.d.ts": {
@@ -909,11 +924,6 @@
       "../../../node_modules/@types/mime/index.d.ts": {
         "version": "be27a64e821a3e5af838650e4aa25805c60f057d0c37a9762c378d19d364b3e6",
         "signature": "be27a64e821a3e5af838650e4aa25805c60f057d0c37a9762c378d19d364b3e6",
-        "affectsGlobalScope": false
-      },
-      "../../../node_modules/@types/mustache/index.d.ts": {
-        "version": "976fdab81483f691ad4a132b56e5a699f7ee2316139e9021a4f13df0a7675a15",
-        "signature": "976fdab81483f691ad4a132b56e5a699f7ee2316139e9021a4f13df0a7675a15",
         "affectsGlobalScope": false
       },
       "../../../node_modules/@types/mysql/index.d.ts": {
@@ -1370,6 +1380,20 @@
       "../../../node_modules/sequelize/types/lib/utils/validator-extras.d.ts": [
         "../../../node_modules/@types/validator/index.d.ts"
       ],
+      "../../../server/requesthandlers.ts": [
+        "../../../node_modules/@types/mustache/index.d.ts",
+        "../../../node_modules/@types/node/fs.d.ts",
+        "../../../server/thalia.d.ts"
+      ],
+      "../../../server/thalia.d.ts": [
+        "../../../node_modules/@types/node/http.d.ts",
+        "../../../server/requesthandlers.ts"
+      ],
+      "./config.ts": [
+        "../../../server/thalia.d.ts",
+        "../models/index.ts",
+        "./db_bootstrap.ts"
+      ],
       "./db_bootstrap.ts": [
         "../../../node_modules/@types/node/fs.d.ts",
         "../../../node_modules/csv-parser/index.d.ts",
@@ -1810,6 +1834,19 @@
       "../../../node_modules/sequelize/types/lib/utils/validator-extras.d.ts": [
         "../../../node_modules/@types/validator/index.d.ts"
       ],
+      "../../../server/requesthandlers.ts": [
+        "../../../server/thalia.d.ts"
+      ],
+      "../../../server/thalia.d.ts": [
+        "../../../node_modules/@types/node/http.d.ts",
+        "../../../server/requesthandlers.ts"
+      ],
+      "./config.ts": [
+        "../../../server/thalia.d.ts"
+      ],
+      "./db_bootstrap.ts": [
+        "../../../node_modules/sequelize/types/index.d.ts"
+      ],
       "../models/index.ts": [
         "../../../node_modules/sequelize/types/index.d.ts",
         "../models/models.d.ts"
@@ -2012,6 +2049,8 @@
       "../../../node_modules/sequelize/types/lib/utils.d.ts",
       "../../../node_modules/sequelize/types/lib/utils/validator-extras.d.ts",
       "../../../node_modules/sequelize/types/type-helpers/set-required.d.ts",
+      "../../../server/requesthandlers.ts",
+      "../../../server/thalia.d.ts",
       "./config.ts",
       "./db_bootstrap.ts",
       "../models/index.ts",
