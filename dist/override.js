@@ -7,7 +7,7 @@ var imgs = [
     "/img/6.jpg"
 ];
 var xmlhttp = new XMLHttpRequest();
-var url = "//localstories.info/requestjson";
+var url = "/requestjson";
 xmlhttp.onreadystatechange = function () {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
         var myArr = JSON.parse(xmlhttp.responseText);
@@ -18,16 +18,16 @@ xmlhttp.open("GET", url, true);
 xmlhttp.send();
 function myFunction(arr) {
     console.log(arr);
-    d3.select("#background").style("background-image", "url(" + arr["bestImage"] + ")");
+    d3.select("#background").style("background-image", `url(${arr.Primary_image})`);
     d3.select("#title").text(arr.Title);
-    d3.select("#url").attr("href", "//localstories.info/story/" + arr.row_names);
-    d3.select("#description").text(arr["Primary.image.caption"]);
+    d3.select("#url").attr("href", arr.URL);
+    d3.select("#description").text(arr.Primary_image_caption);
     var twittername = "abcnews";
     if (arr.username != null) {
         twittername = arr.username;
     }
     d3.select("#twitterlink").attr("href", "http://twitter.com/" + twittername);
-    var rights = arr["Primary.image.rights.information"].split("|"), copyright = rights[0].split(":")[1].trim(), author = rights[2].split(":")[1].trim();
+    var rights = arr.Primary_image_rights_information.split("|"), copyright = rights[0] ? rights[0].split(":")[1].trim() : "Unknown", author = rights[2] ? rights[2].split(":")[1].trim() : "Unknown";
     d3.select("#copyright").text(copyright);
     d3.select("#author").text(author);
     d3.select("#facebook").attr("href", "https://www.facebook.com/sharer/sharer.php?u=$" + arr.URL);

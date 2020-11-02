@@ -30,7 +30,7 @@ var config :Thalia.WebsiteConfig = {
                         [Op.ne] : null
                     },
                     Primary_image: {
-                        [Op.ne] : null
+                        [Op.ne] : ""
                     }
                 },
                 order: Story.sequelize.random()

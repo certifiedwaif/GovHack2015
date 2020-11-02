@@ -26,7 +26,7 @@ var config = {
                         [sequelize_1.Op.ne]: null
                     },
                     Primary_image: {
-                        [sequelize_1.Op.ne]: null
+                        [sequelize_1.Op.ne]: ""
                     }
                 },
                 order: models_1.Story.sequelize.random()
