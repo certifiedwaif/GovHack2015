@@ -22,11 +22,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TwitterData = exports.Story = exports.dbConfig = void 0;
+exports.Town = exports.TwitterData = exports.Story = exports.dbConfig = void 0;
 const sequelize = __importStar(require("sequelize"));
 const lodash_1 = __importDefault(require("lodash"));
 const Story_1 = require("./Story");
 const TwitterData_1 = require("./TwitterData");
+const Town_1 = require("./Town");
 let seqOptions = {
     "database": process.env.DB_NAME || "typescript_test",
     "username": process.env.DB_USER || "root",
@@ -52,3 +53,4 @@ if (env == 'development') {
 exports.dbConfig = new sequelize.Sequelize(seqOptions);
 exports.Story = Story_1.StoryFactory(exports.dbConfig);
 exports.TwitterData = TwitterData_1.TwitterDataFactory(exports.dbConfig);
+exports.Town = Town_1.TownFactory(exports.dbConfig);

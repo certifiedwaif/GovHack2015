@@ -44,3 +44,44 @@ export type TwitterDataStatic = typeof Model & {
 
 
 
+
+
+export interface TownAttributes extends mysqlAttributes {
+    Place: string;
+    State: string;
+    Latitude: number;
+    Longitude: number;
+    TotalPopulation: number;
+    MalePopulation: number;
+    FemalePopulation: number;
+    MedianAge: number;
+    AgricultureForestryandFishing: number;
+    Mining: number;
+    Manufacturing: number;
+    ElectricityGasWaterWasteService: number;
+    Construction: number;
+    Wholesale: number;
+    Retail: number;
+    AccomodationFoodServices: number;
+    TransportWarehousing: number;
+    ITMediaTelecommunications: number;
+    FinancialInsurance: number;
+    RentalHiringRealEstate: number;
+    ProfessionalScientificTechnical: number;
+    AdministrativeSupport: number;
+    PublicAdministration: number;
+    EducationTraining: number;
+    HealthCareSocial: number;
+    ArtsRecreation: number;
+    Other: number;
+    MainEmployingIndustry: string;
+
+}
+export interface TownModel extends Model<TownAttributes>, TownAttributes { }
+export class Town extends Model<TownModel, TownAttributes> { }
+export type TownStatic = typeof Model & {
+    new(values?: object, options?: BuildOptions): TownModel;
+};
+
+
+

@@ -9,6 +9,7 @@ const fs_1 = __importDefault(require("fs"));
 const seq = {
     Story: models_1.Story,
     TwitterData: models_1.TwitterData,
+    Town: models_1.Town,
     sequelize: models_1.dbConfig
 };
 if (true) {
@@ -51,6 +52,21 @@ if (true) {
                 where: { username: data.username },
                 defaults: data
             }).then(([twitterData, created]) => {
+            }).catch((error) => {
+                console.log(error.message);
+                console.log(data);
+            });
+        });
+        fs_1.default.createReadStream(`${__dirname}/../data/small_town_data.csv`)
+            .pipe(csv_parser_1.default())
+            .on('headers', headers => {
+            console.log(`Small Town Data csv headers: ${headers.join(", ")}`);
+        }).on('data', data => {
+            models_1.Town.findOrCreate({
+                where: { Place: data.Place },
+                defaults: data
+            }).then(([town, created]) => {
+                town;
             }).catch((error) => {
                 console.log(error.message);
                 console.log(data);

@@ -347,8 +347,8 @@
         "affectsGlobalScope": false
       },
       "../models/models.d.ts": {
-        "version": "04e2da8ef6be46134ca664669ad7541cc59e7155fa1bdaf3050b039d636137e0",
-        "signature": "04e2da8ef6be46134ca664669ad7541cc59e7155fa1bdaf3050b039d636137e0",
+        "version": "e9cc9093edc426ab95032180bc7aed81912edafd6865f1cc0a0bbb22de286ac6",
+        "signature": "e9cc9093edc426ab95032180bc7aed81912edafd6865f1cc0a0bbb22de286ac6",
         "affectsGlobalScope": false
       },
       "../models/story.ts": {
@@ -361,9 +361,14 @@
         "signature": "c5482fd865b7e1eb677069d5345704a211000b517a978ba31f6c5cd8ae76f86c",
         "affectsGlobalScope": false
       },
+      "../models/town.ts": {
+        "version": "1b847b097fa23c9a43f492d9d2ba2695fb8aa4c04477f5dafa3d4febc873a683",
+        "signature": "86502ee8d9b05df092112dfdcb021c637d87b1e500b48765ba2498d3ebefaca1",
+        "affectsGlobalScope": false
+      },
       "../models/index.ts": {
-        "version": "75105e99ef5e1a1b061223662042d0bdf39a36f6bef642d52de4975741b5baba",
-        "signature": "05c7b405032c6d107a7bbf2c75b7b9630664771f0e9b51c1bb51333cda98ac14",
+        "version": "65992f84dcdd0bab7bd169088e44d643c05175affa7e0eff671ea514464268b1",
+        "signature": "add53f90ea1de964d83af7f3d727f4babb563d528d832092ba143fe299eabe69",
         "affectsGlobalScope": false
       },
       "../../../node_modules/@types/node/globals.d.ts": {
@@ -612,7 +617,7 @@
         "affectsGlobalScope": false
       },
       "./db_bootstrap.ts": {
-        "version": "a963a098847b1f279865e5067695329838e238a552656fcc1e44b2189ea82a82",
+        "version": "69a08d8c361db3d4fdda5bdb44f965bde8c398d02d9c205406dd2f98e36a3c8b",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
         "affectsGlobalScope": false
       },
@@ -1374,12 +1379,17 @@
       "../models/index.ts": [
         "../../../node_modules/sequelize/types/index.d.ts",
         "../models/story.ts",
+        "../models/town.ts",
         "../models/twitterdata.ts"
       ],
       "../models/models.d.ts": [
         "../../../node_modules/sequelize/types/index.d.ts"
       ],
       "../models/story.ts": [
+        "../../../node_modules/sequelize/types/index.d.ts",
+        "../models/models.d.ts"
+      ],
+      "../models/town.ts": [
         "../../../node_modules/sequelize/types/index.d.ts",
         "../models/models.d.ts"
       ],
@@ -1811,6 +1821,10 @@
         "../../../node_modules/sequelize/types/index.d.ts",
         "../models/models.d.ts"
       ],
+      "../models/town.ts": [
+        "../../../node_modules/sequelize/types/index.d.ts",
+        "../models/models.d.ts"
+      ],
       "../models/twitterdata.ts": [
         "../../../node_modules/sequelize/types/index.d.ts",
         "../models/models.d.ts"
@@ -2003,6 +2017,7 @@
       "../models/index.ts",
       "../models/models.d.ts",
       "../models/story.ts",
+      "../models/town.ts",
       "../models/twitterdata.ts"
     ]
   },

@@ -1,5 +1,5 @@
 import { Model, Op, Sequelize } from "sequelize";
-import { dbConfig, Story, TwitterData } from '../models'
+import { dbConfig, Story, TwitterData, Town } from '../models'
 import csv from 'csv-parser';
 import fs from 'fs';
 
@@ -11,6 +11,7 @@ interface seqObject {
 const seq :seqObject = {
     Story: Story,
     TwitterData: TwitterData,
+    Town: Town,
     sequelize: dbConfig
 }
 
@@ -113,7 +114,42 @@ if(true) {
                     console.log(error.message);
                     console.log(data);
                 })
+            });
+
+        fs.createReadStream(`${__dirname}/../data/small_town_data.csv`)
+        .pipe(csv())
+        .on('headers', headers => {
+            console.log(`Small Town Data csv headers: ${headers.join(", ")}`)
+        }).on('data', data => {
+            Town.findOrCreate({
+                where: { Place: data.Place },
+                defaults: data
+            }).then(([town, created]) => {
+
+                town
+
+
+
+
+
+
+/* Run this if you want to check Story & TwitterData are working
+                Story.findAll({
+                    where: {
+                        Primary_image_rights_information: {
+                            [Op.like]: `%${twitterData.sourcename}%`
+                        }
+                    }
+                }).then(results => {
+                    console.log(twitterData.sourcename +": "+results.map(d => d.id).join(", "));
+                });
+*/
+
+            }).catch((error: Error) => {
+                console.log(error.message);
+                console.log(data);
             })
+        });
     })
 
 }
@@ -125,13 +161,13 @@ inspectCSV(`${__dirname}/../data/small_town_data.csv`);
 
 // Font colors: https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
 // Quickly count the max size of each field in the CSV.
-function inspectCSV( csvPath ) {
+function inspectCSV( csvPath :string ) {
     const sizer = {};
     let count = 0;
     let example = [];
     fs.createReadStream( csvPath )
     .pipe(csv())
-    .on('headers', (headers) => {
+    .on('headers', (headers :Array<string> ) => {
         headers.forEach(header => {
             sizer[header] = 0;
         })
