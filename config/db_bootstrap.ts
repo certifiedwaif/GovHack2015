@@ -50,8 +50,12 @@ if(true) {
                     console.log(`Local Photo Stories csv headers: ${headers.join(", ")}`)
 
                 }).on('data', (data) => {
+
+                    // Stupid oneliner to reformat dates for moment.js yyyy-mm-dd
+                    // https://momentjs.com/docs/#/parsing/
+                    // https://stackoverflow.com/questions/3605214/javascript-add-leading-zeroes-to-date
                     const dates = data.Date.split("/");
-                    data.Date = `${dates[2]-dates[1]-dates[0]}`;
+                    data.Date = `${dates[2]}-${('0'+dates[1]).slice(-2)}-${('0'+dates[0]).slice(-2)}`;
 
                     data.Primary_image = data['Primary image'];
                     data.Primary_image_caption = data['Primary image caption'];

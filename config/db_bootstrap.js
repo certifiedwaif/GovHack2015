@@ -21,7 +21,7 @@ if (true) {
                     console.log(`Local Photo Stories csv headers: ${headers.join(", ")}`);
                 }).on('data', (data) => {
                     const dates = data.Date.split("/");
-                    data.Date = `${dates[2] - dates[1] - dates[0]}`;
+                    data.Date = `${dates[2]}-${('0' + dates[1]).slice(-2)}-${('0' + dates[0]).slice(-2)}`;
                     data.Primary_image = data['Primary image'];
                     data.Primary_image_caption = data['Primary image caption'];
                     data.Primary_image_rights_information = data['Primary image rights information'];
