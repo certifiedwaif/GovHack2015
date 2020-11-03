@@ -217,7 +217,7 @@
         "affectsGlobalScope": false
       },
       "../../../server/requesthandlers.ts": {
-        "version": "fceedf859fec212c99671b18cde9ddef5a863a6a0cb588b96c6d0d36c8ab5d2f",
+        "version": "c9db2f5e1e0809b7a0a01443540d5b308c5c377b187e92bc48566954c3beb8e7",
         "signature": "94fb86ecbba9c588cbb871205dc4c5e436b3071856345bbce4cc56db786a0d88",
         "affectsGlobalScope": false
       },
@@ -697,7 +697,7 @@
         "affectsGlobalScope": false
       },
       "./config.ts": {
-        "version": "533b571c79ee7a3baedd5e940be074942ed5a9ad2dc88fb76e699733bd5dced1",
+        "version": "890a76f6c8e0d71a69c334031e7a932b52f83d33016d448e1b8103f7859a85dd",
         "signature": "0dd40d1524613ff7ba3b82c977b2facf2d2a4304d61d7cb3cf958e35c1b59407",
         "affectsGlobalScope": false
       },
@@ -1653,6 +1653,7 @@
       ],
       "./config.ts": [
         "../../../node_modules/@types/lodash/index.d.ts",
+        "../../../node_modules/@types/mustache/index.d.ts",
         "../../../node_modules/@types/node/http.d.ts",
         "../../../node_modules/@types/xml2js/index.d.ts",
         "../../../node_modules/sequelize/types/index.d.ts",

@@ -5,14 +5,18 @@ import { Op, WhereOptions } from 'sequelize';
 import { StoryAttributes, StoryModel, TownModel, TwitterDataModel } from "../models/models"
 import http, { IncomingMessage } from 'http';
 import { parseString as parseXml } from 'xml2js';
+import mustache = require('mustache');
 
 var config :Thalia.WebsiteConfig = {
 	domains: ["localstories.info","www.localstories.info", "truestories.david-ma.net", "govhack2015.david-ma.net"],
-	pages: {
-		"": "/homepage.html",
-		"story": "/story.html",
-		"random": "/demo.html"
-	},
+    controllers: {
+        "": function homepage(router) {
+            router.readAllViews(views => {
+                var output = mustache.render(views.index, {}, views);
+                router.res.end(output);
+            });
+        }
+    },
 	services: {
         "requestjson": function(response, request, db, d) {
             // Get a random story

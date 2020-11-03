@@ -20,7 +20,7 @@ function myFunction(arr) {
     console.log(arr);
     d3.select("#background").style("background-image", `url(${arr.bestImage})`);
     d3.select("#title").text(arr.Title);
-    d3.select("#url").attr("href", arr.URL);
+    d3.select("#url").attr("href", "/story/" + arr.id);
     d3.select("#description").text(arr.Primary_image_caption);
     var twittername = "abcnews";
     if (arr.username != null) {

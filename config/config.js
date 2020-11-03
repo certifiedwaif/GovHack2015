@@ -9,12 +9,16 @@ const lodash_1 = __importDefault(require("lodash"));
 const sequelize_1 = require("sequelize");
 const http_1 = __importDefault(require("http"));
 const xml2js_1 = require("xml2js");
+const mustache = require("mustache");
 var config = {
     domains: ["localstories.info", "www.localstories.info", "truestories.david-ma.net", "govhack2015.david-ma.net"],
-    pages: {
-        "": "/homepage.html",
-        "story": "/story.html",
-        "random": "/demo.html"
+    controllers: {
+        "": function homepage(router) {
+            router.readAllViews(views => {
+                var output = mustache.render(views.index, {}, views);
+                router.res.end(output);
+            });
+        }
     },
     services: {
         "requestjson": function (response, request, db, d) {

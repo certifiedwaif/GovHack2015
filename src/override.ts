@@ -9,6 +9,7 @@ var imgs = [
 ]
 
 type someType = {
+    id: string;
     Title: string;
     username: string;
     URL: string;
@@ -37,13 +38,21 @@ xmlhttp.send();
 function myFunction(arr :someType) {
 console.log(arr);
 
+// How should we display multiple images???
+// d3.select("#background").styles({
+//     "background-image": arr.bestImages.map(d => `url(${d})`).join(", "),
+//     "background-position": "right bottom, left top, right top, left bottom",
+//     "background-repeat": "no-repeat",
+//     "background-size": "auto"
+// });
+
 d3.select("#background").style("background-image", `url(${arr.bestImage})`);
 // d3.select("#background").style("background-image", `url(${arr.Primary_image})`);
 d3.select("#title").text(arr.Title);
 
-d3.select("#url").attr("href", arr.URL);
-// d3.select("#url").attr("href", "/story/"+arr.row_names)
-// d3.select("#url").attr("href", "//localstories.info/story/"+arr.row_names) // chrome extension
+// d3.select("#url").attr("href", arr.URL);
+d3.select("#url").attr("href", "/story/"+arr.id)
+// d3.select("#url").attr("href", "//localstories.info/story/"+arr.id) // chrome extension
 
 
 d3.select("#description").text(arr.Primary_image_caption);
