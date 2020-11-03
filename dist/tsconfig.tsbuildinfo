@@ -162,8 +162,8 @@
         "affectsGlobalScope": true
       },
       "../src/override.ts": {
-        "version": "2a5a939477789856b8b9f1a65f5e4f9326c7108f12808a08840b81a2d19d8a4a",
-        "signature": "78d1aadcaf663e1005b0cb5f3eef2cefb68b27dee7f32368c5fb1134e62ffcc7",
+        "version": "ca31f71a2243cd1ef432007bb4715daae3a9ad70fa40d04c40e706dba2fa8dd1",
+        "signature": "ebfc6ad0684bfb2194fd3aa2ab2e9ab62e3066d8e7ce410fdfaf9ccb5cc745c8",
         "affectsGlobalScope": true
       },
       "../../../node_modules/@types/bluebird/index.d.ts": {
