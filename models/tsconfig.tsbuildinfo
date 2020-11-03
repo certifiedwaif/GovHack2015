@@ -342,22 +342,22 @@
         "affectsGlobalScope": false
       },
       "./models.d.ts": {
-        "version": "e9cc9093edc426ab95032180bc7aed81912edafd6865f1cc0a0bbb22de286ac6",
-        "signature": "e9cc9093edc426ab95032180bc7aed81912edafd6865f1cc0a0bbb22de286ac6",
+        "version": "b021c6a9de498f33ab5d95fbecde1f72ade2bdf5b1d8da8257cde7f6384129b0",
+        "signature": "b021c6a9de498f33ab5d95fbecde1f72ade2bdf5b1d8da8257cde7f6384129b0",
         "affectsGlobalScope": false
       },
       "./story.ts": {
-        "version": "360a01b4e323bbe8af9d84bb02c27c64912c0196f47b99bfec9f38179ca8486a",
+        "version": "208401847d18e9e17dfc1f133f0eccd5bc7cf290ce9ed5620da32ca2d7aeb07b",
         "signature": "c85f6fffa9c79df114f4569c49b1d6324203d760fb05098fbc16ae635d2c5a28",
         "affectsGlobalScope": false
       },
       "./town.ts": {
-        "version": "1b847b097fa23c9a43f492d9d2ba2695fb8aa4c04477f5dafa3d4febc873a683",
+        "version": "609eafc110524d5cd590804b66a66acff619f35a55e46c704131262cd3d6d35a",
         "signature": "86502ee8d9b05df092112dfdcb021c637d87b1e500b48765ba2498d3ebefaca1",
         "affectsGlobalScope": false
       },
       "./twitterdata.ts": {
-        "version": "fa32a127fd8835f4e3657c82c43d58b3f5f2f9ec8b46a386f0b703ae42db131f",
+        "version": "74e015dffb2d1587070c10a9c7714a8844d75675342edf29e01055cd2db04de9",
         "signature": "c5482fd865b7e1eb677069d5345704a211000b517a978ba31f6c5cd8ae76f86c",
         "affectsGlobalScope": false
       },
@@ -427,7 +427,7 @@
         "affectsGlobalScope": true
       },
       "./index.ts": {
-        "version": "660b73d8bdd81d67e1ff621654f09263d808fce02f896378d6ed7c5646032e54",
+        "version": "c94658d6c147a5e64a664cc4af8b6957c5e13412dfe669e9d7bb1cf185c81500",
         "signature": "add53f90ea1de964d83af7f3d727f4babb563d528d832092ba143fe299eabe69",
         "affectsGlobalScope": false
       },
@@ -954,6 +954,16 @@
       "../../../node_modules/@types/http-proxy/index.d.ts": {
         "version": "15e05617b8bcc6dd4cb71a716ffa0d7d0a868ac62d7b14d44cb131e1285a5ae4",
         "signature": "15e05617b8bcc6dd4cb71a716ffa0d7d0a868ac62d7b14d44cb131e1285a5ae4",
+        "affectsGlobalScope": false
+      },
+      "../../../node_modules/@types/json-schema/index.d.ts": {
+        "version": "b2be568d8ce95fcb26eebd04c035d94825655fdf689bf67d799f5ff8cbbb1024",
+        "signature": "b2be568d8ce95fcb26eebd04c035d94825655fdf689bf67d799f5ff8cbbb1024",
+        "affectsGlobalScope": false
+      },
+      "../../../node_modules/@types/json5/index.d.ts": {
+        "version": "96d14f21b7652903852eef49379d04dbda28c16ed36468f8c9fa08f7c14c9538",
+        "signature": "96d14f21b7652903852eef49379d04dbda28c16ed36468f8c9fa08f7c14c9538",
         "affectsGlobalScope": false
       },
       "../../../node_modules/@types/mime/index.d.ts": {
@@ -1615,6 +1625,7 @@
       ],
       "./index.ts": [
         "../../../node_modules/@types/lodash/index.d.ts",
+        "../../../node_modules/@types/node/path.d.ts",
         "../../../node_modules/sequelize/types/index.d.ts",
         "./story.ts",
         "./town.ts",
@@ -2349,6 +2360,8 @@
       "../../../node_modules/@types/jquery/jquerystatic.d.ts",
       "../../../node_modules/@types/jquery/legacy.d.ts",
       "../../../node_modules/@types/jquery/misc.d.ts",
+      "../../../node_modules/@types/json-schema/index.d.ts",
+      "../../../node_modules/@types/json5/index.d.ts",
       "../../../node_modules/@types/keyv/index.d.ts",
       "../../../node_modules/@types/lodash/common/array.d.ts",
       "../../../node_modules/@types/lodash/common/collection.d.ts",

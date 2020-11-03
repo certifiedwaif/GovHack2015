@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.StoryFactory = void 0;
 const sequelize_1 = require("sequelize");
 function StoryFactory(sequelize) {
-    return sequelize.define("Story", {
+    return sequelize.define('Story', {
         Title: sequelize_1.DataTypes.STRING(112),
         URL: {
             type: sequelize_1.DataTypes.STRING(118),

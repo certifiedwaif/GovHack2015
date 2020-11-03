@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TownFactory = void 0;
 const sequelize_1 = require("sequelize");
 function TownFactory(sequelize) {
-    return sequelize.define("Town", {
+    return sequelize.define('Town', {
         Place: {
             type: sequelize_1.DataTypes.STRING(15),
             unique: true

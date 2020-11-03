@@ -1,11 +1,12 @@
-import { BuildOptions, Model } from "sequelize";
+/* eslint-disable camelcase */
+
+import { BuildOptions, Model } from 'sequelize'
 
 interface mysqlAttributes {
     id?: number;
     createdAt?: Date;
     updatedAt?: Date;
 }
-
 
 export interface StoryAttributes extends mysqlAttributes {
     Title: string;
@@ -29,8 +30,6 @@ export type StoryStatic = typeof Model & {
     new(values?: object, options?: BuildOptions): StoryModel;
 };
 
-
-
 export interface TwitterDataAttributes extends mysqlAttributes {
     sourcename: string;
     username: string;
@@ -41,10 +40,6 @@ export class TwitterData extends Model<TwitterDataModel, TwitterDataAttributes> 
 export type TwitterDataStatic = typeof Model & {
     new(values?: object, options?: BuildOptions): TwitterDataModel;
 };
-
-
-
-
 
 export interface TownAttributes extends mysqlAttributes {
     Place: string;
@@ -82,6 +77,3 @@ export class Town extends Model<TownModel, TownAttributes> { }
 export type TownStatic = typeof Model & {
     new(values?: object, options?: BuildOptions): TownModel;
 };
-
-
-

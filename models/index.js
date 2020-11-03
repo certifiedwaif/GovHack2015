@@ -28,28 +28,29 @@ const lodash_1 = __importDefault(require("lodash"));
 const Story_1 = require("./Story");
 const TwitterData_1 = require("./TwitterData");
 const Town_1 = require("./Town");
+const path_1 = __importDefault(require("path"));
 let seqOptions = {
-    "database": process.env.DB_NAME || "typescript_test",
-    "username": process.env.DB_USER || "root",
-    "password": process.env.DB_PASSWORD || "",
-    "port": 3306,
-    "dialect": "mysql",
-    "dialectOptions": { decimalNumbers: true },
-    "logging": false,
-    "define": {
-        "underscored": true
+    database: process.env.DB_NAME || 'typescript_test',
+    username: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || '',
+    port: 3306,
+    dialect: 'mysql',
+    dialectOptions: { decimalNumbers: true },
+    logging: false,
+    define: {
+        underscored: true
     }
 };
 const env = process.env.NODE_ENV || 'development';
 try {
-    let configOptions = require(__dirname + '/../config/config.json');
+    const configOptions = require(path_1.default.resolve(__dirname, '..', 'config', 'config.json'));
     seqOptions = lodash_1.default.merge(seqOptions, configOptions);
 }
 catch (e) {
-    console.error("No config.json provided for Sequelize");
+    console.error('No config.json provided for Sequelize');
 }
-if (env == 'development') {
-    console.log("Initialising Sequelize with options:", seqOptions);
+if (env === 'development') {
+    console.log('Initialising Sequelize with options:', seqOptions);
 }
 exports.dbConfig = new sequelize.Sequelize(seqOptions);
 exports.Story = Story_1.StoryFactory(exports.dbConfig);
