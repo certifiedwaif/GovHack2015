@@ -1,4 +1,9 @@
 function drawMap(lat, long, place) {
+    console.log('Drawing map', {
+        lat: lat,
+        long: long,
+        place: place
+    });
     const w = 200;
     const h = 200;
     const projection = d3.geoMercator()
@@ -15,7 +20,6 @@ function drawMap(lat, long, place) {
         .attr('width', w)
         .attr('height', h);
     d3.json('/aust.json').then((json) => {
-        console.log("hey we're in json", json);
         svg.selectAll('path')
             .data(json.features)
             .enter()

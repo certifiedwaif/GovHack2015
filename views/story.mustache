@@ -20,7 +20,7 @@
   <!-- Custom Fonts -->
   <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   
-  <link href='/css/story.css' rel='stylesheet' type='text/css'>
+  <link href='/css/story.min.css' rel='stylesheet' type='text/css'>
 
 </head>
 
@@ -92,72 +92,88 @@
           <div class="clear" style="padding:20px;"></div>
         </div>
 
-        <div class="col-sm-3" id="sideInfo">
+        <div class="col-sm-3 row" id="sideInfo">
 
           <div id="map-canvas"></div>
 
-          <h3 id="locationtext">
-            {{Place}}, {{State}}
-          </h3>
+          <div class="col-xs-6 col-sm-12">
+            <h3 id="locationtext">
+              {{Place}}, {{State}}
+            </h3>
 
-          <div class="clear"></div>
+            <div class="clear"></div>
 
-          <p class="metadata-text">
-            <strong>Latitude:</strong>
-            <span id="lat-text">{{Latitude}}</span>
-          </p>
+            <p class="metadata-text">
+              <strong>Latitude:</strong>
+              <span id="lat-text">{{Latitude}}</span>
+            </p>
 
-          <p class="metadata-text">
-            <strong>Longitude:</strong>
-            <span id="lng-text">{{Longitude}}</span>
-          </p>
+            <p class="metadata-text">
+              <strong>Longitude:</strong>
+              <span id="lng-text">{{Longitude}}</span>
+            </p>
 
-          <p class="metadata-text">
-            <strong>Population:</strong>
-            <span id="populationtext">{{TotalPopulation}}</span>
-          </p>
+            <p class="metadata-text">
+              <strong>Population:</strong>
+              <span id="populationtext">{{TotalPopulation}}</span>
+            </p>
 
 
-          <div class="clear" style="padding:10px;"></div>
+            <div class="clear" style="padding:10px;"></div>
 
-          <h4>
-            Interesting Facts
-          </h4>
+            <h4>
+              Interesting Facts
+            </h4>
 
-          <p class="metadata-text">
-            <strong>Primary Industry:</strong>
-            <span id="meta-industry">Mining</span>
-          </p>
+            <p class="metadata-text">
+              <strong>Primary Industry:</strong>
+              <span id="meta-industry">Mining</span>
+            </p>
 
-          <p class="metadata-text">
-            <strong>Male vs Female ratio:</strong>
-            <span id="meta-ratio">{{MalePopulation}} : {{FemalePopulation}}</span>
-          </p>
+            <p class="metadata-text">
+              <strong>Male vs Female ratio:</strong>
+              <span id="meta-ratio">{{MalePopulation}} : {{FemalePopulation}}</span>
+            </p>
 
-          <p class="metadata-text">
-            <strong>Median age:</strong>
-            <span id="meta-age">{{MedianAge}}</span>
-          </p>
+            <p class="metadata-text">
+              <strong>Median age:</strong>
+              <span id="meta-age">{{MedianAge}}</span>
+            </p>
 
-          <div class="clear" style="padding:10px;"></div>
+            <div class="clear" style="padding:10px;"></div>
 
-          <h4>
-            Story Source
-          </h4>
+            <h4>
+              Story Source
+            </h4>
 
-          <p class="metadata-text">
-            {{Primary_image_rights_information}}
-            {{! 
-            <strong>Copyright:</strong>
-            <span id="meta-copyright"></span>
-            <br>
-            <strong>Station:</strong>
-            <span id="meta-station">placeholder text</span>
-            <br>
-            <strong>Reporter:</strong>
-            <span id="meta-reporter">placeholder text</span>
-             }}
-          </p>
+            <p class="metadata-text">
+              {{Primary_image_rights_information}}
+              {{! 
+              <strong>Copyright:</strong>
+              <span id="meta-copyright"></span>
+              <br>
+              <strong>Station:</strong>
+              <span id="meta-station">placeholder text</span>
+              <br>
+              <strong>Reporter:</strong>
+              <span id="meta-reporter">placeholder text</span>
+              }}
+            </p>
+          </div>
+
+          <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+            <h2>See another True Story:</h2>
+
+      {{#relatedStories}}
+            <div class="hashtagbox">
+              <a href="/story/{{id}}">
+                <div class="mask"></div>
+                <p class="hashtag-text">{{keyword}}</p>
+                <img class="previewpic img-responsive" src="{{Primary_image}}"/>
+              </a>
+            </div>
+      {{/relatedStories}}
+          </div>
 
 
 
@@ -207,6 +223,7 @@
   <script src="https://d3js.org/d3-geo.v2.min.js"></script>
   <script src="/js/drawD3map.js"></script>
   <script>
+    console.log("Story ID: {{id}}")
     drawMap({{Latitude}}, {{Longitude}}, "{{Place}}")
   </script>
 

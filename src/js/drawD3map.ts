@@ -7,6 +7,11 @@
  * @param place Name of place
  */
 function drawMap (lat, long, place) {
+  console.log('Drawing map', {
+    lat: lat,
+    long: long,
+    place: place
+  })
 
   // Width and height
   const w = 200
@@ -34,7 +39,6 @@ function drawMap (lat, long, place) {
 
   // Load in GeoJSON data
   d3.json('/aust.json').then((json :any) => {
-    console.log("hey we're in json", json)
 
     // Bind data and create one path per GeoJSON feature
     svg.selectAll('path')
