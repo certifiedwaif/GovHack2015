@@ -75,7 +75,7 @@ function getStory(id) {
             Longitude: { [sequelize_1.Op.ne]: null },
             Primary_image: { [sequelize_1.Op.ne]: '' }
         };
-        if (id && !isNaN(id) && id.length !== 0)
+        if (id && !isNaN(id) && id.length !== 0 && id[0] !== '')
             storyOptions.id = id;
         models_1.Story.findOne({
             where: storyOptions,

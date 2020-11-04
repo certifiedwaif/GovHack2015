@@ -162,7 +162,7 @@
         "affectsGlobalScope": true
       },
       "./src/js/drawd3map.ts": {
-        "version": "0b1665df9849f4e2876871cf6a2b5fa038722c620e5a44468623ebae46b38fb5",
+        "version": "f0c6f574f4ad1c34c2a2cc97bcae7c58f43af4b0f843ad94cbad5f63e4219a5c",
         "signature": "356a862de25741b2040bd8534dcd1e49c58b856c233cdae8c5b4b2c674a5379d",
         "affectsGlobalScope": true
       },

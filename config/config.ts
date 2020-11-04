@@ -79,7 +79,8 @@ function getStory (id?: any) {
       Longitude: { [Op.ne]: null },
       Primary_image: { [Op.ne]: '' }
     }
-    if (id && !isNaN(id) && id.length !== 0) storyOptions.id = id
+
+    if (id && !isNaN(id) && id.length !== 0 && id[0] !== '') storyOptions.id = id
 
     Story.findOne({
       where: storyOptions,
