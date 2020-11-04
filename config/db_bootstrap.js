@@ -20,7 +20,6 @@ if (true) {
         fs_1.default.createReadStream(path_1.default.resolve(__dirname, '..', 'data', 'small_town_data.csv'))
             .pipe(csv_parser_1.default())
             .on('headers', headers => {
-            console.log(`Small Town Data csv headers: ${headers.join(', ')}`);
         }).on('data', data => {
             models_1.Town.findOrCreate({
                 where: { Place: data.Place },
@@ -35,7 +34,6 @@ if (true) {
                 fs_1.default.createReadStream(path_1.default.resolve(__dirname, '..', 'data', 'localphotostories20092014csv.csv'))
                     .pipe(csv_parser_1.default())
                     .on('headers', (headers) => {
-                    console.log(`Local Photo Stories csv headers: ${headers.join(', ')}`);
                 }).on('data', (data) => {
                     const dates = data.Date.split('/');
                     data.Date = `${dates[2]}-${('0' + dates[1]).slice(-2)}-${('0' + dates[0]).slice(-2)}`;
@@ -62,7 +60,6 @@ if (true) {
         fs_1.default.createReadStream(path_1.default.resolve(__dirname, '..', 'data', 'twitter_name_search.csv'))
             .pipe(csv_parser_1.default())
             .on('headers', headers => {
-            console.log(`Twitter Data csv headers: ${headers.join(', ')}`);
         }).on('data', data => {
             models_1.TwitterData.findOrCreate({
                 where: { username: data.username },

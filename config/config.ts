@@ -7,68 +7,89 @@ import http, { IncomingMessage } from 'http'
 import { parseString as parseXml } from 'xml2js'
 import mustache = require('mustache');
 
-const config :Thalia.WebsiteConfig = {
+const config: Thalia.WebsiteConfig = {
   domains: ['localstories.info', 'www.localstories.info', 'truestories.david-ma.net', 'govhack2015.david-ma.net'],
   controllers: {
-    '': function homepage (router) {
+    '': function homepage(router) {
       router.readAllViews(views => {
         const output = mustache.render(views.index, {}, views)
         router.res.end(output)
       })
+    },
+    'story': function homepage(router) {
+      router.readAllViews(views => {
+        getStory(router.path).then(data => {
+          const output = mustache.render(views.story, data, views)
+          router.res.end(output)
+        })
+      })
     }
   },
   services: {
-    requestjson: function (response, request, db, d) {
+    requestjson: function (response, request, db, id) {
       // Get a random story
       // Find matching town data
       // Find matching twitter data
       // Serve.
-
-      const storyOptions :WhereOptions<StoryAttributes> = {
-        Latitude: { [Op.ne]: null },
-        Longitude: { [Op.ne]: null },
-        Primary_image: { [Op.ne]: '' }
-      }
-      if (d && !isNaN(d)) storyOptions.id = d
-
-      Story.findOne({
-        where: storyOptions,
-        order: Story.sequelize.random()
-      }).then(story => {
-        const byline = story.Primary_image_rights_information.match(/Byline: (.*)/)
-        const source = byline ? byline[1] || 'ABC' : 'ABC' // Default to ABC if we can't find a byline
-        // Todo: Get better searching on the Twitter handles, find more journalists. Default to local ABC
-
-        const promises = [
-          findNearestTown(story),
-          TwitterData.findOne({
-            where: {
-              sourcename: source
-            }
-          }),
-          findBestImages(story.MediaRSS_URL, story.Primary_image)
-        ]
-
-        Promise.all(promises).then(([town, twitterData, bestImages] :[TownModel, TwitterDataModel, Array<string>]) => {
-          const result :any = {}
-          if (twitterData) _.merge(result, twitterData.toJSON()) // No twitter? That's fine.
-          _.merge(result, town.toJSON())
-          _.merge(result, story.toJSON())
-          result.bestImage = bestImages[0]
-          result.bestImages = bestImages
+      getStory(id)
+        .then(result => {
           response.end(JSON.stringify(result))
         })
-      }).catch(err => {
-        console.log('Error in story requestjson', err)
+        .catch(err => {
+          response.writeHead(500)
+          response.end(err)
+        })
 
-        response.end(err)
-      })
     }
   }
 }
 
+function getStory(id?: any) {
+  return new Promise(function (resolve, reject) {
+    const storyOptions: WhereOptions<StoryAttributes> = {
+      Latitude: { [Op.ne]: null },
+      Longitude: { [Op.ne]: null },
+      Primary_image: { [Op.ne]: '' }
+    }
+    if (id && !isNaN(id) && id.length !== 0) storyOptions.id = id
+
+    Story.findOne({
+      where: storyOptions,
+      order: Story.sequelize.random()
+    }).then(story => {
+      const byline = story.Primary_image_rights_information.match(/Byline: (.*)/)
+      const source = byline ? byline[1] || 'ABC' : 'ABC' // Default to ABC if we can't find a byline
+      // Todo: Get better searching on the Twitter handles, find more journalists. Default to local ABC
+
+      const promises = [
+        findNearestTown(story),
+        TwitterData.findOne({
+          where: {
+            sourcename: source
+          }
+        }),
+        getXmlData(story.MediaRSS_URL, story.Primary_image)
+      ]
+
+      Promise.all(promises).then(([town, twitterData, [bestImages, imageDescriptions]]: [TownModel, TwitterDataModel, [Array<string>, Array<string>]]) => {
+        const result: any = {}
+        if (twitterData) _.merge(result, twitterData.toJSON()) // No twitter? That's fine.
+        _.merge(result, town.toJSON())
+        _.merge(result, story.toJSON())
+        result.bestImage = bestImages[0]
+        result.bestImages = bestImages
+        result.imageDescriptions = imageDescriptions
+        resolve(result)
+      })
+    }).catch(err => {
+      console.log('Error in story requestjson', err)
+      reject(err)
+    })
+  })
+}
+
 // Recursive promise, to return the nearest town
-function findNearestTown (story :StoryModel, size :number = 1) {
+function findNearestTown(story: StoryModel, size: number = 1) {
   return new Promise(function (resolve) {
     Town.findOne({
       where: {
@@ -122,7 +143,7 @@ function findNearestTown (story :StoryModel, size :number = 1) {
 }
 
 // https://www.geodatasource.com/developers/javascript
-function distance (lat1 :number, lon1 :number, lat2 :number, lon2 :number, unit ?: string) {
+function distance(lat1: number, lon1: number, lat2: number, lon2: number, unit?: string) {
   if ((lat1 === lat2) && (lon1 === lon2)) {
     return 0
   } else {
@@ -144,9 +165,9 @@ function distance (lat1 :number, lon1 :number, lat2 :number, lon2 :number, unit 
 }
 
 // Weird xml stuff.
-function findBestImages (mediaXmlUrl :string, primaryImage) {
+function getXmlData(mediaXmlUrl: string, primaryImage) {
   return new Promise((resolve) => {
-    http.get(mediaXmlUrl, (res :IncomingMessage) => {
+    http.get(mediaXmlUrl, (res: IncomingMessage) => {
       let data = ''
       // A chunk of data has been recieved.
       res.on('data', (chunk) => {
@@ -156,38 +177,51 @@ function findBestImages (mediaXmlUrl :string, primaryImage) {
       // The whole response has been received. Print out the result.
       res.on('end', () => {
         parseXml(data, (err, result) => {
-          if (err) resolve([primaryImage])
+          if (err) {
+            // console.log("Error parsing xml")
+            resolve([[primaryImage]])
+          }
           try {
-            const items :Array<{
-                            'media:group': Array<{
-                                'media:content': Array<{'$':{
-                                    url :string;
-                                    type: string;
-                                    width: string;
-                                    height: string;
-                                }}>
-                            }>
-                        }> = result.rss.channel[0].item // [0]['media:group']; //[0]['media:content'];
+            const items: Array<{
+              'description': string;
+              'media:group': Array<{
+                'media:content': Array<{
+                  '$': {
+                    url: string;
+                    type: string;
+                    width: string;
+                    height: string;
+                  }
+                }>
+              }>
+            }> = result.rss.channel[0].item
 
             const bestImages = []
+            const imageDescriptions = []
             items.forEach(item => {
-              const images = item['media:group'][0]['media:content']
-              let score = 0
-              let bestImage = ''
+              if (item['media:group']) {
+                const description = item.description[0]
+                const images = item['media:group'][0]['media:content']
+                let score = 0
+                let bestImage = ''
 
-              images.forEach(image => {
-                // var thisScore = parseInt(image.$.height) + (parseInt(image.$.width) * 2.5);
-                const thisScore = parseInt(image.$.height) + (parseInt(image.$.width) * 10)
-                if (thisScore > score) {
-                  bestImage = image.$.url
-                  score = thisScore
-                }
-              })
-              bestImages.push(bestImage)
+                images.forEach(image => {
+                  // var thisScore = parseInt(image.$.height) + (parseInt(image.$.width) * 2.5);
+                  const thisScore = parseInt(image.$.height) + (parseInt(image.$.width) * 10)
+                  if (thisScore > score) {
+                    bestImage = image.$.url
+                    score = thisScore
+                  }
+                })
+                bestImages.push(bestImage)
+                if(description) imageDescriptions.push(description);
+              }
             })
-            resolve(bestImages)
+            resolve([bestImages, imageDescriptions])
           } catch (e) {
-            resolve([primaryImage])
+            console.log('Error parsing xml:', mediaXmlUrl)
+            console.log(e)
+            resolve([[primaryImage]])
           }
         })
       })

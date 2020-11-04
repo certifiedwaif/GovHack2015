@@ -18,50 +18,71 @@ const config = {
                 const output = mustache.render(views.index, {}, views);
                 router.res.end(output);
             });
+        },
+        'story': function homepage(router) {
+            router.readAllViews(views => {
+                getStory(router.path).then(data => {
+                    const output = mustache.render(views.story, data, views);
+                    router.res.end(output);
+                });
+            });
         }
     },
     services: {
-        requestjson: function (response, request, db, d) {
-            const storyOptions = {
-                Latitude: { [sequelize_1.Op.ne]: null },
-                Longitude: { [sequelize_1.Op.ne]: null },
-                Primary_image: { [sequelize_1.Op.ne]: '' }
-            };
-            if (d && !isNaN(d))
-                storyOptions.id = d;
-            models_1.Story.findOne({
-                where: storyOptions,
-                order: models_1.Story.sequelize.random()
-            }).then(story => {
-                const byline = story.Primary_image_rights_information.match(/Byline: (.*)/);
-                const source = byline ? byline[1] || 'ABC' : 'ABC';
-                const promises = [
-                    findNearestTown(story),
-                    models_1.TwitterData.findOne({
-                        where: {
-                            sourcename: source
-                        }
-                    }),
-                    findBestImages(story.MediaRSS_URL, story.Primary_image)
-                ];
-                Promise.all(promises).then(([town, twitterData, bestImages]) => {
-                    const result = {};
-                    if (twitterData)
-                        lodash_1.default.merge(result, twitterData.toJSON());
-                    lodash_1.default.merge(result, town.toJSON());
-                    lodash_1.default.merge(result, story.toJSON());
-                    result.bestImage = bestImages[0];
-                    result.bestImages = bestImages;
-                    response.end(JSON.stringify(result));
-                });
-            }).catch(err => {
-                console.log('Error in story requestjson', err);
+        requestjson: function (response, request, db, id) {
+            getStory(id)
+                .then(result => {
+                response.end(JSON.stringify(result));
+            })
+                .catch(err => {
+                response.writeHead(500);
                 response.end(err);
             });
         }
     }
 };
 exports.config = config;
+function getStory(id) {
+    return new Promise(function (resolve, reject) {
+        const storyOptions = {
+            Latitude: { [sequelize_1.Op.ne]: null },
+            Longitude: { [sequelize_1.Op.ne]: null },
+            Primary_image: { [sequelize_1.Op.ne]: '' }
+        };
+        if (id && !isNaN(id) && id.length !== 0)
+            storyOptions.id = id;
+        models_1.Story.findOne({
+            where: storyOptions,
+            order: models_1.Story.sequelize.random()
+        }).then(story => {
+            const byline = story.Primary_image_rights_information.match(/Byline: (.*)/);
+            const source = byline ? byline[1] || 'ABC' : 'ABC';
+            const promises = [
+                findNearestTown(story),
+                models_1.TwitterData.findOne({
+                    where: {
+                        sourcename: source
+                    }
+                }),
+                getXmlData(story.MediaRSS_URL, story.Primary_image)
+            ];
+            Promise.all(promises).then(([town, twitterData, [bestImages, imageDescriptions]]) => {
+                const result = {};
+                if (twitterData)
+                    lodash_1.default.merge(result, twitterData.toJSON());
+                lodash_1.default.merge(result, town.toJSON());
+                lodash_1.default.merge(result, story.toJSON());
+                result.bestImage = bestImages[0];
+                result.bestImages = bestImages;
+                result.imageDescriptions = imageDescriptions;
+                resolve(result);
+            });
+        }).catch(err => {
+            console.log('Error in story requestjson', err);
+            reject(err);
+        });
+    });
+}
 function findNearestTown(story, size = 1) {
     return new Promise(function (resolve) {
         models_1.Town.findOne({
@@ -135,7 +156,7 @@ function distance(lat1, lon1, lat2, lon2, unit) {
         return dist;
     }
 }
-function findBestImages(mediaXmlUrl, primaryImage) {
+function getXmlData(mediaXmlUrl, primaryImage) {
     return new Promise((resolve) => {
         http_1.default.get(mediaXmlUrl, (res) => {
             let data = '';
@@ -144,28 +165,37 @@ function findBestImages(mediaXmlUrl, primaryImage) {
             });
             res.on('end', () => {
                 xml2js_1.parseString(data, (err, result) => {
-                    if (err)
-                        resolve([primaryImage]);
+                    if (err) {
+                        resolve([[primaryImage]]);
+                    }
                     try {
                         const items = result.rss.channel[0].item;
                         const bestImages = [];
+                        const imageDescriptions = [];
                         items.forEach(item => {
-                            const images = item['media:group'][0]['media:content'];
-                            let score = 0;
-                            let bestImage = '';
-                            images.forEach(image => {
-                                const thisScore = parseInt(image.$.height) + (parseInt(image.$.width) * 10);
-                                if (thisScore > score) {
-                                    bestImage = image.$.url;
-                                    score = thisScore;
-                                }
-                            });
-                            bestImages.push(bestImage);
+                            if (item['media:group']) {
+                                const description = item.description[0];
+                                const images = item['media:group'][0]['media:content'];
+                                let score = 0;
+                                let bestImage = '';
+                                images.forEach(image => {
+                                    const thisScore = parseInt(image.$.height) + (parseInt(image.$.width) * 10);
+                                    if (thisScore > score) {
+                                        bestImage = image.$.url;
+                                        score = thisScore;
+                                    }
+                                });
+                                bestImages.push(bestImage);
+                                if (description)
+                                    imageDescriptions.push(description);
+                            }
                         });
-                        resolve(bestImages);
+                        resolve([bestImages, imageDescriptions]);
                     }
                     catch (e) {
-                        resolve([primaryImage]);
+                        console.log('Error parsing xml:', mediaXmlUrl);
+                        console.log(e);
+                        resolve([[primaryImage]]);
                     }
                 });
             });

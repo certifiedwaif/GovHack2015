@@ -32,7 +32,7 @@ try {
 } catch (e) { console.error('No config.json provided for Sequelize') }
 
 // Do NOT log your password on production!!!
-if (env === 'development') { console.log('Initialising Sequelize with options:', seqOptions) }
+// if (env === 'development') { console.log('Initialising Sequelize with options:', seqOptions) }
 
 // Initialise Sequelize
 export const dbConfig :sequelize.Sequelize = new sequelize.Sequelize(seqOptions)

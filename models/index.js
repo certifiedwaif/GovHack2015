@@ -53,9 +53,6 @@ try {
 catch (e) {
     console.error('No config.json provided for Sequelize');
 }
-if (env === 'development') {
-    console.log('Initialising Sequelize with options:', seqOptions);
-}
 exports.dbConfig = new sequelize.Sequelize(seqOptions);
 exports.Story = Story_1.StoryFactory(exports.dbConfig);
 exports.TwitterData = TwitterData_1.TwitterDataFactory(exports.dbConfig);
