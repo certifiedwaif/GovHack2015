@@ -99,7 +99,11 @@ h2{
 	height: 200px;
 	width: 200px;
 	margin: 0px;
-	padding: 0px;
+  padding: 0px;
+  border: solid 1px grey;
+  svg {
+    width: 100%;
+  }
 }
 h3 {
 	font-family: Roboto, san-serif;

@@ -161,6 +161,11 @@
         "signature": "89bf2b7a601b73ea4311eda9c41f86a58994fec1bee3b87c4a14d68d9adcdcbd",
         "affectsGlobalScope": true
       },
+      "../src/js/drawd3map.ts": {
+        "version": "28e415cab88a9d9e1540dea21fb770b9a584049291962c0e1dbce40ee5277e81",
+        "signature": "a512397dae04fec422e405727a16251f202a0a8281bcdc03f96a5b09030a0e42",
+        "affectsGlobalScope": true
+      },
       "../src/js/override.ts": {
         "version": "ca31f71a2243cd1ef432007bb4715daae3a9ad70fa40d04c40e706dba2fa8dd1",
         "signature": "ebfc6ad0684bfb2194fd3aa2ab2e9ab62e3066d8e7ce410fdfaf9ccb5cc745c8",
@@ -1996,6 +2001,7 @@
       "../../../node_modules/@types/validator/index.d.ts",
       "../../../node_modules/@types/xml2js/index.d.ts",
       "../../../node_modules/@types/xml2js/lib/processors.d.ts",
+      "../src/js/drawd3map.ts",
       "../src/js/override.ts"
     ]
   },
