@@ -11,6 +11,7 @@ function drawMap(lat, long, place) {
         .range(['#8dd3c7', '#ffffb3', '#bebada', '#fb8072', '#80b1d3', '#fdb462', '#b3de69', '#fccde5', '#d9d9d9']);
     const svg = d3.select('#map-canvas')
         .append('svg')
+        .attr('viewBox', `0 0 ${w} ${h}`)
         .attr('width', w)
         .attr('height', h);
     d3.json('/aust.json').then((json) => {

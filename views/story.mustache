@@ -41,7 +41,7 @@
   <section id="content" style="padding-top:35px;">
     <div class="container">
       <div id="main-content" class="row text-center">
-        <div class="col-md-9">
+        <div class="col-sm-9">
           <div>
 
             <h1 id="titletext">{{Title}}</h1>
@@ -49,38 +49,36 @@
               {{imageDescriptions}}
             </p>
 
-            <div class="clear" style="padding:20px;"></div>
-            <div>
-              <div class="box">
-                <p class="label">
-                  Source
-                </p>
-              </div>
-
-              <p id="source" class="label-text">
-                <a id="sourcelink" class="label-text-link" target="_blank" href="{{URL}}">{{URL}}</a>
-              <p>
-            </div>
-            <div class="clear"></div>
-            <div>
-              <div class="box">
-                <p class="label">
-                  Keywords
-                </p>
-              </div>
-
-              <p id="keywords" class="label-text">{{Subjects}}</p>
-            </div>
-
+            <div class="clear hidden-xs" style="padding:20px;"></div>
+            <table>
+              <tr>
+                <td class="box">
+                  <p class="label">Source</p>
+                </td>
+                <td>
+                  <p id="source" class="label-text">
+                    <a id="sourcelink" class="label-text-link" target="_blank" href="{{URL}}">{{URL}}</a>
+                  <p>
+                </td>
+              </tr>
+              <tr>
+                <td class="box">
+                  <p class="label">Keywords</p>
+                </td>
+                <td>
+                  <p id="keywords" class="label-text">{{Subjects}}</p>
+                </td>
+              </tr>
+            </table>
           </div>
 
-          <div class="clear" style="padding:20px;"></div>
-          <div>
-            <h2>
-              See another True Story:
-            </h2>
+          <div class="clear hidden-xs" style="padding:20px;"></div>
+
+          <div class="hidden-xs">
+            <h2>See another True Story:</h2>
+
       {{#relatedStories}}
-            <div class="hashtagbox" id="box-1">
+            <div class="hashtagbox">
               <a href="/story/{{id}}">
                 <div class="mask"></div>
                 <p class="hashtag-text">{{keyword}}</p>
@@ -88,13 +86,13 @@
               </a>
             </div>
       {{/relatedStories}}
-
           </div>
+
 
           <div class="clear" style="padding:20px;"></div>
         </div>
 
-        <div class="col-md-3" style="padding:20px; background: rgba(216,216,216,.25); max-width: 240px;">
+        <div class="col-sm-3" id="sideInfo">
 
           <div id="map-canvas"></div>
 

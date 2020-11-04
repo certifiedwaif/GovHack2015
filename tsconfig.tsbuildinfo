@@ -162,7 +162,7 @@
         "affectsGlobalScope": true
       },
       "./src/js/drawd3map.ts": {
-        "version": "f0c6f574f4ad1c34c2a2cc97bcae7c58f43af4b0f843ad94cbad5f63e4219a5c",
+        "version": "058e4d1c0723c3eeb7eef59bbd471ae706e75f9bbeb0411beb69f81295ba83db",
         "signature": "356a862de25741b2040bd8534dcd1e49c58b856c233cdae8c5b4b2c674a5379d",
         "affectsGlobalScope": true
       },
@@ -691,16 +691,6 @@
         "signature": "c87fdfbe484cb43964ca2ae19db5ac30e4f945826d1ade33c0d3d653006ddd22",
         "affectsGlobalScope": false
       },
-      "../../node_modules/@types/minimatch/index.d.ts": {
-        "version": "1d1e6bd176eee5970968423d7e215bfd66828b6db8d54d17afec05a831322633",
-        "signature": "1d1e6bd176eee5970968423d7e215bfd66828b6db8d54d17afec05a831322633",
-        "affectsGlobalScope": false
-      },
-      "../../node_modules/@types/glob/index.d.ts": {
-        "version": "393137c76bd922ba70a2f8bf1ade4f59a16171a02fb25918c168d48875b0cfb0",
-        "signature": "393137c76bd922ba70a2f8bf1ade4f59a16171a02fb25918c168d48875b0cfb0",
-        "affectsGlobalScope": false
-      },
       "../../node_modules/@types/http-proxy/index.d.ts": {
         "version": "15e05617b8bcc6dd4cb71a716ffa0d7d0a868ac62d7b14d44cb131e1285a5ae4",
         "signature": "15e05617b8bcc6dd4cb71a716ffa0d7d0a868ac62d7b14d44cb131e1285a5ae4",
@@ -810,11 +800,6 @@
         "version": "61b47b5916240af10c044424efe51a551ec47d9e799b18225e0e3a7c19903b03",
         "signature": "61b47b5916240af10c044424efe51a551ec47d9e799b18225e0e3a7c19903b03",
         "affectsGlobalScope": true
-      },
-      "../../node_modules/@types/unist/index.d.ts": {
-        "version": "1320ee42b30487cceb6da9f230354fc34826111f76bf12f0ad76c717c12625b0",
-        "signature": "1320ee42b30487cceb6da9f230354fc34826111f76bf12f0ad76c717c12625b0",
-        "affectsGlobalScope": false
       },
       "../../node_modules/@types/validator/index.d.ts": {
         "version": "d51dd1eeec95fbe192e6dfeee8f982b3d6115a0ff6059cafc879330d94367fb0",
@@ -951,11 +936,6 @@
         "../../node_modules/@types/node/http.d.ts",
         "../../node_modules/@types/node/index.d.ts",
         "../../node_modules/@types/node/stream.d.ts"
-      ],
-      "../../node_modules/@types/glob/index.d.ts": [
-        "../../node_modules/@types/minimatch/index.d.ts",
-        "../../node_modules/@types/node/events.d.ts",
-        "../../node_modules/@types/node/index.d.ts"
       ],
       "../../node_modules/@types/http-proxy/index.d.ts": [
         "../../node_modules/@types/node/events.d.ts",
@@ -1445,11 +1425,6 @@
         "../../node_modules/@types/node/index.d.ts",
         "../../node_modules/@types/node/stream.d.ts"
       ],
-      "../../node_modules/@types/glob/index.d.ts": [
-        "../../node_modules/@types/minimatch/index.d.ts",
-        "../../node_modules/@types/node/events.d.ts",
-        "../../node_modules/@types/node/index.d.ts"
-      ],
       "../../node_modules/@types/http-proxy/index.d.ts": [
         "../../node_modules/@types/node/events.d.ts",
         "../../node_modules/@types/node/http.d.ts",
@@ -1918,7 +1893,6 @@
       "../../node_modules/@types/events/index.d.ts",
       "../../node_modules/@types/formidable/index.d.ts",
       "../../node_modules/@types/geojson/index.d.ts",
-      "../../node_modules/@types/glob/index.d.ts",
       "../../node_modules/@types/http-cache-semantics/index.d.ts",
       "../../node_modules/@types/http-proxy/index.d.ts",
       "../../node_modules/@types/jquery/index.d.ts",
@@ -1943,7 +1917,6 @@
       "../../node_modules/@types/lodash/common/util.d.ts",
       "../../node_modules/@types/lodash/index.d.ts",
       "../../node_modules/@types/mime/index.d.ts",
-      "../../node_modules/@types/minimatch/index.d.ts",
       "../../node_modules/@types/mustache/index.d.ts",
       "../../node_modules/@types/node/assert.d.ts",
       "../../node_modules/@types/node/async_hooks.d.ts",
@@ -1998,7 +1971,6 @@
       "../../node_modules/@types/sizzle/index.d.ts",
       "../../node_modules/@types/socket.io-client/index.d.ts",
       "../../node_modules/@types/socket.io/index.d.ts",
-      "../../node_modules/@types/unist/index.d.ts",
       "../../node_modules/@types/validator/index.d.ts",
       "../../node_modules/@types/xml2js/index.d.ts",
       "../../node_modules/@types/xml2js/lib/processors.d.ts",

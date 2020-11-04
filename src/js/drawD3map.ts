@@ -28,6 +28,7 @@ function drawMap (lat, long, place) {
   // Create SVG
   const svg = d3.select('#map-canvas')
     .append('svg')
+    .attr('viewBox', `0 0 ${w} ${h}`)
     .attr('width', w)
     .attr('height', h)
 
