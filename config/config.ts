@@ -61,7 +61,15 @@ const config: Thalia.WebsiteConfig = {
       // Find matching twitter data
       // Serve.
       getStory(id)
-        .then(result => {
+        .then((result :any) => {
+
+          // Legacy stuff, for old extension users
+          _.merge(result, {
+            row_names: result.id,
+            "Primary.image.caption": result.Primary_image_caption,
+            "Primary.image.rights.information": result.Primary_image_rights_information
+          })
+
           response.end(JSON.stringify(result))
         })
         .catch(err => {

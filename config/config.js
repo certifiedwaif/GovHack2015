@@ -57,7 +57,12 @@ const config = {
     services: {
         requestjson: function (response, request, db, id) {
             getStory(id)
-                .then(result => {
+                .then((result) => {
+                lodash_1.default.merge(result, {
+                    row_names: result.id,
+                    "Primary.image.caption": result.Primary_image_caption,
+                    "Primary.image.rights.information": result.Primary_image_rights_information
+                });
                 response.end(JSON.stringify(result));
             })
                 .catch(err => {
