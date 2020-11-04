@@ -18,9 +18,40 @@ const config: Thalia.WebsiteConfig = {
     },
     'story': function homepage(router) {
       router.readAllViews(views => {
-        getStory(router.path).then(data => {
-          const output = mustache.render(views.story, data, views)
-          router.res.end(output)
+        getStory(router.path).then((data :any) => {
+          console.log("keywords", data.Keywords)
+          const regexp = data.Keywords.split(/[: ,]+/).filter(d => d).map(d => `(${d})`).join("|")
+          console.log("regexp", regexp)
+
+          Story.findAll({
+            attributes: [
+              'id', 'URL', 'Keywords', 'Primary_image'
+            ],
+            where: {
+              Keywords: {
+                [Op.regexp]: regexp
+              },
+              Latitude: { [Op.ne]: null },
+              Longitude: { [Op.ne]: null },
+              Primary_image: { [Op.ne]: '' }
+            },
+            order: Story.sequelize.random(),
+            limit: 12
+          }).then(result => {
+
+            let relatedStories = result.map(d => d.toJSON())
+            relatedStories.forEach(function(story :any) {
+              story.keyword = story.Keywords.split(/[: ,]+/)[0]
+            })
+
+            _.merge(data, {
+              relatedStories: relatedStories
+            })
+
+            const output = mustache.render(views.story, data, views)
+            router.res.end(output)
+          })
+
         })
       })
     }

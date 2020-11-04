@@ -79,41 +79,15 @@
             <h2>
               See another True Story:
             </h2>
+      {{#relatedStories}}
             <div class="hashtagbox" id="box-1">
-              <div class="mask"></div>
-              <p class="hashtag-text">
-                #garden
-              </p>
-              <img class="previewpic img-responsive" src="http://www.abc.net.au/reslib/201209/r1005632_11275296.jpg"
-                alt="" />
+              <a href="/story/{{id}}">
+                <div class="mask"></div>
+                <p class="hashtag-text">{{keyword}}</p>
+                <img class="previewpic img-responsive" src="{{Primary_image}}"/>
+              </a>
             </div>
-
-            <div class="hashtagbox" id="box-2">
-              <div class="mask"></div>
-              <p class="hashtag-text">
-                #festival
-              </p>
-              <img class="previewpic img-responsive" src="http://www.abc.net.au/reslib/201301/r1061650_12441054.jpg
-" alt="" />
-            </div>
-
-            <div class="hashtagbox" id="box-3">
-              <div class="mask"></div>
-              <p class="hashtag-text">
-                #nature
-              </p>
-              <img class="previewpic img-responsive" src="http://www.abc.net.au/reslib/201209/r998918_11095385.jpg"
-                alt="" />
-            </div>
-
-            <div class="hashtagbox" id="box-4">
-              <div class="mask"></div>
-              <p class="hashtag-text">
-                #coffee
-              </p>
-              <img class="previewpic img-responsive" src="http://www.abc.net.au/news/image/5196902-16x9-700x394.jpg"
-                alt="" />
-            </div>
+      {{/relatedStories}}
 
           </div>
 

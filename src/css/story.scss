@@ -50,6 +50,10 @@ h2{
 }
 
 .hashtag-text {
+  &:before {
+    content: "#"
+  }
+  text-transform: uppercase;
 	width: 200px;
 	bottom: 0\px;
 	left: 20px;
@@ -79,7 +83,7 @@ h2{
 	position: absolute;
 	width: 200px;
 	height: 113px;
-	background-color: rgba(0,0,0,.3);
+	background-color: rgba(0,0,0,0.15);
 }
 
 .hashtagbox {

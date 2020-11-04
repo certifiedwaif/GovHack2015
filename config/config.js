@@ -21,9 +21,35 @@ const config = {
         },
         'story': function homepage(router) {
             router.readAllViews(views => {
-                getStory(router.path).then(data => {
-                    const output = mustache.render(views.story, data, views);
-                    router.res.end(output);
+                getStory(router.path).then((data) => {
+                    console.log("keywords", data.Keywords);
+                    const regexp = data.Keywords.split(/[: ,]+/).filter(d => d).map(d => `(${d})`).join("|");
+                    console.log("regexp", regexp);
+                    models_1.Story.findAll({
+                        attributes: [
+                            'id', 'URL', 'Keywords', 'Primary_image'
+                        ],
+                        where: {
+                            Keywords: {
+                                [sequelize_1.Op.regexp]: regexp
+                            },
+                            Latitude: { [sequelize_1.Op.ne]: null },
+                            Longitude: { [sequelize_1.Op.ne]: null },
+                            Primary_image: { [sequelize_1.Op.ne]: '' }
+                        },
+                        order: models_1.Story.sequelize.random(),
+                        limit: 12
+                    }).then(result => {
+                        let relatedStories = result.map(d => d.toJSON());
+                        relatedStories.forEach(function (story) {
+                            story.keyword = story.Keywords.split(/[: ,]+/)[0];
+                        });
+                        lodash_1.default.merge(data, {
+                            relatedStories: relatedStories
+                        });
+                        const output = mustache.render(views.story, data, views);
+                        router.res.end(output);
+                    });
                 });
             });
         }

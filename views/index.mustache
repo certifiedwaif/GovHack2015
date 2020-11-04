@@ -331,12 +331,35 @@
         setInterval(function(){
             $("#carousel").css({
                 'background': "url('/img/screenshots/"+i+".png')",
-                'background-size': "74%",
+                'background-color': 'black',
+                'background-size': "75%",
                 'background-repeat': "no-repeat",
                 'background-position': "50% 23%"
             });
             i = (i+1) % 11;
-        }, 2000);
+        }, 2500);
+
+var images = [];
+function preload() {
+  for (var i = 0; i < arguments.length; i++) {
+      images[i] = new Image();
+      images[i].src = preload.arguments[i];
+  }
+}
+preload(
+  "/img/screenshots/1.png",
+  "/img/screenshots/2.png",
+  "/img/screenshots/3.png",
+  "/img/screenshots/4.png",
+  "/img/screenshots/5.png",
+  "/img/screenshots/6.png",
+  "/img/screenshots/7.png",
+  "/img/screenshots/8.png",
+  "/img/screenshots/9.png",
+  "/img/screenshots/10.png"
+)
+
+
     </script>
 
 
