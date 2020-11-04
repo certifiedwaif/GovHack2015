@@ -33,21 +33,22 @@ function drawMap(lat, long, place) {
             .attr("transform", function (d) { return "translate(" + path.centroid(d) + ")"; })
             .attr("text-anchor", "middle")
             .attr("dy", ".35em")
+            .style("opacity", 0.5)
             .text(function (d) {
             return d.properties.STATE_NAME;
         });
         svg.append("text")
             .attr("x", 100)
-            .attr("y", 100)
+            .attr("y", 85)
             .attr("font-size", 16)
             .attr("font-weight", "bold")
             .attr("font-family", "FontAwesome")
             .attr("text-anchor", "middle")
             .classed("fa fa-map-marker", true)
-            .html('x');
+            .text('\uf041');
         svg.append("text")
             .attr("x", 100)
-            .attr("y", 110)
+            .attr("y", 100)
             .attr("font-size", 16)
             .attr("font-weight", "bold")
             .attr("font-family", "Roboto")

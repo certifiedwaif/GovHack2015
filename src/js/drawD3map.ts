@@ -52,6 +52,7 @@ d3.json("aust.json").then( (json :any) => {
     .attr("transform", function (d :any) { return "translate(" + path.centroid(d) + ")"; })
     .attr("text-anchor", "middle")
     .attr("dy", ".35em")
+    .style("opacity", 0.5)
     .text(function (d :any) {
       return d.properties.STATE_NAME;
     });
@@ -59,19 +60,18 @@ d3.json("aust.json").then( (json :any) => {
   //Append the name
   svg.append("text")
     .attr("x", 100)
-    .attr("y", 100)
+    .attr("y", 85)
     .attr("font-size", 16)
     .attr("font-weight", "bold")
     .attr("font-family", "FontAwesome")
     .attr("text-anchor", "middle")
     .classed("fa fa-map-marker", true)
-    .html('x');
-// Todo: fix this marker!!!
+    .text('\uf041');
     
 
     svg.append("text")
     .attr("x", 100)
-    .attr("y", 110)
+    .attr("y", 100)
     .attr("font-size", 16)
     .attr("font-weight", "bold")
     .attr("font-family", "Roboto")
