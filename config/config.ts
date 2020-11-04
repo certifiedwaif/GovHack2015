@@ -223,14 +223,14 @@ function getXmlData (mediaXmlUrl: string, primaryImage) {
                   }
                 }>
               }>
-            }> = result.rss.channel[0].item
+            }> = result.rss.channel[0].item.filter(d => d)
 
             const bestImages = []
             const imageDescriptions = []
             items.forEach(item => {
-              if (item['media:group']) {
+              if (item['media:group'] && item['media:group'][0] && item['media:group'][0]['media:content']) {
                 const description = item.description[0]
-                const images = item['media:group'][0]['media:content']
+                const images = item['media:group'][0]['media:content'].filter(d => d)
                 let score = 0
                 let bestImage = ''
 
