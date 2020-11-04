@@ -692,7 +692,7 @@
         "affectsGlobalScope": false
       },
       "../models/index.ts": {
-        "version": "c94658d6c147a5e64a664cc4af8b6957c5e13412dfe669e9d7bb1cf185c81500",
+        "version": "a473f8353b62a046384de1962668b0f0d537e21f36d42dace1a23d0b58da2304",
         "signature": "add53f90ea1de964d83af7f3d727f4babb563d528d832092ba143fe299eabe69",
         "affectsGlobalScope": false
       },
@@ -1014,11 +1014,6 @@
       "../../../node_modules/@types/mime/index.d.ts": {
         "version": "be27a64e821a3e5af838650e4aa25805c60f057d0c37a9762c378d19d364b3e6",
         "signature": "be27a64e821a3e5af838650e4aa25805c60f057d0c37a9762c378d19d364b3e6",
-        "affectsGlobalScope": false
-      },
-      "../../../node_modules/@types/mysql/index.d.ts": {
-        "version": "e2ba19c1f9f0f2e48f3d4ff98202f43e1802f530e065f0402086f2ae1c7e5a0a",
-        "signature": "e2ba19c1f9f0f2e48f3d4ff98202f43e1802f530e065f0402086f2ae1c7e5a0a",
         "affectsGlobalScope": false
       },
       "../../../node_modules/@types/q/index.d.ts": {
@@ -1355,11 +1350,6 @@
         "../../../node_modules/@types/lodash/common/seq.d.ts",
         "../../../node_modules/@types/lodash/common/string.d.ts",
         "../../../node_modules/@types/lodash/common/util.d.ts"
-      ],
-      "../../../node_modules/@types/mysql/index.d.ts": [
-        "../../../node_modules/@types/node/index.d.ts",
-        "../../../node_modules/@types/node/stream.d.ts",
-        "../../../node_modules/@types/node/tls.d.ts"
       ],
       "../../../node_modules/@types/node/base.d.ts": [
         "../../../node_modules/@types/node/assert.d.ts",
@@ -2007,11 +1997,6 @@
         "../../../node_modules/@types/lodash/common/string.d.ts",
         "../../../node_modules/@types/lodash/common/util.d.ts"
       ],
-      "../../../node_modules/@types/mysql/index.d.ts": [
-        "../../../node_modules/@types/node/index.d.ts",
-        "../../../node_modules/@types/node/stream.d.ts",
-        "../../../node_modules/@types/node/tls.d.ts"
-      ],
       "../../../node_modules/@types/node/base.d.ts": [
         "../../../node_modules/@types/node/assert.d.ts",
         "../../../node_modules/@types/node/ts3.6/base.d.ts"
@@ -2453,7 +2438,6 @@
       "../../../node_modules/@types/lodash/index.d.ts",
       "../../../node_modules/@types/mime/index.d.ts",
       "../../../node_modules/@types/mustache/index.d.ts",
-      "../../../node_modules/@types/mysql/index.d.ts",
       "../../../node_modules/@types/node/assert.d.ts",
       "../../../node_modules/@types/node/async_hooks.d.ts",
       "../../../node_modules/@types/node/base.d.ts",

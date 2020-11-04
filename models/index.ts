@@ -11,8 +11,12 @@ let seqOptions :sequelize.Options = {
   username: process.env.DB_USER || 'root',
   password: process.env.DB_PASSWORD || '',
   port: 3306,
-  dialect: 'mysql',
-  dialectOptions: { decimalNumbers: true },
+  dialect: 'mariadb',
+  timezone: 'Australia/Melbourne',
+  dialectOptions: {
+    timezone: 'Australia/Melbourne',
+    decimalNumbers: true
+  },
   logging: false,
   define: {
     underscored: true
@@ -24,7 +28,7 @@ const env = process.env.NODE_ENV || 'development'
 try {
   // const configOptions = require(__dirname + '/../config/config.json')
   const configOptions = require(path.resolve(__dirname, '..', 'config', 'config.json'))
-  seqOptions = _.merge(seqOptions, configOptions)
+  _.merge(seqOptions, configOptions)
 } catch (e) { console.error('No config.json provided for Sequelize') }
 
 // Do NOT log your password on production!!!

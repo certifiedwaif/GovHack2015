@@ -34,8 +34,12 @@ let seqOptions = {
     username: process.env.DB_USER || 'root',
     password: process.env.DB_PASSWORD || '',
     port: 3306,
-    dialect: 'mysql',
-    dialectOptions: { decimalNumbers: true },
+    dialect: 'mariadb',
+    timezone: 'Australia/Melbourne',
+    dialectOptions: {
+        timezone: 'Australia/Melbourne',
+        decimalNumbers: true
+    },
     logging: false,
     define: {
         underscored: true
@@ -44,7 +48,7 @@ let seqOptions = {
 const env = process.env.NODE_ENV || 'development';
 try {
     const configOptions = require(path_1.default.resolve(__dirname, '..', 'config', 'config.json'));
-    seqOptions = lodash_1.default.merge(seqOptions, configOptions);
+    lodash_1.default.merge(seqOptions, configOptions);
 }
 catch (e) {
     console.error('No config.json provided for Sequelize');
