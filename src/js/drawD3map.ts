@@ -1,7 +1,7 @@
 console.log('hey');
 
 
-function drawMap(lat, long) {
+function drawMap(lat, long, place) {
   console.log("Lol you wrote this:", lat)
   console.log(long)
 
@@ -58,14 +58,25 @@ d3.json("aust.json").then( (json :any) => {
 
   //Append the name
   svg.append("text")
-    .attr("x", 446)
-    .attr("y", 340)
-    .attr("font-size", 90)
+    .attr("x", 100)
+    .attr("y", 100)
+    .attr("font-size", 16)
+    .attr("font-weight", "bold")
+    .attr("font-family", "FontAwesome")
+    .attr("text-anchor", "middle")
+    .classed("fa fa-map-marker", true)
+    .html('x');
+// Todo: fix this marker!!!
+    
+
+    svg.append("text")
+    .attr("x", 100)
+    .attr("y", 110)
+    .attr("font-size", 16)
     .attr("font-weight", "bold")
     .attr("font-family", "Roboto")
     .attr("text-anchor", "middle")
-    .attr("opacity", 0.10)
-    .text("AUSTRALIA");
+    .text(place);
 
 });
 

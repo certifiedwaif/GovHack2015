@@ -6,7 +6,7 @@ import { TownFactory } from './Town'
 import path from 'path'
 
 // Default options
-let seqOptions :sequelize.Options = {
+const seqOptions :sequelize.Options = {
   database: process.env.DB_NAME || 'typescript_test',
   username: process.env.DB_USER || 'root',
   password: process.env.DB_PASSWORD || '',
@@ -32,7 +32,7 @@ try {
 } catch (e) { console.error('No config.json provided for Sequelize') }
 
 // Do NOT log your password on production!!!
-// if (env === 'development') { console.log('Initialising Sequelize with options:', seqOptions) }
+if (env === 'development') { console.log('Initialising Sequelize with options:', seqOptions) }
 
 // Initialise Sequelize
 export const dbConfig :sequelize.Sequelize = new sequelize.Sequelize(seqOptions)

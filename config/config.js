@@ -19,12 +19,12 @@ const config = {
                 router.res.end(output);
             });
         },
-        'story': function homepage(router) {
+        story: function homepage(router) {
             router.readAllViews(views => {
                 getStory(router.path).then((data) => {
-                    console.log("keywords", data.Keywords);
-                    const regexp = data.Keywords.split(/[: ,]+/).filter(d => d).map(d => `(${d})`).join("|");
-                    console.log("regexp", regexp);
+                    console.log('keywords', data.Keywords);
+                    const regexp = data.Keywords.split(/[: ,]+/).filter(d => d).map(d => `(${d})`).join('|');
+                    console.log('regexp', regexp);
                     models_1.Story.findAll({
                         attributes: [
                             'id', 'URL', 'Keywords', 'Primary_image'
@@ -40,7 +40,7 @@ const config = {
                         order: models_1.Story.sequelize.random(),
                         limit: 12
                     }).then(result => {
-                        let relatedStories = result.map(d => d.toJSON());
+                        const relatedStories = result.map(d => d.toJSON());
                         relatedStories.forEach(function (story) {
                             story.keyword = story.Keywords.split(/[: ,]+/)[0];
                         });

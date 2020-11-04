@@ -29,7 +29,7 @@ const Story_1 = require("./Story");
 const TwitterData_1 = require("./TwitterData");
 const Town_1 = require("./Town");
 const path_1 = __importDefault(require("path"));
-let seqOptions = {
+const seqOptions = {
     database: process.env.DB_NAME || 'typescript_test',
     username: process.env.DB_USER || 'root',
     password: process.env.DB_PASSWORD || '',
@@ -52,6 +52,9 @@ try {
 }
 catch (e) {
     console.error('No config.json provided for Sequelize');
+}
+if (env === 'development') {
+    console.log('Initialising Sequelize with options:', seqOptions);
 }
 exports.dbConfig = new sequelize.Sequelize(seqOptions);
 exports.Story = Story_1.StoryFactory(exports.dbConfig);

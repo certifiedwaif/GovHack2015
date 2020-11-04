@@ -162,8 +162,8 @@
         "affectsGlobalScope": true
       },
       "./src/js/drawd3map.ts": {
-        "version": "95c6c73fd7c22304c3990a2ad1b80eec28343dfce22f23f4032c4f86df3acbbd",
-        "signature": "a512397dae04fec422e405727a16251f202a0a8281bcdc03f96a5b09030a0e42",
+        "version": "b595eb79bc390b73bff9e2dd17a131169e1697915eb605cc5e5dbbf43d67e573",
+        "signature": "356a862de25741b2040bd8534dcd1e49c58b856c233cdae8c5b4b2c674a5379d",
         "affectsGlobalScope": true
       },
       "./src/js/override.ts": {

@@ -10,18 +10,18 @@ import mustache = require('mustache');
 const config: Thalia.WebsiteConfig = {
   domains: ['localstories.info', 'www.localstories.info', 'truestories.david-ma.net', 'govhack2015.david-ma.net'],
   controllers: {
-    '': function homepage(router) {
+    '': function homepage (router) {
       router.readAllViews(views => {
         const output = mustache.render(views.index, {}, views)
         router.res.end(output)
       })
     },
-    'story': function homepage(router) {
+    story: function homepage (router) {
       router.readAllViews(views => {
         getStory(router.path).then((data :any) => {
-          console.log("keywords", data.Keywords)
-          const regexp = data.Keywords.split(/[: ,]+/).filter(d => d).map(d => `(${d})`).join("|")
-          console.log("regexp", regexp)
+          console.log('keywords', data.Keywords)
+          const regexp = data.Keywords.split(/[: ,]+/).filter(d => d).map(d => `(${d})`).join('|')
+          console.log('regexp', regexp)
 
           Story.findAll({
             attributes: [
@@ -38,9 +38,8 @@ const config: Thalia.WebsiteConfig = {
             order: Story.sequelize.random(),
             limit: 12
           }).then(result => {
-
-            let relatedStories = result.map(d => d.toJSON())
-            relatedStories.forEach(function(story :any) {
+            const relatedStories = result.map(d => d.toJSON())
+            relatedStories.forEach(function (story :any) {
               story.keyword = story.Keywords.split(/[: ,]+/)[0]
             })
 
@@ -51,7 +50,6 @@ const config: Thalia.WebsiteConfig = {
             const output = mustache.render(views.story, data, views)
             router.res.end(output)
           })
-
         })
       })
     }
@@ -70,12 +68,11 @@ const config: Thalia.WebsiteConfig = {
           response.writeHead(500)
           response.end(err)
         })
-
     }
   }
 }
 
-function getStory(id?: any) {
+function getStory (id?: any) {
   return new Promise(function (resolve, reject) {
     const storyOptions: WhereOptions<StoryAttributes> = {
       Latitude: { [Op.ne]: null },
@@ -120,7 +117,7 @@ function getStory(id?: any) {
 }
 
 // Recursive promise, to return the nearest town
-function findNearestTown(story: StoryModel, size: number = 1) {
+function findNearestTown (story: StoryModel, size: number = 1) {
   return new Promise(function (resolve) {
     Town.findOne({
       where: {
@@ -174,7 +171,7 @@ function findNearestTown(story: StoryModel, size: number = 1) {
 }
 
 // https://www.geodatasource.com/developers/javascript
-function distance(lat1: number, lon1: number, lat2: number, lon2: number, unit?: string) {
+function distance (lat1: number, lon1: number, lat2: number, lon2: number, unit?: string) {
   if ((lat1 === lat2) && (lon1 === lon2)) {
     return 0
   } else {
@@ -196,7 +193,7 @@ function distance(lat1: number, lon1: number, lat2: number, lon2: number, unit?:
 }
 
 // Weird xml stuff.
-function getXmlData(mediaXmlUrl: string, primaryImage) {
+function getXmlData (mediaXmlUrl: string, primaryImage) {
   return new Promise((resolve) => {
     http.get(mediaXmlUrl, (res: IncomingMessage) => {
       let data = ''
@@ -245,7 +242,7 @@ function getXmlData(mediaXmlUrl: string, primaryImage) {
                   }
                 })
                 bestImages.push(bestImage)
-                if(description) imageDescriptions.push(description);
+                if (description) imageDescriptions.push(description)
               }
             })
             resolve([bestImages, imageDescriptions])
