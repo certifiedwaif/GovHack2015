@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>ABC Local Stories</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="/assets/css/agency.css" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+  <link href='/css/story.min.css' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body id="page-top" class="index">
+
+
+  <!-- Header -->
+  <header id="header_image" style="background-image: url({{bestImage}});">
+        <div class=" container">
+    <div class="intro-text">
+    </div>
+    </div>
+  </header>
+
+
+
+  <!-- Content -->
+  <section id="content" style="padding-top:35px;">
+    <div class="container">
+      <div id="main-content" class="row text-center">
+        <div class="col-sm-9">
+          <div>
+
+            <h1 id="titletext">{{Title}}</h1>
+            <p id="descriptiontext" class="description">
+              {{imageDescriptions}}
+            </p>
+
+            <div class="clear hidden-xs" style="padding:20px;"></div>
+            <table>
+              <tr>
+                <td class="box">
+                  <p class="label">Source</p>
+                </td>
+                <td>
+                  <p id="source" class="label-text">
+                    <a id="sourcelink" class="label-text-link" target="_blank" href="{{URL}}">{{URL}}</a>
+                  <p>
+                </td>
+              </tr>
+              <tr>
+                <td class="box">
+                  <p class="label">Keywords</p>
+                </td>
+                <td>
+                  <p id="keywords" class="label-text">{{Subjects}}</p>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="clear hidden-xs" style="padding:20px;"></div>
+
+          <div class="hidden-xs">
+            <h2>See another True Story:</h2>
+
+      {{#relatedStories}}
+            <div class="hashtagbox">
+              <a href="/story/{{id}}">
+                <div class="mask"></div>
+                <p class="hashtag-text">{{keyword}}</p>
+                <img class="previewpic img-responsive" src="{{Primary_image}}"/>
+              </a>
+            </div>
+      {{/relatedStories}}
+          </div>
+
+
+          <div class="clear" style="padding:20px;"></div>
+        </div>
+
+        <div class="col-sm-3 row" id="sideInfo">
+
+          <div id="map-canvas"></div>
+
+          <div class="col-xs-6 col-sm-12">
+            <h3 id="locationtext">
+              {{Place}}, {{State}}
+            </h3>
+
+            <div class="clear"></div>
+
+            <p class="metadata-text">
+              <strong>Latitude:</strong>
+              <span id="lat-text">{{Latitude}}</span>
+            </p>
+
+            <p class="metadata-text">
+              <strong>Longitude:</strong>
+              <span id="lng-text">{{Longitude}}</span>
+            </p>
+
+            <p class="metadata-text">
+              <strong>Population:</strong>
+              <span id="populationtext">{{TotalPopulation}}</span>
+            </p>
+
+
+            <div class="clear" style="padding:10px;"></div>
+
+            <h4>
+              Interesting Facts
+            </h4>
+
+            <p class="metadata-text">
+              <strong>Primary Industry:</strong>
+              <span id="meta-industry">Mining</span>
+            </p>
+
+            <p class="metadata-text">
+              <strong>Male vs Female ratio:</strong>
+              <span id="meta-ratio">{{MalePopulation}} : {{FemalePopulation}}</span>
+            </p>
+
+            <p class="metadata-text">
+              <strong>Median age:</strong>
+              <span id="meta-age">{{MedianAge}}</span>
+            </p>
+
+            <div class="clear" style="padding:10px;"></div>
+
+            <h4>
+              Story Source
+            </h4>
+
+            <div id="sidebar-source" class="metadata-text">
+              <p>{{Primary_image_rights_information}}</p>
+            </div>
+          </div>
+
+          <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+            <h2>See another True Story:</h2>
+
+      {{#relatedStories}}
+            <div class="hashtagbox">
+              <a href="/story/{{id}}">
+                <div class="mask"></div>
+                <p class="hashtag-text">{{keyword}}</p>
+                <img class="previewpic img-responsive" src="{{Primary_image}}"/>
+              </a>
+            </div>
+      {{/relatedStories}}
+          </div>
+
+
+
+        </div>
+
+
+
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <span class="copyright">Made by team Potato Heads for GovHack 2015</span>
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline social-buttons">
+            <li><a href="#"><i class="fa fa-twitter"></i></a>
+            </li>
+            <li><a href="#"><i class="fa fa-facebook"></i></a>
+            </li>
+            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline quicklinks">
+            <li><a href="#">Privacy Policy</a>
+            </li>
+            <li><a href="#">Terms of Use</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+  <script src="/js/vendor.min.js"></script>
+  <script src="https://d3js.org/d3-array.v2.min.js"></script>
+  <script src="https://d3js.org/d3-geo.v2.min.js"></script>
+  <script src="/js/drawD3map.js"></script>
+  <script>
+    console.log("Story ID: {{id}}")
+    drawMap({{Latitude}}, {{Longitude}}, "{{Place}}")
+
+    const sourceLine = "{{Primary_image_rights_information}}"
+    if(sourceLine) {
+      const rights = sourceLine.split("|");
+
+      d3.select("#sidebar-source").html("")
+        .append("table")
+        .selectAll('tr')
+        .data(rights)
+        .enter()
+        .append("tr")
+        .each((d, i, group) => {
+          var tr = d3.select(group[i])
+          d.split(/:\s+/)
+            .filter(d => d)
+            .forEach(thing => {
+              tr.append('td').text(thing);
+            })
+        })
+
+      var twitter = '{{username}}'
+      if(twitter) {
+        console.log(twitter)
+        var tr = d3.select("#sidebar-source table").append("tr")
+        tr.append('td').text("Twitter:")
+        tr.append('td')
+          .append('a')
+          .attrs({
+            target: '_blank',
+            href: `https://twitter.com/${twitter}`
+          })
+          .text(`@${twitter}`)
+      }
+    }
+
+  </script>
+
+
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-64766698-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</body>
+
+</html>
