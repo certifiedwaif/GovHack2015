@@ -347,7 +347,7 @@
         "affectsGlobalScope": false
       },
       "./story.ts": {
-        "version": "208401847d18e9e17dfc1f133f0eccd5bc7cf290ce9ed5620da32ca2d7aeb07b",
+        "version": "bd124422367e9d8c79489b9ad60a712577d7ff2c061957c8331abd3e1330a1ed",
         "signature": "c85f6fffa9c79df114f4569c49b1d6324203d760fb05098fbc16ae635d2c5a28",
         "affectsGlobalScope": false
       },
@@ -951,16 +951,6 @@
         "signature": "c87fdfbe484cb43964ca2ae19db5ac30e4f945826d1ade33c0d3d653006ddd22",
         "affectsGlobalScope": false
       },
-      "../../../node_modules/@types/minimatch/index.d.ts": {
-        "version": "1d1e6bd176eee5970968423d7e215bfd66828b6db8d54d17afec05a831322633",
-        "signature": "1d1e6bd176eee5970968423d7e215bfd66828b6db8d54d17afec05a831322633",
-        "affectsGlobalScope": false
-      },
-      "../../../node_modules/@types/glob/index.d.ts": {
-        "version": "393137c76bd922ba70a2f8bf1ade4f59a16171a02fb25918c168d48875b0cfb0",
-        "signature": "393137c76bd922ba70a2f8bf1ade4f59a16171a02fb25918c168d48875b0cfb0",
-        "affectsGlobalScope": false
-      },
       "../../../node_modules/@types/http-proxy/index.d.ts": {
         "version": "15e05617b8bcc6dd4cb71a716ffa0d7d0a868ac62d7b14d44cb131e1285a5ae4",
         "signature": "15e05617b8bcc6dd4cb71a716ffa0d7d0a868ac62d7b14d44cb131e1285a5ae4",
@@ -1005,11 +995,6 @@
         "version": "61b47b5916240af10c044424efe51a551ec47d9e799b18225e0e3a7c19903b03",
         "signature": "61b47b5916240af10c044424efe51a551ec47d9e799b18225e0e3a7c19903b03",
         "affectsGlobalScope": true
-      },
-      "../../../node_modules/@types/unist/index.d.ts": {
-        "version": "1320ee42b30487cceb6da9f230354fc34826111f76bf12f0ad76c717c12625b0",
-        "signature": "1320ee42b30487cceb6da9f230354fc34826111f76bf12f0ad76c717c12625b0",
-        "affectsGlobalScope": false
       },
       "../../../node_modules/@types/xml2js/lib/processors.d.ts": {
         "version": "c0288f54de6f544706a3150c8b579b1a975870695c4be866f727ece6a16f3976",
@@ -1138,11 +1123,6 @@
         "../../../node_modules/@types/node/http.d.ts",
         "../../../node_modules/@types/node/index.d.ts",
         "../../../node_modules/@types/node/stream.d.ts"
-      ],
-      "../../../node_modules/@types/glob/index.d.ts": [
-        "../../../node_modules/@types/minimatch/index.d.ts",
-        "../../../node_modules/@types/node/events.d.ts",
-        "../../../node_modules/@types/node/index.d.ts"
       ],
       "../../../node_modules/@types/http-proxy/index.d.ts": [
         "../../../node_modules/@types/node/events.d.ts",
@@ -1758,11 +1738,6 @@
         "../../../node_modules/@types/node/index.d.ts",
         "../../../node_modules/@types/node/stream.d.ts"
       ],
-      "../../../node_modules/@types/glob/index.d.ts": [
-        "../../../node_modules/@types/minimatch/index.d.ts",
-        "../../../node_modules/@types/node/events.d.ts",
-        "../../../node_modules/@types/node/index.d.ts"
-      ],
       "../../../node_modules/@types/http-proxy/index.d.ts": [
         "../../../node_modules/@types/node/events.d.ts",
         "../../../node_modules/@types/node/http.d.ts",
@@ -2363,7 +2338,6 @@
       "../../../node_modules/@types/events/index.d.ts",
       "../../../node_modules/@types/formidable/index.d.ts",
       "../../../node_modules/@types/geojson/index.d.ts",
-      "../../../node_modules/@types/glob/index.d.ts",
       "../../../node_modules/@types/http-cache-semantics/index.d.ts",
       "../../../node_modules/@types/http-proxy/index.d.ts",
       "../../../node_modules/@types/jquery/index.d.ts",
@@ -2388,7 +2362,6 @@
       "../../../node_modules/@types/lodash/common/util.d.ts",
       "../../../node_modules/@types/lodash/index.d.ts",
       "../../../node_modules/@types/mime/index.d.ts",
-      "../../../node_modules/@types/minimatch/index.d.ts",
       "../../../node_modules/@types/mustache/index.d.ts",
       "../../../node_modules/@types/node/assert.d.ts",
       "../../../node_modules/@types/node/async_hooks.d.ts",
@@ -2443,7 +2416,6 @@
       "../../../node_modules/@types/sizzle/index.d.ts",
       "../../../node_modules/@types/socket.io-client/index.d.ts",
       "../../../node_modules/@types/socket.io/index.d.ts",
-      "../../../node_modules/@types/unist/index.d.ts",
       "../../../node_modules/@types/validator/index.d.ts",
       "../../../node_modules/@types/xml2js/index.d.ts",
       "../../../node_modules/@types/xml2js/lib/processors.d.ts",

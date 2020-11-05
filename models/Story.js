@@ -21,6 +21,12 @@ function StoryFactory(sequelize) {
         Latitude: sequelize_1.DataTypes.DECIMAL(10, 7),
         Longitude: sequelize_1.DataTypes.DECIMAL(10, 7),
         MediaRSS_URL: sequelize_1.DataTypes.STRING(127)
+    }, {
+        indexes: [
+            {
+                fields: ['Keywords']
+            }
+        ]
     });
 }
 exports.StoryFactory = StoryFactory;

@@ -146,19 +146,9 @@
               Story Source
             </h4>
 
-            <p class="metadata-text">
-              {{Primary_image_rights_information}}
-              {{! 
-              <strong>Copyright:</strong>
-              <span id="meta-copyright"></span>
-              <br>
-              <strong>Station:</strong>
-              <span id="meta-station">placeholder text</span>
-              <br>
-              <strong>Reporter:</strong>
-              <span id="meta-reporter">placeholder text</span>
-              }}
-            </p>
+            <div id="sidebar-source" class="metadata-text">
+              <p>{{Primary_image_rights_information}}</p>
+            </div>
           </div>
 
           <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
@@ -225,6 +215,41 @@
   <script>
     console.log("Story ID: {{id}}")
     drawMap({{Latitude}}, {{Longitude}}, "{{Place}}")
+
+    const sourceLine = "{{Primary_image_rights_information}}"
+    if(sourceLine) {
+      const rights = sourceLine.split("|");
+
+      d3.select("#sidebar-source").html("")
+        .append("table")
+        .selectAll('tr')
+        .data(rights)
+        .enter()
+        .append("tr")
+        .each((d, i, group) => {
+          var tr = d3.select(group[i])
+          d.split(/:\s+/)
+            .filter(d => d)
+            .forEach(thing => {
+              tr.append('td').text(thing);
+            })
+        })
+
+      var twitter = '{{username}}'
+      if(twitter) {
+        console.log(twitter)
+        var tr = d3.select("#sidebar-source table").append("tr")
+        tr.append('td').text("Twitter:")
+        tr.append('td')
+          .append('a')
+          .attrs({
+            target: '_blank',
+            href: `https://twitter.com/${twitter}`
+          })
+          .text(`@${twitter}`)
+      }
+    }
+
   </script>
 
 

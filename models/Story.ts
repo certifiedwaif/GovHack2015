@@ -20,5 +20,11 @@ export function StoryFactory (sequelize: Sequelize): StoryStatic {
     Latitude: DataTypes.DECIMAL(10, 7),
     Longitude: DataTypes.DECIMAL(10, 7),
     MediaRSS_URL: DataTypes.STRING(127)
+  }, {
+    indexes: [
+      {
+        fields: ['Keywords']
+      }
+    ]
   })
 }
