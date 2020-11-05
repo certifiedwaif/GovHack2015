@@ -136,13 +136,14 @@ h2 {
   }
 }
 #map-canvas {
-  max-height: 200px;
-  // max-width: 200px;
+  height: 200px;
   margin: 0px;
   padding: 0px;
   border: solid 1px grey;
   svg {
     width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
 }
 

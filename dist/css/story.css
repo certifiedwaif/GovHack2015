@@ -171,18 +171,20 @@ h2 {
 
 /* line 138, websites/truestories/src/css/story.scss */
 #map-canvas {
-  max-height: 200px;
+  height: 200px;
   margin: 0px;
   padding: 0px;
   border: solid 1px grey;
 }
 
-/* line 144, websites/truestories/src/css/story.scss */
+/* line 143, websites/truestories/src/css/story.scss */
 #map-canvas svg {
   width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
-/* line 149, websites/truestories/src/css/story.scss */
+/* line 150, websites/truestories/src/css/story.scss */
 h3 {
   font-family: Roboto, san-serif;
   font-size: 18px;
@@ -190,7 +192,7 @@ h3 {
   text-align: left;
 }
 
-/* line 156, websites/truestories/src/css/story.scss */
+/* line 157, websites/truestories/src/css/story.scss */
 h4 {
   font-family: Roboto, san-serif;
   font-size: 16px;
@@ -198,13 +200,13 @@ h4 {
   text-align: left;
 }
 
-/* line 163, websites/truestories/src/css/story.scss */
+/* line 164, websites/truestories/src/css/story.scss */
 .sideicon {
   height: 20px;
   float: left;
 }
 
-/* line 168, websites/truestories/src/css/story.scss */
+/* line 169, websites/truestories/src/css/story.scss */
 .sidetext {
   margin-left: 12px;
   float: left;
@@ -214,7 +216,7 @@ h4 {
   font-size: 14;
 }
 
-/* line 177, websites/truestories/src/css/story.scss */
+/* line 178, websites/truestories/src/css/story.scss */
 .metadata-text {
   margin-bottom: 0px;
 }

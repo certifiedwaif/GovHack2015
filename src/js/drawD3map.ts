@@ -2,6 +2,7 @@
 /**
  * Draws a 200x200 map of Australia, centered around the lat & long
  * Drops a marker at around 100x100 and writes a label underneath it
+ * Modified from https://bl.ocks.org/GerardoFurtado/02aa65e5522104cb692e
  * @param lat Latitude
  * @param long Longitude
  * @param place Name of place
