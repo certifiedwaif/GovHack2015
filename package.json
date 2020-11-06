@@ -1,0 +1,23 @@
+{
+  "name": "truestories",
+  "version": "1.0.0",
+  "description": "A Govhack Australia 2015 project, by David Ma, Suzie Nguyen, Mark Greenaway, Daniel Sempértegui and Zaara Azad",
+  "main": "server/thalia.js",
+  "repository": "git@github.com:david-ma/GovHack2015.git",
+  "author": "David Ma <github@david-ma.net>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server/thalia.js"
+  },
+  "dependencies": {
+    "amdefine": "^1.0.1",
+    "formidable": "^1.2.2",
+    "http-proxy": "^1.18.1",
+    "lodash": "^4.17.20",
+    "mariadb": "^2.5.1",
+    "mime": "^2.4.6",
+    "mustache": "^4.0.1",
+    "sequelize": "^6.3.5",
+    "socket.io": "^2.3.0"
+  }
+}
