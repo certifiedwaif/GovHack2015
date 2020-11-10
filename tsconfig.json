@@ -5,6 +5,14 @@
     "outDir": "dist",
     "target": "ES2015",
     "module": "AMD",
+    "moduleResolution": "Node",
+    "assumeChangesOnlyAffectDirectDependencies": true,
+    "incremental": true,
+    "lib": [
+      "es6",
+      "dom.iterable",
+      "dom"
+    ],
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "removeComments": true,

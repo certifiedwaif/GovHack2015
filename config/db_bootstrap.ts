@@ -41,7 +41,7 @@ if (true) { // eslint-disable-line no-constant-condition
     // fs.createReadStream(`${__dirname}/../data/small_town_data.csv`)
     fs.createReadStream(path.resolve(__dirname, '..', 'data', 'small_town_data.csv'))
       .pipe(csv())
-      .on('headers', headers => {
+      .on('headers', headers => { // eslint-disable-line
         // console.log(`Small Town Data csv headers: ${headers.join(', ')}`)
       }).on('data', data => {
         Town.findOrCreate({
@@ -59,7 +59,7 @@ if (true) { // eslint-disable-line no-constant-condition
         // fs.createReadStream(`${__dirname}/../data/localphotostories20092014csv.csv`)
         fs.createReadStream(path.resolve(__dirname, '..', 'data', 'localphotostories20092014csv.csv'))
           .pipe(csv())
-          .on('headers', (headers) => {
+          .on('headers', (headers) => {  // eslint-disable-line
             // console.log(`Local Photo Stories csv headers: ${headers.join(', ')}`)
           }).on('data', (data) => {
             // Stupid oneliner to reformat dates for moment.js yyyy-mm-dd
@@ -99,7 +99,7 @@ if (true) { // eslint-disable-line no-constant-condition
     // fs.createReadStream(`${__dirname}/../data/twitter_name_search.csv`)
     fs.createReadStream(path.resolve(__dirname, '..', 'data', 'twitter_name_search.csv'))
       .pipe(csv())
-      .on('headers', headers => {
+      .on('headers', headers => {  // eslint-disable-line
         // console.log(`Twitter Data csv headers: ${headers.join(', ')}`)
       }).on('data', data => {
         TwitterData.findOrCreate({

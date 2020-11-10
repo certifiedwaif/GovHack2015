@@ -22,9 +22,7 @@ const config = {
         story: function homepage(router) {
             router.readAllViews(views => {
                 getStory(router.path).then((data) => {
-                    console.log('keywords', data.Keywords);
                     const regexp = data.Keywords.split(/[: ,]+/).filter(d => d).map(d => `(${d})`).join('|');
-                    console.log('regexp', regexp);
                     models_1.Story.findAll({
                         attributes: [
                             'id', 'URL', 'Keywords', 'Primary_image'
@@ -60,8 +58,8 @@ const config = {
                 .then((result) => {
                 lodash_1.default.merge(result, {
                     row_names: result.id,
-                    "Primary.image.caption": result.Primary_image_caption,
-                    "Primary.image.rights.information": result.Primary_image_rights_information
+                    'Primary.image.caption': result.Primary_image_caption,
+                    'Primary.image.rights.information': result.Primary_image_rights_information
                 });
                 response.end(JSON.stringify(result));
             })
