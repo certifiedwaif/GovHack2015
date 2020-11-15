@@ -217,7 +217,7 @@
         "affectsGlobalScope": false
       },
       "../../../server/requesthandlers.ts": {
-        "version": "fb0540548ade4326b90e1fb71e41cd4cd4df78e31a8db45d9b995b2a44d496b9",
+        "version": "5fadc722168e59242974638e10a414ba90e8d241afed67f05e882255a77ff1e5",
         "signature": "ca03bc3459a9c78ba13000ff0bb4cdb3a2e509a2739b9ef60a1458e581697380",
         "affectsGlobalScope": false
       },
