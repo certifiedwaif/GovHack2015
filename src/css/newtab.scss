@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<script type="text/javascript" src="/js/vendor.min.js"></script>
-	<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Roboto:300,700,400' rel='stylesheet' type='text/css'>
-	
-	<title>ABC Local Stories Demo</title>
-<style>
+
 	body {
 		margin: 0px;
 	}
@@ -135,86 +127,5 @@
 		font-family: Roboto, sans-serif;
 		font-size: 11px;
 		color: #F8E71C
-	}
-</style>
-</head>
-<body>
-
-<div id="background"></div>
-<div id="mask"></div>
-
-<div id="topleft-corner">
-	<h1 id="title" class="text">Title</h1>
-	<p id="description" class="text">Description</p>
-
-	<a id="url" class="text" href="http://test.com" target="_blank">
-		<img id="infopng" src="/img/info.png">
-		<p id="moreinfo">Read more</p>
-	</a>
-</div>
-
-<div id="topright-corner">
-	<a href="http://www.abc.net.au/" target="_blank">
-		<img id="abc_logo" class="logo" src="/img/abc_logo.png">
-	</a>
-	<a href="https://www.govhack.org/" target="_blank">
-		<img id="govhack_logo" class="logo" src="/img/govhack_logo.png">
-	</a>
-
-
-
-</div>
-
-
-
-<div id="bottomleft-corner">
-		<img class="floatme" id="camera" src="/img/camera_bottom_left.png">
-		<p class="floatme" id="credits">
-			<span class="yellowtext">
-	Copright:
-			</span>
-			<span id="copyright">
-	copyright
-			</span> 
-			<span class="yellowtext" style="margin-left:20px">
-	Author: 
-			</span>
-			<a id="twitterlink" href="https://twitter.com/abcnews" style="color: white"><span id="author">
-	author
-			</span></a>
-		</p>
-</div>
-
-<p id="curatedABC">
-	Curated from ABC 'Local Stories' 2009-2014 archive.
-</p>
-
-<div id="bottomright-corner">
-	<a id="twitter" target="_blank" href="https://twitter.com/intent/tweet?text=via localstories.com.au #GovHack #RealAusArt - ">
-	<img class="icon" src="/img/twitter.png"></a>
-	<a id="facebook" target="_blank">
-	<img class="icon" src="/img/facebook.png"></a>
-	<a id="pinterest" target="_blank">
-	<img class="icon" src="/img/pinterest.png"></a>
-	
-</div>
-
-<script type="text/javascript" src="/js/override.js"></script>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  }
+  

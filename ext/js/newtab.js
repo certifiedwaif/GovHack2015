@@ -1,5 +1,5 @@
 const xmlhttp = new window.XMLHttpRequest();
-const url = '//localstories.info/requestjson';
+const url = 'https://localstories.info/requestjson';
 xmlhttp.onreadystatechange = function () {
     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
         const myArr = JSON.parse(xmlhttp.responseText);

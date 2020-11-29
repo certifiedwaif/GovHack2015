@@ -12,6 +12,9 @@ const xml2js_1 = require("xml2js");
 const mustache = require("mustache");
 const config = {
     domains: ['localstories.info', 'www.localstories.info', 'truestories.david-ma.net', 'govhack2015.david-ma.net'],
+    pages: {
+        demo: '/newtab.html'
+    },
     controllers: {
         '': function homepage(router) {
             router.readAllViews(views => {

@@ -15,7 +15,8 @@ type someType = {
 
 const xmlhttp = new window.XMLHttpRequest()
 // var url = "//localstories.info/requestjson"; // for the chrome extension
-const url = '/requestjson'
+// const url = '/requestjson'
+const url = '//localstories.info/requestjson';
 
 xmlhttp.onreadystatechange = function () {
   if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
@@ -53,7 +54,7 @@ function myFunction (arr :someType) {
     twittername = arr.username
   }
 
-  d3.select('#twitterlink').attr('href', 'http://twitter.com/' + twittername)
+  d3.select('#twitterlink').attr('href', 'https://twitter.com/' + twittername)
 
   const rights = arr.Primary_image_rights_information.split('|')
   const copyright = rights[0] ? rights[0].split(':')[1].trim() : 'Unknown'

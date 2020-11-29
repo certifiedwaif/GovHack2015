@@ -9,6 +9,9 @@ import mustache = require('mustache');
 
 const config: Thalia.WebsiteConfig = {
   domains: ['localstories.info', 'www.localstories.info', 'truestories.david-ma.net', 'govhack2015.david-ma.net'],
+  pages: {
+    demo: '/newtab.html'
+  },
   controllers: {
     '': function homepage (router) {
       router.readAllViews(views => {
