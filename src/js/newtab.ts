@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 
-type someType = {
+type storyData = {
     id: string;
     Title: string;
     username: string;
@@ -17,6 +17,18 @@ type someType = {
     Date: string;
 }
 
+var storyHistory : storyData[] = localStorage.abcStoryHistory ? JSON.parse(localStorage.abcStoryHistory) : []
+
+storyHistory.forEach(function(story) {
+  d3.select("#history").classed("hidden", false);
+
+  var li = d3.select("#history ul").insert("li", "li")
+  li.append("a").attrs({
+    target: "_blank",
+    href: `https://localstories.info/story/${story.id}`
+  }).text(story.Title)
+})
+
 const xmlhttp = new window.XMLHttpRequest()
 // var url = "//localstories.info/requestjson"; // for the chrome extension
 // const url = '/requestjson'
@@ -24,19 +36,17 @@ const url = 'https://localstories.info/requestjson';
 
 xmlhttp.onreadystatechange = function () {
   if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-    const myArr :someType = JSON.parse(xmlhttp.responseText)
+    const myArr :storyData = JSON.parse(xmlhttp.responseText)
     myFunction(myArr)
   }
 }
 xmlhttp.open('GET', url, true)
 xmlhttp.send()
 
-function myFunction (arr :someType) {
+function myFunction (arr :storyData) {
   console.log(arr)
 
-  // arr.l
   drawMap(arr.Latitude, arr.Longitude, arr.Place)
-  
 
   d3.select('#background').style('background-image', `url(${arr.bestImage})`)
   d3.select('#title').text(arr.Title)
@@ -64,4 +74,12 @@ function myFunction (arr :someType) {
 
   d3.select('#facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=$' + arr.URL)
   d3.select('#twitter').attr('href', 'https://twitter.com/intent/tweet?text=via%20localstories.info%20%40' + twittername + '%20%23GovHack%20%23RealAusArt%20-%20' + arr.URL + ' ' + arr.Title)
+
+  if(storyHistory.length > 5) {
+    storyHistory.shift()
+  }
+  if(storyHistory.map(story => story.id).indexOf(arr.id) === -1) {
+    storyHistory.push(arr)
+  }
+  localStorage.abcStoryHistory = JSON.stringify(storyHistory)
 }

@@ -1,3 +1,12 @@
+var storyHistory = localStorage.abcStoryHistory ? JSON.parse(localStorage.abcStoryHistory) : [];
+storyHistory.forEach(function (story) {
+    d3.select("#history").classed("hidden", false);
+    var li = d3.select("#history ul").insert("li", "li");
+    li.append("a").attrs({
+        target: "_blank",
+        href: `https://localstories.info/story/${story.id}`
+    }).text(story.Title);
+});
 const xmlhttp = new window.XMLHttpRequest();
 const url = 'https://localstories.info/requestjson';
 xmlhttp.onreadystatechange = function () {
@@ -30,4 +39,11 @@ function myFunction(arr) {
     d3.select("#date").text(date);
     d3.select('#facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=$' + arr.URL);
     d3.select('#twitter').attr('href', 'https://twitter.com/intent/tweet?text=via%20localstories.info%20%40' + twittername + '%20%23GovHack%20%23RealAusArt%20-%20' + arr.URL + ' ' + arr.Title);
+    if (storyHistory.length > 5) {
+        storyHistory.shift();
+    }
+    if (storyHistory.map(story => story.id).indexOf(arr.id) === -1) {
+        storyHistory.push(arr);
+    }
+    localStorage.abcStoryHistory = JSON.stringify(storyHistory);
 }
