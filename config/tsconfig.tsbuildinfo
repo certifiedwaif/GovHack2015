@@ -472,8 +472,8 @@
         "affectsGlobalScope": false
       },
       "../../../server/thalia.d.ts": {
-        "version": "e4ddf882b347ae81a87996965838f2ab74b60935601df3bc42d494b244f338bd",
-        "signature": "e4ddf882b347ae81a87996965838f2ab74b60935601df3bc42d494b244f338bd",
+        "version": "615f3c180465b32b8075bf9c573a8d1a4986359b7323581e64a61612a7024925",
+        "signature": "615f3c180465b32b8075bf9c573a8d1a4986359b7323581e64a61612a7024925",
         "affectsGlobalScope": false
       },
       "../../../node_modules/sequelize/types/lib/data-types.d.ts": {
@@ -707,7 +707,7 @@
         "affectsGlobalScope": false
       },
       "./config.ts": {
-        "version": "0b6cf473fc06e75126d266a9afdc4d2e6b06dc483c4700435bb855a068469c65",
+        "version": "37b7b74e0175d7d0dcbb8b6c29f2376fbd619d4c6025d1a2381b8f78c5da1d3b",
         "signature": "185884e109bc53b9988bcf45de6ce2845648cee72fa1f381db2cdb980276a992",
         "affectsGlobalScope": false
       },

@@ -12,6 +12,14 @@ const config: Thalia.WebsiteConfig = {
   pages: {
     demo: '/newtab.html'
   },
+  publish: {
+    dist: [
+      "newtab.html",
+      "js/newtab.js",
+      "js/vendor.min.js",
+      "css/newtab.css"
+    ]
+  },
   controllers: {
     '': function homepage (router) {
       router.readAllViews(views => {

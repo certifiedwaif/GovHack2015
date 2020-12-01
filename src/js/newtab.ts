@@ -16,7 +16,7 @@ type someType = {
 const xmlhttp = new window.XMLHttpRequest()
 // var url = "//localstories.info/requestjson"; // for the chrome extension
 // const url = '/requestjson'
-const url = '//localstories.info/requestjson';
+const url = 'https://localstories.info/requestjson';
 
 xmlhttp.onreadystatechange = function () {
   if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
@@ -65,5 +65,4 @@ function myFunction (arr :someType) {
 
   d3.select('#facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=$' + arr.URL)
   d3.select('#twitter').attr('href', 'https://twitter.com/intent/tweet?text=via%20localstories.info%20%40' + twittername + '%20%23GovHack%20%23RealAusArt%20-%20' + arr.URL + ' ' + arr.Title)
-  d3.select('#pinterest').attr('href', 'https://pinterest.com/pin/create/link/?url=' + arr.URL)
 }

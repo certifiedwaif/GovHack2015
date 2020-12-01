@@ -1,7 +1,7 @@
 {
   "name": "True Stories",
   "version": "1.0.0",
-  "manifest_version": 3,
+  "manifest_version": 2,
   "description": "True Stories displays a different ABC story every time you open a new tab.",
   "homepage_url": "https://localstories.info",
   "icons": {
@@ -15,7 +15,7 @@
   },
   "permissions": [
     "tabs",
-    "https://localstories.info/*",
-    "https://www.abc.net.au/*"
+    "https://localstories.info/",
+    "https://www.abc.net.au/"
   ]
 }

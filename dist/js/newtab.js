@@ -1,5 +1,5 @@
 const xmlhttp = new window.XMLHttpRequest();
-const url = '//localstories.info/requestjson';
+const url = 'https://localstories.info/requestjson';
 xmlhttp.onreadystatechange = function () {
     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
         const myArr = JSON.parse(xmlhttp.responseText);
@@ -26,5 +26,4 @@ function myFunction(arr) {
     d3.select('#author').text(author);
     d3.select('#facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=$' + arr.URL);
     d3.select('#twitter').attr('href', 'https://twitter.com/intent/tweet?text=via%20localstories.info%20%40' + twittername + '%20%23GovHack%20%23RealAusArt%20-%20' + arr.URL + ' ' + arr.Title);
-    d3.select('#pinterest').attr('href', 'https://pinterest.com/pin/create/link/?url=' + arr.URL);
 }

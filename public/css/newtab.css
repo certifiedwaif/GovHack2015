@@ -1,0 +1,159 @@
+/* line 2, websites/truestories/src/css/newtab.scss */
+body {
+  margin: 0px;
+}
+
+/* line 5, websites/truestories/src/css/newtab.scss */
+#background {
+  min-height: 100%;
+  min-width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right bottom;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: -2;
+}
+
+/* line 16, websites/truestories/src/css/newtab.scss */
+#mask {
+  z-index: -1;
+  width: 100%;
+  height: 260px;
+  position: absolute;
+  background-image: linear-gradient(-180deg, rgba(0, 0, 0, 0.81) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* line 23, websites/truestories/src/css/newtab.scss */
+#topleft-corner {
+  position: absolute;
+  left: 41px;
+  top: 27px;
+  max-width: 35%;
+}
+
+/* line 29, websites/truestories/src/css/newtab.scss */
+.text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 23px;
+  color: #FFFFFF;
+  line-height: 30px;
+  font-weight: 300;
+}
+
+/* line 36, websites/truestories/src/css/newtab.scss */
+#title {
+  font-family: 'Abel', sans-serif;
+  text-transform: uppercase;
+  left: 41px;
+  top: 27px;
+}
+
+/* line 42, websites/truestories/src/css/newtab.scss */
+#description {
+  font-size: 15px;
+  left: 41px;
+  top: 70px;
+}
+
+/* line 47, websites/truestories/src/css/newtab.scss */
+#infopng {
+  z-index: 50;
+  position: relative;
+  width: 16px;
+  float: left;
+}
+
+/* line 53, websites/truestories/src/css/newtab.scss */
+#moreinfo {
+  float: left;
+  color: #F8E71C;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  margin-left: 5px;
+  margin-top: -6px;
+}
+
+/* line 63, websites/truestories/src/css/newtab.scss */
+#topright-corner {
+  position: absolute;
+  top: 42px;
+  right: 41px;
+}
+
+/* line 69, websites/truestories/src/css/newtab.scss */
+.logo {
+  margin-left: 29px;
+  position: relative;
+  float: right;
+}
+
+/* line 75, websites/truestories/src/css/newtab.scss */
+#govhack_logo {
+  width: 45px;
+}
+
+/* line 80, websites/truestories/src/css/newtab.scss */
+#camera {
+  padding: 8px;
+  width: 14px;
+  position: absolute;
+  bottom: 8px;
+  left: 5px;
+}
+
+/* line 87, websites/truestories/src/css/newtab.scss */
+.floatme {
+  float: right;
+}
+
+/* line 91, websites/truestories/src/css/newtab.scss */
+.yellowtext {
+  color: #F8E71C;
+}
+
+/* line 94, websites/truestories/src/css/newtab.scss */
+#credits {
+  margin-left: 40px;
+  margin-right: 15px;
+  float: left;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: #FFF;
+}
+
+/* line 104, websites/truestories/src/css/newtab.scss */
+#bottomright-corner {
+  padding-bottom: 13px;
+  position: absolute;
+  bottom: 42px;
+  right: 41px;
+  /* 		background-color: rgba(0,0,0,.58); */
+}
+
+/* line 111, websites/truestories/src/css/newtab.scss */
+.icon {
+  width: 21px;
+  margin-left: 21px;
+}
+
+/* line 116, websites/truestories/src/css/newtab.scss */
+#bottomleft-corner {
+  position: absolute;
+  bottom: 42px;
+  left: 41px;
+  background-color: rgba(0, 0, 0, 0.58);
+}
+
+/* line 123, websites/truestories/src/css/newtab.scss */
+#curatedABC {
+  position: absolute;
+  bottom: 82px;
+  left: 52px;
+  font-family: Roboto, sans-serif;
+  font-size: 11px;
+  color: #F8E71C;
+}
