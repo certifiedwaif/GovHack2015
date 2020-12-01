@@ -20,6 +20,7 @@ const config = {
             "newtab.html",
             "js/newtab.js",
             "js/vendor.min.js",
+            "js/drawD3map.js",
             "css/newtab.css"
         ]
     },

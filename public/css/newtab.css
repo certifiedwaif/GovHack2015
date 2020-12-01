@@ -157,3 +157,14 @@ body {
   font-size: 11px;
   color: #F8E71C;
 }
+
+/* line 134, websites/truestories/src/css/newtab.scss */
+#map-canvas {
+  margin: 10px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.65);
+  width: 200px;
+  height: 200px;
+  border: solid 1px black;
+  float: right;
+}

@@ -17,6 +17,7 @@ const config: Thalia.WebsiteConfig = {
       "newtab.html",
       "js/newtab.js",
       "js/vendor.min.js",
+      "js/drawD3map.js",
       "css/newtab.css"
     ]
   },

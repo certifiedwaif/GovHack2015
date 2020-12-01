@@ -5,6 +5,7 @@
   <script type="text/javascript" src="/js/vendor.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,700,400" rel="stylesheet" type="text/css" />
+  <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
   <title>ABC Local Stories</title>
   <link href="/css/newtab.css" rel="stylesheet" />
@@ -31,15 +32,19 @@
     <a href="https://www.govhack.org/" target="_blank">
       <img id="govhack_logo" class="logo" src="/img/govhack_logo.png" />
     </a>
+    <br>
+    <a id="storyLink" href="https://localstories.info/story"><div id="map-canvas"></div></a>
   </div>
 
   <div id="bottomleft-corner">
     <img class="floatme" id="camera" src="/img/camera_bottom_left.png" />
     <p class="floatme" id="credits">
-      <span class="yellowtext"> Copright: </span>
-      <span id="copyright"> copyright </span>
-      <span class="yellowtext" style="margin-left: 20px"> Author: </span>
+      <span class="yellowtext">Copright:</span>
+      <span id="copyright">copyright</span>
+      <span class="yellowtext" style="margin-left: 20px">Author:</span>
       <a id="twitterlink" href="https://twitter.com/abcnews" style="color: white"><span id="author"> author </span></a>
+      <span class="yellowtext" style="margin-left: 20px">Date Published:</span>
+      <span id="date">date</span>
     </p>
   </div>
 
@@ -53,6 +58,7 @@
       <img class="icon" src="/img/facebook.png" /></a>
   </div>
 
+  <script type="text/javascript" src="/js/drawD3map.js"></script>
   <script type="text/javascript" src="/js/newtab.js"></script>
 </body>
 

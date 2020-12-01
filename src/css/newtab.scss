@@ -126,6 +126,17 @@
 		left: 52px;
 		font-family: Roboto, sans-serif;
 		font-size: 11px;
-		color: #F8E71C
+		color: #F8E71C;
   }
   
+
+
+#map-canvas {
+  margin: 10px;
+  padding: 0;
+  background: rgba(255,255,255,0.65);
+  width: 200px;
+  height: 200px;
+  border: solid 1px black;
+  float: right;
+}
