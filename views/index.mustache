@@ -25,40 +25,7 @@
     type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
-  <style>
-    #download_button {
-      border-radius: 3px;
-      background-color: #fed136;
-    }
-
-    #download_button:hover {
-      color: white;
-      /*background-color: #fec503;*/
-    }
-
-    #carousel {
-      background: url('/img/old_screenshot.png');
-      background-size: 74%;
-      background-repeat: no-repeat;
-      background-position: 50% 23%;
-    }
-
-    #govhack_logo_circle {
-      padding: 15px 5px;
-      width: 100px;
-      height: 100px;
-      background: #fed136;
-      border-radius: 100%;
-    }
-
-    #abc_logo_circle {
-      padding: 10px 0px;
-      width: 100px;
-      height: 100px;
-      background: #fed136;
-      border-radius: 100%;
-    }
-  </style>
+  <link href="/css/homepage.css" rel="stylesheet">
 
 </head>
 
@@ -189,7 +156,9 @@
       <div class="row">
         <div class="col-lg-12 text-center">
           <h2 class="section-heading">GovHack Video</h2>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/V1pd9OEwfxA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="iframe-container">
+            <iframe class="responsive-iframe" width="560" height="315" src="https://www.youtube.com/embed/V1pd9OEwfxA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
         </div>
       </div>
     </div>
