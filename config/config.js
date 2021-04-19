@@ -206,8 +206,11 @@ function getXmlData(mediaXmlUrl, primaryImage) {
             });
             res.on('end', () => {
                 xml2js_1.parseString(data, (err, result) => {
-                    if (err) {
+                    if (err || !result) {
+                        console.log('Error parsing xml:', mediaXmlUrl);
+                        console.log(err || "Result missing");
                         resolve([[primaryImage]]);
+                        return;
                     }
                     try {
                         const items = result.rss.channel[0].item.filter(d => d);

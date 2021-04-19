@@ -225,9 +225,11 @@ function getXmlData (mediaXmlUrl: string, primaryImage) {
       // The whole response has been received. Print out the result.
       res.on('end', () => {
         parseXml(data, (err, result) => {
-          if (err) {
-            // console.log("Error parsing xml")
+          if (err || !result) {
+            console.log('Error parsing xml:', mediaXmlUrl)
+            console.log(err || "Result missing")
             resolve([[primaryImage]])
+            return;
           }
           try {
             const items: Array<{
