@@ -3,3 +3,5 @@ server/node_modules
 cred.json
 config/config.json
 dist
+node_modules
+tsconfig.tsbuildinfo
