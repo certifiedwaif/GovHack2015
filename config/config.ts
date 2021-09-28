@@ -151,7 +151,10 @@ function findNearestTown (story: StoryModel, size: number = 1) {
       } else {
         // No matching town, find the nearest one.
 
-        const target = {
+        const target : {
+          lat : [number, number]
+          long : [number, number]
+        } = {
           lat: [(story.Latitude - size), (story.Latitude + size)],
           long: [(story.Longitude - size), (story.Longitude + size)]
         }
