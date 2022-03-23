@@ -1,4 +1,4 @@
-import { Model, Sequelize } from 'sequelize'
+import { Model, Sequelize, Op } from 'sequelize'
 import { dbConfig, Story, TwitterData, Town } from '../models'
 import csv from 'csv-parser'
 import fs from 'fs'
@@ -36,20 +36,25 @@ const seq :seqObject = {
 // Set to true if you want to create a database on startup
 if (true) { // eslint-disable-line no-constant-condition
   seq.sequelize.sync({
-    // force: true
+    force: true
   }).then(() => {
+    console.log("Sequelize import from db_bootstrap starting")
     // fs.createReadStream(`${__dirname}/../data/small_town_data.csv`)
     fs.createReadStream(path.resolve(__dirname, '..', 'data', 'small_town_data.csv'))
       .pipe(csv())
       .on('headers', headers => { // eslint-disable-line
-        // console.log(`Small Town Data csv headers: ${headers.join(', ')}`)
+        console.log(`Small Town Data csv headers: ${headers.join(', ')}`)
       }).on('data', data => {
-        Town.findOrCreate({
-          where: { Place: data.Place },
-          defaults: data
-        }).catch((error: Error) => {
+        console.log("Loading town:", data.Place)
+        // Town.create({
+        //   where: { Place: data.Place },
+        //   defaults: data
+        // })
+        Town.create(data).catch((error: Error) => {
           console.log(error.message)
           console.log(data)
+        }).then(d => {
+          // console.log('done loading town:', d)
         })
       })
 
@@ -60,7 +65,7 @@ if (true) { // eslint-disable-line no-constant-condition
         fs.createReadStream(path.resolve(__dirname, '..', 'data', 'localphotostories20092014csv.csv'))
           .pipe(csv())
           .on('headers', (headers) => {  // eslint-disable-line
-            // console.log(`Local Photo Stories csv headers: ${headers.join(', ')}`)
+            console.log(`Local Photo Stories csv headers: ${headers.join(', ')}`)
           }).on('data', (data) => {
             // Stupid oneliner to reformat dates for moment.js yyyy-mm-dd
             // https://momentjs.com/docs/#/parsing/
@@ -80,10 +85,12 @@ if (true) { // eslint-disable-line no-constant-condition
             delete data['Primary image rights information']
             delete data['MediaRSS URL']
 
-            Story.findOrCreate({
-              where: { URL: data.URL },
-              defaults: data
-            }).catch((error: Error) => {
+            // Story.findOrCreate({
+            //   where: { URL: data.URL },
+            //   defaults: data
+            // })
+            Story.create(data)
+            .catch((error: Error) => {
               console.log(error.message)
               console.log(data)
             })
@@ -100,26 +107,14 @@ if (true) { // eslint-disable-line no-constant-condition
     fs.createReadStream(path.resolve(__dirname, '..', 'data', 'twitter_name_search.csv'))
       .pipe(csv())
       .on('headers', headers => {  // eslint-disable-line
-        // console.log(`Twitter Data csv headers: ${headers.join(', ')}`)
+        console.log(`Twitter Data csv headers: ${headers.join(', ')}`)
       }).on('data', data => {
-        TwitterData.findOrCreate({
-          where: { username: data.username },
-          defaults: data
-        }).then(([twitterData, created]) => { // eslint-disable-line
-
-          /* Run this if you want to check Story & TwitterData are working
-                    Story.findAll({
-                        where: {
-                            Primary_image_rights_information: {
-                                [Op.like]: `%${twitterData.sourcename}%`
-                            }
-                        }
-                    }).then(results => {
-                        console.log(twitterData.sourcename +": "+results.map(d => d.id).join(", "));
-                    });
-*/
-
-        }).catch((error: Error) => {
+        // TwitterData.findOrCreate({
+        //   where: { username: data.username },
+        //   defaults: data
+        // })
+        TwitterData.create(data)
+        .catch((error: Error) => {
           console.log(error.message)
           console.log(data)
         })

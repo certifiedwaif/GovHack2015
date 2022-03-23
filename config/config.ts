@@ -33,7 +33,7 @@ const config: Thalia.WebsiteConfig = {
       router.readAllViews(views => {
         getStory(router.path).then((data :any) => {
           // console.log('keywords', data.Keywords)
-          const regexp = data.Keywords.split(/[: ,]+/).filter(d => d).map(d => `(${d})`).join('|')
+          // const regexp = data.Keywords.split(/[: ,]+/).filter(d => d).map(d => `(${d})`).join('|')
           // console.log('regexp', regexp)
 
           Story.findAll({
@@ -41,9 +41,10 @@ const config: Thalia.WebsiteConfig = {
               'id', 'URL', 'Keywords', 'Primary_image'
             ],
             where: {
-              Keywords: {
-                [Op.regexp]: regexp
-              },
+              // Can't use regexp in sqlite3
+              // Keywords: {
+              //   [Op.regexp]: regexp
+              // },
               Latitude: { [Op.ne]: null },
               Longitude: { [Op.ne]: null },
               Primary_image: { [Op.ne]: '' }

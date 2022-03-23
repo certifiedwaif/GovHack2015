@@ -35,15 +35,11 @@ const config = {
         story: function homepage(router) {
             router.readAllViews(views => {
                 getStory(router.path).then((data) => {
-                    const regexp = data.Keywords.split(/[: ,]+/).filter(d => d).map(d => `(${d})`).join('|');
                     models_1.Story.findAll({
                         attributes: [
                             'id', 'URL', 'Keywords', 'Primary_image'
                         ],
                         where: {
-                            Keywords: {
-                                [sequelize_1.Op.regexp]: regexp
-                            },
                             Latitude: { [sequelize_1.Op.ne]: null },
                             Longitude: { [sequelize_1.Op.ne]: null },
                             Primary_image: { [sequelize_1.Op.ne]: '' }

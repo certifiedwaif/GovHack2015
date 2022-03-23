@@ -12,14 +12,15 @@
   "dependencies": {
     "amdefine": "^1.0.1",
     "csv-parser": "^3.0.0",
-    "formidable": "^1.2.2",
+    "formidable": "^1.2.6",
     "http-proxy": "^1.18.1",
     "lodash": "^4.17.21",
-    "mariadb": "^2.5.4",
-    "mime": "^2.5.2",
+    "mariadb": "^2.5.5",
+    "mime": "^2.6.0",
     "mustache": "^4.2.0",
-    "sequelize": "^6.6.5",
+    "sequelize": "^6.9.0",
     "socket.io": "^2.4.1",
+    "sqlite3": "^5.0.2",
     "xml2js": "^0.4.23"
   },
   "devDependencies": {

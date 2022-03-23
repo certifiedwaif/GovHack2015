@@ -11,8 +11,8 @@ const seqOptions :sequelize.Options = {
   username: process.env.DB_USER || 'root',
   password: process.env.DB_PASSWORD || '',
   port: 3306,
-  dialect: 'mariadb',
-  timezone: 'Australia/Melbourne',
+  // dialect: 'mariadb',
+  // timezone: 'Australia/Melbourne',
   dialectOptions: {
     timezone: 'Australia/Melbourne',
     decimalNumbers: true
@@ -27,7 +27,7 @@ const seqOptions :sequelize.Options = {
 const env = process.env.NODE_ENV || 'development'
 try {
   // const configOptions = require(__dirname + '/../config/config.json')
-  const configOptions = require(path.resolve(__dirname, '..', 'config', 'config.json'))
+  const configOptions = require(path.resolve(__dirname, '..', 'config', 'config.json'))[env]
   _.merge(seqOptions, configOptions)
 } catch (e) { console.error('No config.json provided for Sequelize') }
 

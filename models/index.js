@@ -34,8 +34,6 @@ const seqOptions = {
     username: process.env.DB_USER || 'root',
     password: process.env.DB_PASSWORD || '',
     port: 3306,
-    dialect: 'mariadb',
-    timezone: 'Australia/Melbourne',
     dialectOptions: {
         timezone: 'Australia/Melbourne',
         decimalNumbers: true
@@ -47,7 +45,7 @@ const seqOptions = {
 };
 const env = process.env.NODE_ENV || 'development';
 try {
-    const configOptions = require(path_1.default.resolve(__dirname, '..', 'config', 'config.json'));
+    const configOptions = require(path_1.default.resolve(__dirname, '..', 'config', 'config.json'))[env];
     lodash_1.default.merge(seqOptions, configOptions);
 }
 catch (e) {
