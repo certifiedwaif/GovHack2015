@@ -96,6 +96,7 @@ const config: Thalia.WebsiteConfig = {
 function getStory (id?: any) {
   return new Promise(function (resolve, reject) {
     const storyOptions: WhereOptions<StoryAttributes> = {
+      Primary_image_rights_information: { [Op.ne]: null },
       Latitude: { [Op.ne]: null },
       Longitude: { [Op.ne]: null },
       Primary_image: { [Op.ne]: '' }
@@ -107,6 +108,7 @@ function getStory (id?: any) {
       where: storyOptions,
       order: Story.sequelize.random()
     }).then(story => {
+if(story) {
       const byline = story.Primary_image_rights_information.match(/Byline: (.*)/)
       const source = byline ? byline[1] || 'ABC' : 'ABC' // Default to ABC if we can't find a byline
       // Todo: Get better searching on the Twitter handles, find more journalists. Default to local ABC
@@ -131,6 +133,10 @@ function getStory (id?: any) {
         result.imageDescriptions = imageDescriptions
         resolve(result)
       })
+} else {
+  // To do, handle failure state here.
+  resolve({})
+}
     }).catch(err => {
       console.log('Error in story requestjson', err)
       reject(err)

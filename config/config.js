@@ -83,6 +83,7 @@ exports.config = config;
 function getStory(id) {
     return new Promise(function (resolve, reject) {
         const storyOptions = {
+            Primary_image_rights_information: { [sequelize_1.Op.ne]: null },
             Latitude: { [sequelize_1.Op.ne]: null },
             Longitude: { [sequelize_1.Op.ne]: null },
             Primary_image: { [sequelize_1.Op.ne]: '' }
@@ -93,28 +94,33 @@ function getStory(id) {
             where: storyOptions,
             order: models_1.Story.sequelize.random()
         }).then(story => {
-            const byline = story.Primary_image_rights_information.match(/Byline: (.*)/);
-            const source = byline ? byline[1] || 'ABC' : 'ABC';
-            const promises = [
-                findNearestTown(story),
-                models_1.TwitterData.findOne({
-                    where: {
-                        sourcename: source
-                    }
-                }),
-                getXmlData(story.MediaRSS_URL, story.Primary_image)
-            ];
-            Promise.all(promises).then(([town, twitterData, [bestImages, imageDescriptions]]) => {
-                const result = {};
-                if (twitterData)
-                    lodash_1.default.merge(result, twitterData.toJSON());
-                lodash_1.default.merge(result, town.toJSON());
-                lodash_1.default.merge(result, story.toJSON());
-                result.bestImage = bestImages[0];
-                result.bestImages = bestImages;
-                result.imageDescriptions = imageDescriptions;
-                resolve(result);
-            });
+            if (story) {
+                const byline = story.Primary_image_rights_information.match(/Byline: (.*)/);
+                const source = byline ? byline[1] || 'ABC' : 'ABC';
+                const promises = [
+                    findNearestTown(story),
+                    models_1.TwitterData.findOne({
+                        where: {
+                            sourcename: source
+                        }
+                    }),
+                    getXmlData(story.MediaRSS_URL, story.Primary_image)
+                ];
+                Promise.all(promises).then(([town, twitterData, [bestImages, imageDescriptions]]) => {
+                    const result = {};
+                    if (twitterData)
+                        lodash_1.default.merge(result, twitterData.toJSON());
+                    lodash_1.default.merge(result, town.toJSON());
+                    lodash_1.default.merge(result, story.toJSON());
+                    result.bestImage = bestImages[0];
+                    result.bestImages = bestImages;
+                    result.imageDescriptions = imageDescriptions;
+                    resolve(result);
+                });
+            }
+            else {
+                resolve({});
+            }
         }).catch(err => {
             console.log('Error in story requestjson', err);
             reject(err);
