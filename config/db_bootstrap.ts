@@ -34,7 +34,7 @@ const seq :seqObject = {
 // Title,URL,Date,Primary_image,Primary_image_caption,Primary_image_rights_information,Subjects,Station,State,Place,Keywords,Latitude,Longitude,MediaRSS_URL
 
 // Set to true if you want to create a database on startup
-if (true) { // eslint-disable-line no-constant-condition
+if (false) { // eslint-disable-line no-constant-condition
   seq.sequelize.sync({
     force: true
   }).then(() => {

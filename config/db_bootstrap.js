@@ -15,7 +15,7 @@ const seq = {
     sequelize: models_1.dbConfig
 };
 exports.seq = seq;
-if (true) {
+if (false) {
     seq.sequelize.sync({
         force: true
     }).then(() => {
