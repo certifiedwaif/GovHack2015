@@ -4,11 +4,11 @@ storyHistory.forEach(function (story) {
     var li = d3.select("#history ul").insert("li", "li");
     li.append("a").attrs({
         target: "_blank",
-        href: `https://localstories.info/story/${story.id}`
+        href: `https://truestories.david-ma.net/story/${story.id}`
     }).text(story.Title);
 });
 const xmlhttp = new window.XMLHttpRequest();
-const url = 'https://localstories.info/requestjson';
+const url = 'https://truestories.david-ma.net/requestjson';
 xmlhttp.onreadystatechange = function () {
     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
         const myArr = JSON.parse(xmlhttp.responseText);
@@ -22,8 +22,8 @@ function myFunction(arr) {
     drawMap(arr.Latitude, arr.Longitude, arr.Place);
     d3.select('#background').style('background-image', `url(${arr.bestImage})`);
     d3.select('#title').text(arr.Title);
-    d3.select('#url').attr('href', 'https://localstories.info/story/' + arr.id);
-    d3.select("#storyLink").attr('href', 'https://localstories.info/story/' + arr.id);
+    d3.select('#url').attr('href', 'https://truestories.david-ma.net/story/' + arr.id);
+    d3.select("#storyLink").attr('href', 'https://truestories.david-ma.net/story/' + arr.id);
     d3.select('#description').text(arr.Primary_image_caption);
     let twittername = 'abcnews';
     if (arr.username != null) {
@@ -38,7 +38,7 @@ function myFunction(arr) {
     d3.select('#author').text(author);
     d3.select("#date").text(date);
     d3.select('#facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=$' + arr.URL);
-    d3.select('#twitter').attr('href', 'https://twitter.com/intent/tweet?text=via%20localstories.info%20%40' + twittername + '%20%23GovHack%20%23RealAusArt%20-%20' + arr.URL + ' ' + arr.Title);
+    d3.select('#twitter').attr('href', 'https://twitter.com/intent/tweet?text=via%20truestories.david-ma.net%20%40' + twittername + '%20%23GovHack%20%23RealAusArt%20-%20' + arr.URL + ' ' + arr.Title);
     if (storyHistory.length > 5) {
         storyHistory.shift();
     }

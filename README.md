@@ -8,7 +8,7 @@ It doesn't get in your way, and if you see something interesting, there are link
 
 We've enriched the data with [ABS data](https://www.abs.gov.au/ausstats/abs@.nsf/Lookup/2071.0main+features1132016) on the local area and shown it on a map on our website as well, allowing you explore Australia.
 
-See more info on our [website](https://localstories.com.au). Or just go ahead and download the [Google Chrome Extension]!
+See more info on our [website](https://truestories.david-ma.net/). Or just go ahead and download the [Google Chrome Extension]!
 
 # To do
 - Add a random story to the home page

@@ -21,7 +21,7 @@ if (false) {
     }).then(() => {
         console.log("Sequelize import from db_bootstrap starting");
         fs_1.default.createReadStream(path_1.default.resolve(__dirname, '..', 'data', 'small_town_data.csv'))
-            .pipe(csv_parser_1.default())
+            .pipe((0, csv_parser_1.default)())
             .on('headers', headers => {
             console.log(`Small Town Data csv headers: ${headers.join(', ')}`);
         }).on('data', data => {
@@ -35,7 +35,7 @@ if (false) {
         models_1.Story.count().then(count => {
             if (count < 100) {
                 fs_1.default.createReadStream(path_1.default.resolve(__dirname, '..', 'data', 'localphotostories20092014csv.csv'))
-                    .pipe(csv_parser_1.default())
+                    .pipe((0, csv_parser_1.default)())
                     .on('headers', (headers) => {
                     console.log(`Local Photo Stories csv headers: ${headers.join(', ')}`);
                 }).on('data', (data) => {
@@ -60,7 +60,7 @@ if (false) {
             }
         });
         fs_1.default.createReadStream(path_1.default.resolve(__dirname, '..', 'data', 'twitter_name_search.csv'))
-            .pipe(csv_parser_1.default())
+            .pipe((0, csv_parser_1.default)())
             .on('headers', headers => {
             console.log(`Twitter Data csv headers: ${headers.join(', ')}`);
         }).on('data', data => {
@@ -77,7 +77,7 @@ function inspectCSV(csvPath) {
     let count = 0;
     let example = [];
     fs_1.default.createReadStream(csvPath)
-        .pipe(csv_parser_1.default())
+        .pipe((0, csv_parser_1.default)())
         .on('headers', (headers) => {
         headers.forEach(header => {
             sizer[header] = 0;

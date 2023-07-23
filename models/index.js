@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -55,6 +59,6 @@ if (env === 'development') {
     console.log('Initialising Sequelize with options:', seqOptions);
 }
 exports.dbConfig = new sequelize.Sequelize(seqOptions);
-exports.Story = Story_1.StoryFactory(exports.dbConfig);
-exports.TwitterData = TwitterData_1.TwitterDataFactory(exports.dbConfig);
-exports.Town = Town_1.TownFactory(exports.dbConfig);
+exports.Story = (0, Story_1.StoryFactory)(exports.dbConfig);
+exports.TwitterData = (0, TwitterData_1.TwitterDataFactory)(exports.dbConfig);
+exports.Town = (0, Town_1.TownFactory)(exports.dbConfig);

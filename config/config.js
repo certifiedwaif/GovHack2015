@@ -11,7 +11,7 @@ const http_1 = __importDefault(require("http"));
 const xml2js_1 = require("xml2js");
 const mustache = require("mustache");
 const config = {
-    domains: ['localstories.info', 'www.localstories.info', 'truestories.david-ma.net', 'govhack2015.david-ma.net'],
+    domains: ['truestories.david-ma.net', 'govhack2015.david-ma.net'],
     pages: {
         demo: '/newtab.html'
     },
@@ -208,7 +208,7 @@ function getXmlData(mediaXmlUrl, primaryImage) {
                 data += chunk;
             });
             res.on('end', () => {
-                xml2js_1.parseString(data, (err, result) => {
+                (0, xml2js_1.parseString)(data, (err, result) => {
                     if (err || !result) {
                         console.log('Error parsing xml:', mediaXmlUrl);
                         console.log(err || "Result missing");

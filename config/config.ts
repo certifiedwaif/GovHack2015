@@ -8,7 +8,7 @@ import { parseString as parseXml } from 'xml2js'
 import mustache = require('mustache');
 
 const config: Thalia.WebsiteConfig = {
-  domains: ['localstories.info', 'www.localstories.info', 'truestories.david-ma.net', 'govhack2015.david-ma.net'],
+  domains: ['truestories.david-ma.net', 'govhack2015.david-ma.net'],
   pages: {
     demo: '/newtab.html'
   },
@@ -134,7 +134,7 @@ if(story) {
         resolve(result)
       })
 } else {
-  // To do, handle failure state here.
+  // TODO: , handle failure state here.
   resolve({})
 }
     }).catch(err => {

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manifest_version": 2,
   "description": "True Stories displays a different ABC story every time you open a new tab.",
-  "homepage_url": "https://localstories.info",
+  "homepage_url": "https://truestories.david-ma.net",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
