@@ -20,7 +20,7 @@
     "mustache": "^4.2.0",
     "sequelize": "^6.9.0",
     "socket.io": "^2.4.1",
-    "sqlite3": "^5.0.2",
+    "sqlite3": "^5.1.5",
     "xml2js": "^0.4.23"
   },
   "devDependencies": {
